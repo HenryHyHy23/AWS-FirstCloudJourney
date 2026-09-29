@@ -1,38 +1,35 @@
 ---
-title: "Worklog Tuần 1"
-date: "13/09/2026"
+title: "Báo cáo công việc Tuần 1"
+date: 2026-09-14
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
 
-### Mục tiêu tuần 1:
+### Mục tiêu Tuần 1:
 
-- Kết nối, làm quen với các thành viên trong First Cloud Journey.
-- Tìm hiểu dịch vụ AWS cơ bản.
+- Làm quen với nền tảng AWS Cloud và giao diện AWS Management Console.
+- Hiểu các dịch vụ cơ bản của AWS cùng những khái niệm nền tảng về hạ tầng đám mây.
+- Học cách tạo, cấu hình và quản lý tài nguyên AWS an toàn.
+- Thực hành triển khai và quản lý ứng dụng trên AWS.
+- Nắm bắt các khái niệm cơ bản về mạng đám mây, bảo mật và quản lý chi phí.
+- Tích lũy kinh nghiệm thực hành qua các bài lab cơ bản trong gói AWS Free Tier.
 
-### Các công việc cần triển khai trong tuần này:
+### Các công việc thực hiện trong tuần:
 
-| Day | Task                                                                                                     | Start Date | Completion Date | Reference Sources                                                                                                                      |
-| :-- | :------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| 2   | Làm quen với các thành viên FCJ <br> - Làm quen với các thành viên nhóm, trao đổi, chia sẻ thông tin     | 8/9/2025   | 8/9/2025        |                                                                                                                                        |
-| 3   | Tìm hiểu thêm về AWS: <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + ... | 9/9/2025   | 9/9/2025        | <https://cloudjourney.awsstudygroup.com/>                                                                                              |
-| 4   | &emsp; Module 01 - 01                                                                                    | 10/9/2025  | 10/9/2025       | [Module 01 - 01](https://www.youtube.com/watch?v=HxYZAK1coOI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=5&ab_channel=AWSStudyGroup) |
-| 5   | &emsp; Module 01 - 02                                                                                    | 11/9/2025  | 11/9/2025       | [Module 01 - 02](https://www.youtube.com/watch?v=IK59Zdd1poE&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=5&ab_channel=AWSStudyGroup) |
-| 6   | &emsp; Module 01 - 03                                                                                    | 12/9/2025  | 12/9/2025       | [Module 01 - 03](https://www.youtube.com/watch?v=HSzrWGqo3ME&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=6&)                         |     |
+| Ngày | Công việc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo                                                                                                                                                                                                                                                                  |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | - Làm quen với nền tảng AWS Cloud và giao diện AWS Management Console <br> - Hiểu vai trò của AWS Console như một giao diện quản trị đám mây tập trung <br> - Tạo và cấu hình tài khoản AWS Free Tier <br> - Tìm hiểu các gói Free Tier, credit khuyến mãi và mô hình tính phí <br> - Học cách tối ưu credit và tránh phát sinh chi phí không mong muốn <br> - Khám phá các tính năng của AWS Billing và Cost Management                                                                                                                               | 14/09/2026   | 15/09/2026      | - [Module 1 - 1: Tạo tài khoản AWS mới](https://000001.awsstudygroup.com/) <br><br> - [Module 1 - 2: Quản lý chi phí sử dụng AWS với AWS Budgets](https://000007.awsstudygroup.com/) <br><br> - [Module 1 - 3: Gửi yêu cầu hỗ trợ với AWS Support](https://aws.amazon.com/support/) |
+| 2    | - Tìm hiểu các khái niệm cơ bản về AWS Identity and Access Management (IAM) <br> - Hiểu các thành phần cốt lõi của IAM: <br>&emsp; + Users <br>&emsp; + Groups <br>&emsp; + Roles <br>&emsp; + Policies <br> - Học cách quản lý quyền và kiểm soát truy cập <br> - Thực hành tạo IAM users, groups và gán policies <br> - Học cách sử dụng AWS CLI cơ bản và kiểm tra tài nguyên                                                                                                                                                                       | 15/09/2026   | 16/09/2026      | - [Module 1 - 4: Quản lý truy cập với AWS Identity and Access Management (AWS IAM)](https://000002.awsstudygroup.com/)                                                                                                                                                              |
+| 3    | - Tìm hiểu các khái niệm cơ bản về Amazon Virtual Private Cloud (Amazon VPC) <br> - Hiểu kiến trúc VPC và cách phân bổ dải địa chỉ IP <br> - Học các thành phần mạng: <br>&emsp; + Dải CIDR <br>&emsp; + Subnets <br>&emsp; + Route Tables <br>&emsp; + Internet Gateway <br>&emsp; + NAT Gateway <br>&emsp; + Security Groups <br>&emsp; + Network ACLs <br>&emsp; + Sơ đồ tài nguyên VPC (VPC resources map) <br> - Tìm hiểu thiết lập Site-to-Site VPN <br> - Hiểu kiến trúc public subnet và private subnet                                        | 16/09/2026   | 17/09/2026      | - [Module 1 - 5: Triển khai hạ tầng mạng với Amazon Virtual Private Cloud (Amazon VPC)](https://000003.awsstudygroup.com/)                                                                                                                                                          |
+| 4    | - Tìm hiểu các khái niệm cơ bản về Amazon Elastic Compute Cloud (Amazon EC2) <br> - Hiểu các thành phần của EC2: <br>&emsp; + Instance Types <br>&emsp; + AMI <br>&emsp; + Ổ cứng EBS <br>&emsp; + Key Pair <br>&emsp; + Security Groups <br>&emsp; + Kết nối SSH <br> - Thực hành khởi tạo và cấu hình một EC2 instance <br> - Kết nối tới EC2 thông qua SSH <br> - Quản lý vòng đời của EC2 instance                                                                                                                                                 | 17/09/2026   | 18/09/2026      | - [Module 1 - 6: Bắt đầu và triển khai ứng dụng trên Amazon Compute Cloud (Amazon EC2)](https://000004.awsstudygroup.com/)                                                                                                                                                          |
+| 5    | - Học cách cấp quyền cho ứng dụng truy cập các dịch vụ AWS <br> - Hiểu rủi ro bảo mật khi gắn cứng Access Key trực tiếp trong mã nguồn <br> - Tạo một Amazon S3 bucket và khởi tạo một EC2 instance <br> - Thực hành kết nối ứng dụng Python trên EC2 với S3: <br>&emsp; + Sử dụng Access Key và Secret Key của IAM User <br>&emsp; + Sử dụng IAM Role gán trực tiếp cho EC2 instance <br> - Hiểu cách EC2 lấy thông tin xác thực tạm thời qua Instance Metadata và AWS STS <br> - Thực hành chạy lệnh AWS CLI trên EC2 mà không cần cấu hình thủ công | 18/09/2026   | 19/09/2026      | - [Module 1 - 7: Cấp quyền cho ứng dụng truy cập dịch vụ AWS thông qua IAM Role (AWS IAM)](https://000048.awsstudygroup.com/)                                                                                                                                                       |
+| 6    | - Tìm hiểu về AWS CloudShell và môi trường dòng lệnh trực tiếp trên trình duyệt web <br> - Thực hành các lệnh Linux cơ bản: <br>&emsp; + Điều hướng và quản lý thư mục (`pwd`, `cd`, `mkdir`) <br>&emsp; + Tạo và chỉnh sửa tệp (`touch`, `cat`, `vi`) <br>&emsp; + Đọc hiểu quyền truy cập tệp (`ls -la`, định dạng `rwx`) <br> - Thực hành chạy các lệnh AWS CLI đã được cấu hình sẵn trong CloudShell <br> - Thực hành tải lên và tải xuống tệp giữa máy tính cá nhân và CloudShell                                                                 | 19/09/2026   | 20/09/2026      | - [Module 1 - 8: Bắt đầu với AWS CloudShell](https://000006.awsstudygroup.com/)                                                                                                                                                                                                     |
 
-### Kết quả đạt được tuần 1:
+### Kết quả đạt được trong Tuần 1:
 
-- Làm quen với các thành viên FCJ, mentor và các thành viên nhóm.
-
-- Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản:
-  - Compute
-  - Storage
-  - Networking
-  - Database
-  - ...
-
-- Học xong các phần học đầu của Module 01:
-  - Hiểu được về điện toán đám mây là gì
-  - Hiểu được các lợi ích của cloud computing như tối ưu chi phí, đẩy nhanh phát triển, co giãn tài nguyên linh hoạt và khả năng mở rộng trên toàn cầu.
-  - Nắm được những kiến thức cơ bản về AWS và hành trình làm việc với dịch vụ cloud phía trước.
+- **Quản lý tài khoản & chi phí:** Khởi tạo thành công tài khoản AWS Free Tier, làm quen với giao diện AWS Management Console và biết cách thiết lập ngân sách AWS Budgets để theo dõi hạn mức, tránh phát sinh chi phí ngoài ý muốn.
+- **IAM & phân quyền cơ bản:** Hiểu rõ vai trò của các thành phần trong IAM (Users, Groups, Policies, Roles) và thực hành tạo người dùng, gán quyền truy cập hợp lý theo các nguyên tắc bảo mật cơ bản.
+- **Mạng VPC & máy chủ EC2:** Nắm được mô hình mạng cơ bản với Amazon VPC (Subnet, Route Table, Internet Gateway) và tự tay tạo, cấu hình rồi kết nối SSH/PuTTY vào máy chủ ảo Linux EC2 thành công.
+- **Bảo mật với IAM Role:** Nhận thức rõ sự nguy hiểm của việc lưu cứng Access Key trong mã nguồn, đồng thời biết cách gán IAM Role vào EC2 để ứng dụng upload file lên S3 an toàn bằng thông tin xác thực tạm thời.
+- **Sử dụng CloudShell & Linux CLI:** Thao tác quen dần với AWS CloudShell trên trình duyệt, ôn lại các câu lệnh quản lý file, chỉnh sửa bằng `vi`, hiểu cách phân quyền `rwx` trên Linux và chạy thử các lệnh AWS CLI nhanh chóng mà không cần cài đặt phức tạp trên máy cá nhân.

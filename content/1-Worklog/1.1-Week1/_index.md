@@ -1,38 +1,39 @@
 ---
 title: "Week 1 Worklog"
-date: "13/09/2026"
+date: 2026-09-14
 weight: 1
-chapter: 1
+chapter: false
 pre: " <b> 1.1. </b> "
 ---
 
+{{% notice warning %}}
+⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
+{{% /notice %}}
+
 ### Week 1 Objectives:
 
-- Connect and get acquainted with members of First Cloud Journey.
-- Understand basic AWS services, how to use the console & CLI.
+- Get familiar with AWS Cloud platform and AWS Management Console.
+- Understand basic AWS services and cloud infrastructure concepts.
+- Learn how to create, configure, and manage AWS resources safely.
+- Practice deploying and managing applications on AWS.
+- Understand basic concepts of cloud networking, security, and cost management.
+- Gain hands-on experience through foundational AWS Free Tier lab exercises.
 
 ### Tasks to be carried out this week:
 
-| Day | Task                                                                                                     | Start Date | Completion Date | Reference Sources                                                                                                                      |
-| :-- | :------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | Get to know FCJ members <br> - Get to know team members, exchange and share information                  | 8/9/2025   | 8/9/2025        |                                                                                                                                        |
-| 3   | Learn more about AWS: <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + ... | 9/9/2025   | 9/9/2025        | <https://cloudjourney.awsstudygroup.com/>                                                                                              |
-| 4   | &emsp; Module 01 - 01                                                                                    | 10/9/2025  | 10/9/2025       | [Module 01 - 01](https://www.youtube.com/watch?v=HxYZAK1coOI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=5&ab_channel=AWSStudyGroup) |
-| 5   | &emsp; Module 01 - 02                                                                                    | 11/9/2025  | 11/9/2025       | [Module 01 - 02](https://www.youtube.com/watch?v=IK59Zdd1poE&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=5&ab_channel=AWSStudyGroup) |
-| 6   | &emsp; Module 01 - 03                                                                                    | 12/9/2025  | 12/9/2025       | [Module 01 - 03](https://www.youtube.com/watch?v=HSzrWGqo3ME&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=6&)                         |
+| Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Start Date | Completion Date | Reference Material                                                                                                                                                                                                                                                                |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | - Get familiar with AWS Cloud platform and AWS Management Console <br> - Understand the role of AWS Console as a centralized cloud management interface <br> - Create and configure AWS Free Tier account <br> - Understand Free Tier plans, promotional credits, and pricing models <br> - Learn how to maximize AWS credits and avoid unnecessary costs <br> - Explore AWS Billing and Cost Management features                                                                                                                                          | 14/09/2026 | 15/09/2026      | - [Module 1 - 1: Create new AWS Account](https://000001.awsstudygroup.com/) <br><br> - [Module 1 - 2: Manage usage costs on AWS with AWS Budgets](https://000007.awsstudygroup.com/) <br><br> - [Module 1 - 3: Request support with AWS Support](https://aws.amazon.com/support/) |
+| 2   | - Learn AWS Identity and Access Management (IAM) fundamentals <br> - Understand IAM components: <br>&emsp; + Users <br>&emsp; + Groups <br>&emsp; + Roles <br>&emsp; + Policies <br> - Learn how to manage permissions and access control <br> - Practice creating IAM users, groups, and attaching policies <br> - Learn basic AWS CLI usage and resource management                                                                                                                                                                                      | 15/09/2026 | 16/09/2026      | - [Module 1 - 4: Access Management with AWS Identity and Access Management (AWS IAM)](https://000002.awsstudygroup.com/)                                                                                                                                                          |
+| 3   | - Learn Amazon Virtual Private Cloud (Amazon VPC) fundamentals <br> - Understand VPC architecture and IP addressing <br> - Learn networking components: <br>&emsp; + CIDR Blocks <br>&emsp; + Subnets <br>&emsp; + Route Tables <br>&emsp; + Internet Gateway <br>&emsp; + NAT Gateway <br>&emsp; + Security Groups <br>&emsp; + Network ACLs <br>&emsp; + VPC resources map <br> - Setting up Site-to-Site VPN <br> - Understand public and private subnet architecture                                                                                   | 16/09/2026 | 17/09/2026      | - [Module 1 - 5: Deploy network infrastructure with Amazon Virtual Private Cloud (Amazon VPC)](https://000003.awsstudygroup.com/)                                                                                                                                                 |
+| 4   | - Learn Amazon Elastic Compute Cloud (Amazon EC2) fundamentals <br> - Understand EC2 components: <br>&emsp; + Instance Types <br>&emsp; + AMI <br>&emsp; + EBS Storage <br>&emsp; + Key Pair <br>&emsp; + Security Groups <br>&emsp; + SSH Connection <br> - Practice launching and configuring an EC2 instance <br> - Connect to EC2 through SSH <br> - Manage EC2 instance lifecycle                                                                                                                                                                     | 17/09/2026 | 18/09/2026      | - [Module 1 - 6: Getting Started and Deploying Applications on Amazon Compute Cloud (Amazon EC2)](https://000004.awsstudygroup.com/)                                                                                                                                              |
+| 5   | - Learn how to grant application permissions to access AWS services <br> - Understand the security risks of hardcoding Access Keys in source code <br> - Create an Amazon S3 bucket and launch an EC2 instance <br> - Practice connecting an EC2 Python application to S3: <br>&emsp; + Using IAM User Access Key and Secret Key <br>&emsp; + Using IAM Role attached to the EC2 instance <br> - Understand how EC2 retrieves temporary credentials via Instance Metadata and AWS STS <br> - Practice running AWS CLI commands on EC2 without manual setup | 18/09/2026 | 19/09/2026      | - [Module 1 - 7: Grant application permissions to access AWS services through IAM Role (AWS IAM)](https://000048.awsstudygroup.com/)                                                                                                                                              |
+| 6   | - Learn about AWS CloudShell and browser-based command line environment <br> - Practice basic Linux commands: <br>&emsp; + Navigation and folder management (`pwd`, `cd`, `mkdir`) <br>&emsp; + File creation and editing (`touch`, `cat`, `vi`) <br>&emsp; + Understanding file permissions (`ls -la`, `rwx` format) <br> - Practice running pre-configured AWS CLI commands in CloudShell <br> - Practice uploading and downloading files between local machine and CloudShell                                                                           | 19/09/2026 | 20/09/2026      | - [Module 1 - 8: Getting Started with AWS CloudShell](https://000006.awsstudygroup.com/)                                                                                                                                                                                          |
 
 ### Week 1 Achievements:
 
-- Get along with the members of FCJ, mentors and the team.
-
-- Understood the fundamentals of AWS and learned about its core service categories:
-  - Compute
-  - Storage
-  - Networking
-  - Database
-  - ...
-
-- Completed some components of Module 01:
-  - Explored what cloud computing is and its core concept.
-  - Gained insight into the advantages of cloud computing, including reducing costs, speeding up development, flexible resource scaling, and expanding services worldwide.
-  - Built foundational knowledge of AWS and the upcoming cloud learning path.
+- **Account & Cost Management:** Successfully created an AWS Free Tier account, explored the AWS Management Console, and set up an AWS Budget to track daily usage and avoid unexpected billing.
+- **IAM & Access Control:** Understood the core concepts of IAM (Users, Groups, Policies, Roles) and practiced creating IAM accounts with assigned permissions following basic security practices.
+- **VPC Networking & EC2:** Understood the basic structure of Amazon VPC (Subnets, Route Tables, Internet Gateways) and successfully launched, connected to, and operated a Linux EC2 instance using SSH/PuTTY.
+- **IAM Role Security:** Learned the security risks of putting permanent Access Keys directly inside application code, and successfully assigned an IAM Role to an EC2 instance to upload files to Amazon S3 using temporary credentials.
+- **CloudShell & Linux CLI:** Got comfortable using AWS CloudShell directly in the web browser, practiced common Linux terminal commands (file operations, editing with `vi`, checking `rwx` permissions), and tested basic AWS CLI commands without needing any local configuration.
