@@ -1,57 +1,38 @@
 ---
-title: "Worklog Tuần 2"
-date: "20/09/2026"
-weight: 1
+title: "Báo cáo công việc Tuần 2"
+date: 2026-09-21
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
+{{% notice warning %}}
+⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+{{% /notice %}}
+
 ### Mục tiêu tuần 2:
 
-- Hoàn thành Module 1 và tạo tài khoản AWS
+- Tìm hiểu Amazon S3 và thực hành hosting website tĩnh.
+- Cấu hình CloudFront để phân phối nội dung an toàn và hiệu quả hơn.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Day | Task                                       | Start Date | Completion Date | Reference Sources                                                                                                                       |
-| :-- | :----------------------------------------- | :--------- | :-------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | &emsp; Module 01 - 04                      | 15/9/2025  | 15/9/2025       | [Module 01 - 04](https://www.youtube.com/watch?v=pjr5a-HYAjI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=7&ab_channel=AWSStudyGroup)  |
-| 3   | &emsp; Module 01 - 05                      | 16/9/2025  | 16/9/2025       | [Module 01 - 05](https://www.youtube.com/watch?v=2PQYqH_HkXw&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=8&ab_channel=AWSStudyGroup)  |
-| 4   | &emsp; Module 01 - 06                      | 17/9/2025  | 17/9/2025       | [Module 01 - 06](https://www.youtube.com/watch?v=IY61YlmXQe8&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=9&ab_channel=AWSStudyGroup)  |
-| 5   | &emsp; Module 01 - 07                      | 18/9/2025  | 18/9/2025       | [Module 01 - 07](https://www.youtube.com/watch?v=Hku7exDBURo&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=10&ab_channel=AWSStudyGroup) |
-| 6   | &emsp; Complete Lab 01: Create AWS Account | 19/9/2025  | 19/9/2025       | [Lab01](https://000001.awsstudygroup.com/1-create-new-aws-account/)                                                                     |
+| Ngày | Công việc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                                                                                                                                  |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | - Tìm hiểu Amazon S3: <br> &emsp; + Mô hình lưu trữ đối tượng, phân biệt Bucket và Object <br> &emsp; + Các Storage Class: Standard, Intelligent-Tiering, Standard-IA, Glacier <br> &emsp; + Cơ chế bảo mật: IAM Policy, Bucket Policy, ACL, Encryption <br> - Tìm hiểu Amazon CloudFront và cơ chế phân phối nội dung qua Edge Locations <br> - Tìm hiểu S3 Versioning và Cross-Region Replication (CRR) <br> - **Thực hành:** <br> &emsp; + Tạo S3 Bucket và upload source code website tĩnh <br> &emsp; + Bật Static Website Hosting, cấu hình Block Public Access và ACL <br> &emsp; + Tạo CloudFront Distribution, cấu hình Bucket Policy cho CloudFront <br> &emsp; + Bật Bucket Versioning, upload và khôi phục phiên bản cũ <br> &emsp; + Di chuyển Object giữa 2 Bucket <br> &emsp; + Cấu hình Cross-Region Replication sang us-east-1 | 21/09/2026   | 22/09/2026      | - [Lab 57: Hosting Static Website with Amazon S3](https://000057.awsstudygroup.com/) <br> - [Video hướng dẫn](https://youtu.be/3vSrTeWroSs?si=KmSKod77TeDMpitx) |
 
 ### Kết quả đạt được tuần 2:
 
-- Hoàn thành Module-1
-- Tìm hiểu về Hạ tầng Toàn cầu của AWS, bao gồm:
-  - Data Centers
-  - Availability Zones (AZs)
-  - Regions (mỗi region có tối thiểu 3 AZ)
-  - Edge Locations
-  - CloudFront
-  - WAF (Web Application Firewall)
-  - Route 53
+- Nắm được mô hình lưu trữ của Amazon S3:
+  - Bucket là container (tên globally unique, tối đa 100 bucket/tài khoản)
+  - Object là dữ liệu thực sự bên trong (0 byte đến 5 TB/object)
+  - Các Storage Class: Standard, Intelligent-Tiering, Standard-IA, Glacier
+  - Phân quyền qua IAM Policy, Bucket Policy, ACL
 
-- Khám phá các công cụ quản lý AWS:
-  - AWS Console – đăng nhập bằng tài khoản root
-  - AWS Management Console – đăng nhập qua IAM
-  - Tìm kiếm dịch vụ trong Management Console
-  - Support Center
-  - AWS Command Line Interface (CLI)
-  - AWS SDKs (Software Development Kits)
+- Triển khai thành công website tĩnh trên S3 và cấu hình CloudFront phân phối nội dung mà không cần công khai bucket:
+  - Thời gian tải trang giảm từ ~136ms (S3 trực tiếp) xuống ~10ms (qua CloudFront)
+  - PoP gần nhất là SGN50-P2 (TP. Hồ Chí Minh)
 
-- Tìm hiểu các phương pháp tối ưu chi phí khi sử dụng AWS:
-  - Tận dụng các mô hình giá ưu đãi:
-    - Reserved Instances
-    - Savings Plans
-    - Spot Instances
-    - Thực hành tạo tài khoản AWS.
-    - Bổ sung kiến thức bằng việc nghiên cứu thêm về AWS Well-Architected Framework.
+- Thực hành Bucket Versioning: upload phiên bản mới và khôi phục phiên bản cũ bằng cách xoá version mới nhất.
 
-- Tạo và cấu hình thành công tài khoản AWS Free Tier:
-  - Thiết lập MFA (Multi-Factor Authentication) cho tài khoản root.
-  - Làm quen với việc tạo Admin Group và Admin User.
-
-- Cấu hình xác thực cho Admin User bằng cách:
-  - Tạo Access Key.
-  - Quản lý Secret Key (tạo/xoá).
+- Cấu hình Cross-Region Replication tự động sao chép object từ ap-southeast-1 sang us-east-1 cho mục đích Disaster Recovery, theo tiêu chí Reliability của AWS Well-Architected Framework.

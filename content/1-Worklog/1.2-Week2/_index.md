@@ -1,57 +1,38 @@
 ---
 title: "Week 2 Worklog"
-date: "20/09/2026"
-weight: 1
+date: 2026-09-21
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
+{{% notice warning %}}
+⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
+{{% /notice %}}
+
 ### Week 2 Objectives:
 
-- Finish Module 1 and Create AWS Account
+- Learn Amazon S3 and practice hosting a static website.
+- Configure CloudFront to distribute content more securely and efficiently.
 
 ### Tasks to be carried out this week:
 
-| Day | Task                                       | Start Date | Completion Date | Reference Sources                                                                                                                       |
-| :-- | :----------------------------------------- | :--------- | :-------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | &emsp; Module 01 - 04                      | 15/9/2025  | 15/9/2025       | [Module 01 - 04](https://www.youtube.com/watch?v=pjr5a-HYAjI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=7&ab_channel=AWSStudyGroup)  |
-| 3   | &emsp; Module 01 - 05                      | 16/9/2025  | 16/9/2025       | [Module 01 - 05](https://www.youtube.com/watch?v=2PQYqH_HkXw&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=8&ab_channel=AWSStudyGroup)  |
-| 4   | &emsp; Module 01 - 06                      | 17/9/2025  | 17/9/2025       | [Module 01 - 06](https://www.youtube.com/watch?v=IY61YlmXQe8&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=9&ab_channel=AWSStudyGroup)  |
-| 5   | &emsp; Module 01 - 07                      | 18/9/2025  | 18/9/2025       | [Module 01 - 07](https://www.youtube.com/watch?v=Hku7exDBURo&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=10&ab_channel=AWSStudyGroup) |
-| 6   | &emsp; Complete Lab 01: Create AWS Account | 19/9/2025  | 19/9/2025       | [Lab01](https://000001.awsstudygroup.com/1-create-new-aws-account/)                                                                     |
+| Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Start Date | Completion Date | Reference Sources                                                                                                                                              |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | - Learn Amazon S3: <br> &emsp; + Object storage model, difference between Buckets and Objects <br> &emsp; + Storage Classes: Standard, Intelligent-Tiering, Standard-IA, Glacier <br> &emsp; + Security mechanisms: IAM Policies, Bucket Policies, ACLs, Encryption <br> - Learn Amazon CloudFront and how content is distributed through Edge Locations <br> - Learn about S3 Versioning and Cross-Region Replication (CRR) <br> - **Practice:** <br> &emsp; + Create an S3 Bucket and upload static website source code <br> &emsp; + Enable Static Website Hosting, configure Block Public Access and ACLs <br> &emsp; + Create a CloudFront Distribution and configure Bucket Policy for CloudFront <br> &emsp; + Enable Bucket Versioning, upload a new version, and restore the previous one <br> &emsp; + Move Objects between two Buckets <br> &emsp; + Configure Cross-Region Replication to us-east-1 | 21/09/2026 | 22/09/2026      | - [Lab 57: Hosting Static Website with Amazon S3](https://000057.awsstudygroup.com/) <br> - [Video Tutorial](https://youtu.be/3vSrTeWroSs?si=KmSKod77TeDMpitx) |
 
 ### Week 2 Achievements:
 
-- Finish Module 1
-- Gained knowledge of the AWS Global Infrastructure, including:
-  - Data Centers
-  - Availability Zones (AZs)
-  - Regions (a region comprises a minimum of 3 AZs)
-  - Edge Locations
-    - CloudFront
-    - WAF (Web Application Firewall)
-    - Route 53
+- Understood Amazon S3's object storage model:
+  - Bucket is a container (globally unique name, max 100 buckets per account)
+  - Object is the actual data stored inside (0 bytes to 5 TB per object)
+  - Storage Classes: Standard, Intelligent-Tiering, Standard-IA, Glacier
+  - Permissions managed via IAM Policies, Bucket Policies, and ACLs
 
-- Explored AWS management tools:
-  - AWS Console - Root Login
-  - AWS Management Console - IAM Login
-  - Management Console - Service Search
-  - Management Console - Support Center
-  - AWS Command Line Interface (CLI)
-  - AWS SDKs (Software Development Kits)
+- Successfully hosted a static website on S3 and configured CloudFront to distribute content without making the bucket public:
+  - Page load time dropped from ~136ms (direct S3) to ~10ms (via CloudFront)
+  - Nearest PoP confirmed as SGN50-P2 (Ho Chi Minh City)
 
-- Learned about cost optimization methods when using AWS services:
-  - Leveraging discounted pricing models:
-    - Reserved Instances
-    - Savings Plans
-    - Spot Instances
-    - Practiced creating an AWS account.
-    - Conducted supplementary research on the AWS Well-Architected Framework.
+- Practiced Bucket Versioning: uploaded a new version of an object and restored the previous version by deleting the latest one.
 
-- Successfully created and configured an AWS Free Tier account:
-  - Set up MFA (Multi-Factor Authentication) for the root account.
-  - Familiarized myself with creating an Admin Group and an Admin User.
-
-- Configured authentication for the Admin User by:
-  - Generating an Access Key.
-  - Managing the Secret Key (creation/deletion).
+- Configured Cross-Region Replication to automatically sync objects from ap-southeast-1 to us-east-1 for Disaster Recovery, following the Reliability pillar of the AWS Well-Architected Framework.
