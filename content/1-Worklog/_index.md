@@ -11,7 +11,7 @@ pre: " <b> 1. </b> "
 
 **Week 3:** [Finish Module 2 and Design Project UI](1.3-week3/)
 
-**Week 4:** [Complete Lab 03](1.4-week4/)
+**Week 4:** [EC2 access control with IAM and resource tags](1.4-week4/)
 
 **Week 5:** [Finish Module 04 and Translate AWS Blogs](1.5-week5/)
 

@@ -1,32 +1,30 @@
 ---
-title: "Worklog Tuần 4"
-weight: 1
+title: "Báo cáo công việc Tuần 4"
+date: 2026-10-05
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
 ### Mục tiêu tuần 4:
 
-- Hoàn thành Lab 03
+- Nắm IAM Least Privilege, điều kiện theo tag/Region và AssumeRole cho EC2.
+- Tìm hiểu quản lý node tập trung, tuân thủ bản vá và chạy lệnh hàng loạt bằng Systems Manager.
+- Hiểu truy cập riêng tư, ghi log và RDP port forwarding với Session Manager.
+- Tìm hiểu template CloudFormation, vòng đời stack, kiểm tra template, Custom Resources, StackSets và Drift Detection.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Day | Task                                                                                                          | Start Date | Completion Date | Reference Sources                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| :-- | :------------------------------------------------------------------------------------------------------------ | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | <br>&emsp; Lab03-01 <br>&emsp; Lab03-01.1 <br>&emsp; Lab03-01.2 <br>&emsp; Lab03-01.3 <br>&emsp; Lab03-01.4   | 29/9/2025  | 29/9/2025       | [Lab03-01](https://www.youtube.com/watch?v=O5CIvG0Wt78&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=28) <br> [Lab03-01.1](https://www.youtube.com/watch?v=DHYgA94SefE&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=29) <br> [Lab03-01.2](https://www.youtube.com/watch?v=dHoYmQR7FYs&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=30) <br> [Lab03-01.3](https://www.youtube.com/watch?v=XBJgHS3XQjk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=31) <br> [Lab03-01.4](https://www.youtube.com/watch?v=N58agSU4O8o&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=32)   |
-| 3   | <br>&emsp; Lab03-02.1 <br>&emsp; Lab03-02.2 <br>&emsp; Lab03-02.3                                             | 30/9/2025  | 30/9/2025       | [Lab03-02.1](https://www.youtube.com/watch?v=B1qxOQLmavQ&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=33) <br> [Lab03-02.2](https://www.youtube.com/watch?v=GVDsDu9dOFY&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=34) <br> [Lab03-02.3](https://www.youtube.com/watch?v=fZa_kQ69stI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=35)                                                                                                                                                                                                                                 |
-| 4   | <br>&emsp; Lab03-03.1 <br>&emsp; Lab03-03.2 <br>&emsp; Lab03-03.3 <br>&emsp; Lab03-03.4 <br>&emsp; Lab03-03.5 | 01/10/2025 | 01/10/2025      | [Lab03-03.1](https://www.youtube.com/watch?v=I-5gTPDCOI8&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=36) <br> [Lab03-03.2](https://www.youtube.com/watch?v=xl0hyM6qHgw&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=37) <br> [Lab03-03.3](https://www.youtube.com/watch?v=nSRrWRBSphc&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=38) <br> [Lab03-03.4](https://www.youtube.com/watch?v=_6t-LnZndb0&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=39) <br> [Lab03-03.5](https://www.youtube.com/watch?v=BclZq6Dvyjk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=40) |
-| 5   | <br>&emsp; Lab03-04.1 <br>&emsp; Lab03-04.2 <br>&emsp; Lab03-04.3 <br>&emsp; Lab03-04.5                       | 02/10/2025 | 02/10/2025      | [Lab03-04.1](https://www.youtube.com/watch?v=duJEdF_g1To&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=41) <br> [Lab03-04.2](https://www.youtube.com/watch?v=wWu67GyrUNY&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=42) <br> [Lab03-04.3](https://www.youtube.com/watch?v=cAcCplBJ210&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=43) <br> [Lab03-04.5](https://www.youtube.com/watch?v=7NjNTnXon5s&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=44)                                                                                                                 |
-| 6   | &emsp; Hoàn thành Lab 03                                                                                      | 03/10/2025 | 03/10/2025      | [Lab03](https://000003.awsstudygroup.com/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 1 | - Tìm hiểu IAM Least Privilege và phân quyền EC2 theo `Team=Alpha`, Region (`us-east-1`, `us-west-1`) <br> - Nắm 5 nhóm policy: đọc, gắn tag khi tạo, gắn tag tài nguyên có sẵn, tạo và quản lý instance; phân biệt tag yêu cầu, tag tài nguyên và tag key được phép <br> - Hiểu Trust Policy, MFA, AssumeRole và các trường hợp cho phép/từ chối theo điều kiện | 05/10/2026 | 05/10/2026 | - [Module 3 - 4: Managing EC2 Resource Tag Access with AWS IAM](https://000028.awsstudygroup.com/) |
+| 2 | - Tìm hiểu Systems Manager: Vận hành tập trung, Fleet Manager, managed node và quyền `AmazonSSMManagedInstanceCore` <br> - Nắm Patch Manager: Quét/cài bản vá, trạng thái tuân thủ và tùy chọn reboot <br> - Tìm hiểu Run Command: Chạy `AWS-RunPowerShellScript` (`net user`) trên nhiều Windows node, xem output/lỗi từng node và tùy chọn lưu output vào S3 | 06/10/2026 | 06/10/2026 | - [Module 3 - 5: Manage Patches and Run Commands on Multiple Servers with AWS Systems Manager](https://000031.awsstudygroup.com/) |
+| 3 | - Tìm hiểu Session Manager: Quyền IAM/SSM role, truy cập EC2 public/private mà không mở inbound SSH/RDP <br> - Nắm Interface Endpoint, private DNS, HTTPS 443 và định tuyến S3 Gateway Endpoint để gửi log qua mạng riêng <br> - Phân biệt Session history với log phiên shell trong S3; tìm hiểu CLI/Session Manager Plugin và RDP forwarding (`localhost:9999` → `3389`) | 07/10/2026 | 07/10/2026 | - [Module 3 - 6: Working with AWS Systems Manager - Session Manager](https://000058.awsstudygroup.com/) <br> - [Giới hạn ghi log phiên](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-logging.html) |
+| 4 | - Tìm hiểu CloudFormation IaC: Template YAML/JSON, Parameters/Resources/Outputs, intrinsic function (`Ref`, `GetAtt`, `Sub`) và quan hệ phụ thuộc <br> - Nắm kiểm tra/triển khai stack qua CloudShell/CLI với `cfn-lint`, `taskcat`; Custom Resources dùng Lambda và SSM Parameter Store <br> - Tìm hiểu Mappings, StackSets qua nhiều account/Region và Drift Detection (`IN_SYNC`/`DRIFTED`) | 08/10/2026 | 08/10/2026 | - [Module 3 - 7: AWS CloudFormation](https://000037.awsstudygroup.com/) |
 
 ### Kết quả đạt được tuần 4:
 
-- Hoàn thành Lab 03 với các kết quả đạt được như sau:
-
-  - Trải nghiệm thực hành trong việc tạo VPC và cấu hình các subnet.
-  - Làm việc với Route Tables, điều chỉnh Security Group và tìm hiểu cách hoạt động của NACLs.
-  - Khởi tạo một EC2 instance và kiểm tra khả năng kết nối mạng.
-  - Sử dụng MobaXterm để thực hiện kết nối.
-  - Thiết lập NAT Gateway và VPC Endpoint.
-  - Đồng thời tiến hành kiểm tra khả năng kết nối của Endpoint.
-  - Lưu ý: Để truy cập vào private instance, cần cập nhật inbound rules của Security Group để cho phép lưu lượng SSH đến từ Security Group của Endpoint.
+- **IAM:** Phân biệt tag yêu cầu/tài nguyên; nắm điều kiện Region/tag key, Trust Policy, MFA và AssumeRole.
+- **Systems Manager:** Hiểu quyền IAM cho managed node, quét/cài bản vá, tuân thủ và Run Command với kết quả từng node.
+- **Session Manager:** Nắm truy cập qua endpoint riêng, log shell trong S3 và RDP tunnel; không ghi nội dung phiên port forwarding.
+- **CloudFormation:** Hiểu template tái sử dụng, intrinsic function, thứ tự phụ thuộc, Lambda Custom Resources với SSM Parameter Store, Mappings, StackSets nhiều account/Region và Drift Detection.

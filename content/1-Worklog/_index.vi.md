@@ -11,7 +11,7 @@ pre: " <b> 1. </b> "
 
 **Tuần 3:** [Hoàn thành Module 2 và thiết kế UI dự án](1.3-week3/)
 
-**Tuần 4:** [Hoàn thành Lab 03](1.4-week4/)
+**Tuần 4:** [Quản lý quyền EC2 bằng IAM và Resource Tags](1.4-week4/)
 
 **Tuần 5:** [Hoàn thành Module 04 và Biên dịch Blog của AWS](1.5-week5/)
 

@@ -1,32 +1,30 @@
 ---
 title: "Week 4 Worklog"
-weight: 1
+date: 2026-10-05
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
 ### Week 4 Objectives:
 
-- Complete Lab 03
+- Understand IAM least privilege, tag/Region conditions, and secure role assumption for EC2.
+- Learn centralized node management, patch compliance, and bulk commands with Systems Manager.
+- Understand Session Manager private access, session logging, and RDP port forwarding.
+- Learn CloudFormation templates, stack lifecycle, validation, Custom Resources, StackSets, and Drift Detection.
 
 ### Tasks to be carried out this week:
 
-| Day | Task                                                                                                          | Start Date | Completion Date | Reference Sources                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| :-- | :------------------------------------------------------------------------------------------------------------ | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | <br>&emsp; Lab03-01 <br>&emsp; Lab03-01.1 <br>&emsp; Lab03-01.2 <br>&emsp; Lab03-01.3 <br>&emsp; Lab03-01.4   | 29/9/2025  | 29/9/2025       | [Lab03-01](https://www.youtube.com/watch?v=O5CIvG0Wt78&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=28) <br> [Lab03-01.1](https://www.youtube.com/watch?v=DHYgA94SefE&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=29) <br> [Lab03-01.2](https://www.youtube.com/watch?v=dHoYmQR7FYs&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=30) <br> [Lab03-01.3](https://www.youtube.com/watch?v=XBJgHS3XQjk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=31) <br> [Lab03-01.4](https://www.youtube.com/watch?v=N58agSU4O8o&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=32)   |
-| 3   | <br>&emsp; Lab03-02.1 <br>&emsp; Lab03-02.2 <br>&emsp; Lab03-02.3                                             | 30/9/2025  | 30/9/2025       | [Lab03-02.1](https://www.youtube.com/watch?v=B1qxOQLmavQ&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=33) <br> [Lab03-02.2](https://www.youtube.com/watch?v=GVDsDu9dOFY&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=34) <br> [Lab03-02.3](https://www.youtube.com/watch?v=fZa_kQ69stI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=35)                                                                                                                                                                                                                                 |
-| 4   | <br>&emsp; Lab03-03.1 <br>&emsp; Lab03-03.2 <br>&emsp; Lab03-03.3 <br>&emsp; Lab03-03.4 <br>&emsp; Lab03-03.5 | 01/10/2025 | 01/10/2025      | [Lab03-03.1](https://www.youtube.com/watch?v=I-5gTPDCOI8&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=36) <br> [Lab03-03.2](https://www.youtube.com/watch?v=xl0hyM6qHgw&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=37) <br> [Lab03-03.3](https://www.youtube.com/watch?v=nSRrWRBSphc&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=38) <br> [Lab03-03.4](https://www.youtube.com/watch?v=_6t-LnZndb0&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=39) <br> [Lab03-03.5](https://www.youtube.com/watch?v=BclZq6Dvyjk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=40) |
-| 5   | <br>&emsp; Lab03-04.1 <br>&emsp; Lab03-04.2 <br>&emsp; Lab03-04.3 <br>&emsp; Lab03-04.5                       | 02/10/2025 | 02/10/2025      | [Lab03-04.1](https://www.youtube.com/watch?v=duJEdF_g1To&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=41) <br> [Lab03-04.2](https://www.youtube.com/watch?v=wWu67GyrUNY&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=42) <br> [Lab03-04.3](https://www.youtube.com/watch?v=cAcCplBJ210&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=43) <br> [Lab03-04.5](https://www.youtube.com/watch?v=7NjNTnXon5s&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i&index=44)                                                                                                                 |
-| 6   | &emsp; Complete Lab 03                                                                                        | 03/10/2025 | 03/10/2025      | [Lab03](https://000003.awsstudygroup.com/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Day | Task | Start Date | Completion Date | Reference Sources |
+| --- | --- | --- | --- | --- |
+| 1 | - Learn IAM least privilege and EC2 tag-based access: `Team=Alpha`, allowed Regions (`us-east-1`, `us-west-1`) <br> - Review five policy functions: read, tag at creation, tag existing resources, launch, and manage instances; distinguish request tags, resource tags, and allowed tag keys <br> - Understand trust policies, MFA, AssumeRole, and conditional allow/deny scenarios | 05/10/2026 | 05/10/2026 | - [Module 3 - 4: Managing EC2 Resource Tag Access with AWS IAM](https://000028.awsstudygroup.com/) |
+| 2 | - Learn Systems Manager: Centralized operations, Fleet Manager, managed nodes, and `AmazonSSMManagedInstanceCore` permissions <br> - Understand Patch Manager: Patch scanning/installation, compliance, and reboot options <br> - Learn Run Command: `AWS-RunPowerShellScript` (`net user`) across multiple Windows nodes, per-node output/errors, and optional S3 output | 06/10/2026 | 06/10/2026 | - [Module 3 - 5: Manage Patches and Run Commands on Multiple Servers with AWS Systems Manager](https://000031.awsstudygroup.com/) |
+| 3 | - Learn Session Manager: IAM/SSM role permissions and public/private EC2 access without opening inbound SSH/RDP ports <br> - Understand Interface Endpoints, private DNS, HTTPS 443, and S3 Gateway Endpoint routing for private log delivery <br> - Distinguish Session history from S3 shell logs; learn CLI/Session Manager Plugin and RDP forwarding (`localhost:9999` → `3389`) | 07/10/2026 | 07/10/2026 | - [Module 3 - 6: Working with AWS Systems Manager - Session Manager](https://000058.awsstudygroup.com/) <br> - [Session logging limitations](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-logging.html) |
+| 4 | - Learn CloudFormation IaC: YAML/JSON templates, Parameters/Resources/Outputs, intrinsic functions (`Ref`, `GetAtt`, `Sub`), and dependencies <br> - Understand stack validation/deployment through CloudShell/CLI with `cfn-lint` and `taskcat`; Lambda Custom Resources and SSM Parameter Store <br> - Review Mappings, StackSets across accounts/Regions, and Drift Detection (`IN_SYNC`/`DRIFTED`) | 08/10/2026 | 08/10/2026 | - [Module 3 - 7: AWS CloudFormation](https://000037.awsstudygroup.com/) |
 
 ### Week 4 Achievements:
 
-- Finished Lab 03 with the following accomplishments:
-
-  - Gained hands-on experience setting up a VPC and configuring its subnets.
-  - Worked with Route Tables, updated Security Group settings, and explored how NACLs operate.
-  - Launched an EC2 instance and confirmed network connectivity.
-  - Used MobaXterm to establish the connection.
-  - Set up both a NAT Gateway and a VPC Endpoint.
-  - Also performed connectivity testing for the Endpoint.
-  - Note: To access the private instance, the inbound rules of its Security Group needed to be adjusted to allow SSH traffic coming from the Endpoint's Security Group.
+- **IAM:** Distinguished request/resource tags and understood Region/tag-key restrictions, trust policies, MFA, and role assumption.
+- **Systems Manager:** Understood managed-node IAM permissions, patch scan/install/compliance, and Run Command documents with per-node results.
+- **Session Manager:** Understood private endpoint access, shell logs in S3, and RDP tunneling; port-forwarding content is not logged.
+- **CloudFormation:** Understood reusable templates, intrinsic functions, dependency ordering, Lambda Custom Resources with SSM Parameter Store, Mappings, multi-account/Region StackSets, and Drift Detection.
