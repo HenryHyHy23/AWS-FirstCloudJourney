@@ -6,16 +6,16 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in four events. Each event was a memorable experience, offering new, interesting, and valuable knowledge, along with great gifts and wonderful moments.
+This section records events I attended during my internship, the topics discussed, and lessons I can apply to learning and building systems on AWS.
 
 ---
 
 ### [Event 1](4.1-Event1/)
-&emsp;**Event Name:** Kick-off AWS FCJ Workforce OJT FALL 2025
+&emsp;**Event Name:** Talkshow: The Thinking Behind Building the Bot — CMC Global × VietAWS
 
-&emsp;**Time:** 8:30 AM, Saturday, September 06, 2025
+&emsp;**Time:** 09:00–12:00 (UTC+7), Saturday, September 26, 2026
 
-&emsp;**Location:** 26th Floor, Bitexco Financial Tower, 2 Hai Trieu Street, Ben Nghe Ward, District 1, HCMC
+&emsp;**Location:** 26th Floor, Bitexco Financial Tower, 2 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 
 &emsp;**Role:** Attendee
 

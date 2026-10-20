@@ -1,65 +1,89 @@
 ---
 title: "Event 1"
-date: 2025-06-09
+date: 2026-09-26
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-# Bài thu hoạch: Ngày Cộng Đồng AWS First Cloud Journey 2025
+# Bài thu hoạch: The Thinking Behind Building the Bot
 
-### Mục Tiêu Sự Kiện (Event Objectives)
+Talkshow **The Thinking Behind Building the Bot** do **CMC Global phối hợp cùng VietAWS** tổ chức tập trung vào tư duy xây dựng AI Agent: từ bài toán lập trình, ứng dụng doanh nghiệp đến việc quyết định mức độ trao quyền cho bot.
 
-* Sự kiện **AWS First Cloud Journey Community Day 2025** được tổ chức nhằm tập hợp cộng đồng chuyên gia và người đam mê điện toán đám mây, tập trung vào việc áp dụng các giải pháp tiên tiến, đặc biệt là Trí tuệ Nhân tạo Tạo sinh (GenAI), trong các lĩnh vực trọng yếu như Tài chính/Ngân hàng, Thương mại điện tử (eCommerce) và Môi trường Học thuật.
-* Mục tiêu là chia sẻ kiến trúc tham chiếu, các mô hình thực tế, và kinh nghiệm triển khai **hệ thống Multi-Agent** và các giải pháp **chatbot cấp doanh nghiệp** trên nền tảng Serverless của AWS.
-* Cung cấp cái nhìn sâu sắc về các công cụ bảo mật dữ liệu và kiến trúc đám mây hiện đại, bao gồm việc sử dụng **Model Context Protocol (MCP)** để xử lý ngữ cảnh nâng cao và các khuôn khổ kiểm toán tự động (Auto Audit Framework).
-* Thúc đẩy sự hợp tác và chia sẻ kiến thức giữa các nhà phát triển, kiến trúc sư giải pháp và các chuyên gia bảo mật.
+### Thông tin sự kiện
 
-### Diễn Giả Tiêu Biểu (Featured Speakers)
+| Mục            | Thông tin                                                                      |
+| -------------- | ------------------------------------------------------------------------------ |
+| Ngày tổ chức   | Thứ Bảy, ngày 26/09/2026                                                       |
+| Thời gian      | 09:00–12:00 (UTC+7)                                                            |
+| Địa điểm       | Tầng 26, Bitexco Financial Tower, 2 Hải Triều, phường Sài Gòn, TP. Hồ Chí Minh |
+| Đơn vị tổ chức | CMC Global × VietAWS                                                           |
+| Vai trò        | Người tham dự                                                                  |
 
-* **Nguyễn Gia Hưng** – Head of Solutions Architect, AWS
-* **Phạm Tiến Thuận Phát, Lê Minh Nghĩa, Trần Đoàn Công Lý** (Enterprise Chatbot)
-* **Đinh Lê Hoàng Anh, Nguyễn Hồng Nhung, Nguyễn Tài Minh Huy** (FinTech, Academic)
-* **Hải Trần** (Banking / FinTech)
-* **Kiệt Lâm, Nguyễn Ngọc Quỳnh Mai** (Banking / Internal IT)
-* **Nguyễn Việt Pháp** (ISV / eCommerce)
-* **Lê Phạm Ngọc Uyển, Phan Thị Thanh Thảo, Hồ Điền Đăng Khoa, Nguyễn Quang Nhật Linh** (GenAI Multi-Agent)
-* **Hiền Hà, Phát Phạm, Anh Phạm, Pháp Nguyễn, Việt Lý** (Auto Audit, GenAI R&D)
-* **Trần Đức Anh, Lê Huỳnh Nghiêm, Nguyễn Anh Tuấn** (Smart Data Contracts)
+### Mục tiêu sự kiện
 
-### Điểm Nhấn Chính (Key Highlights)
+- Hiểu cách AI Agent chuyển từ tạo câu trả lời sang lựa chọn công cụ, thực hiện hành động để đạt mục tiêu xác định.
+- Liên hệ thiết kế agent với phối hợp business–dev trái múi giờ: ngữ cảnh ticket, ghi chú tiến độ, thông báo vấn đề và mức tự chủ được kiểm soát.
+- Tiếp cận AI Agent Challenge, trao đổi về kỹ năng Cloud & AI, dự án thực tế và định hướng nghề nghiệp.
 
-#### 🚀 Công Nghệ Chatbot và Xử Lý Ngữ Cảnh Nâng Cao (Floor 26)
+### Diễn giả tiêu biểu
 
-* **Enterprise Chatbot: Unlocking Context with MCP on AWS**: Phiên này đã trình bày cách xây dựng các chatbot doanh nghiệp có khả năng xử lý ngữ cảnh phức tạp và truy cập vào các hệ thống phụ trợ (backend systems) thông qua **Model Context Protocol (MCP)**, đảm bảo thông tin chính xác và kịp thời.
-* **Internal Chatbot with RAG on AWS Serverless**: Đi sâu vào việc triển khai một chatbot FAQ nội bộ sử dụng **Retrieval-Augmented Generation (RAG)**, được triển khai hoàn toàn bằng kiến trúc Serverless của AWS, tối ưu hóa chi phí và khả năng mở rộng.
+- **Bùi Nhật Trường** – Technical Leader, CMC Global.
+- **Nguyễn Gia Hưng** – Head of Solutions Architect, AWS.
 
-#### 🏦 Ứng Dụng AI trong Ngành Tài chính và Ngân hàng (Floor 36)
+### Điểm nhấn chính
 
-* **Stock Trading Chatbot**: Đã trình diễn kiến trúc serverless cho một chatbot giao dịch chứng khoán, bao gồm các mẫu hình kiến trúc tham chiếu AWS và demo thời gian thực về khả năng phân tích và phản hồi dữ liệu thị trường.
-* **Amazon Nova Act: The Revolutionary New AI Agent**: Giới thiệu về giải pháp kiến trúc cloud-native cho các tác vụ ngân hàng, tập trung vào các mô hình mở rộng (scalability patterns) và các phương pháp hay nhất (best practices) khi sử dụng các AI Agent thế hệ mới.
+#### 1. Chương trình được công bố
 
-#### 🤖 Hệ Thống Multi-Agent và Tự Động Hóa (Floor 26 & 36)
+| Thời gian (UTC+7) | Hoạt động                                 | Nội dung chính                                                                   |
+| ----------------- | ----------------------------------------- | -------------------------------------------------------------------------------- |
+| 09:00–09:30       | Buildathon Kickoff                        | Giới thiệu thử thách, mục tiêu, tiêu chí đánh giá và tổng quan AWS Cloud, GenAI. |
+| 09:30–09:45       | Ice-breaking                              | Làm quen, kết nối và chuẩn bị phối hợp giữa các thành viên.                      |
+| 09:45–10:30       | Talkshow: Building a Career in Cloud & AI | Góc nhìn ngành, dự án thực tế và cơ hội nghề nghiệp.                             |
+| 10:30–10:45       | Q&A                                       | Trao đổi về AWS, GenAI, nghề nghiệp, chứng chỉ và thử thách.                     |
+| 10:45–11:15       | AI Agent Challenge                        | Prompt engineering, RAG, knowledge base và các khái niệm agent.                  |
+| 11:15–11:20       | Closing Remarks                           | Tổng kết, tài liệu học và hoạt động cộng đồng.                                   |
 
-* **GenAI Multi-Agent Systems for Process Automation (Banking)**: Trình bày các nghiên cứu điển hình về việc sử dụng hệ thống multi-agent (đa tác nhân) để tự động hóa các quy trình nghiệp vụ phức tạp trong ngân hàng, sử dụng các luồng công việc serverless.
-* **Auto Audit Framework by AI**: Giới thiệu một khuôn khổ kiểm toán tự động được hỗ trợ bởi AI, minh họa cách các luồng công việc multi-agent có thể được điều phối để thực hiện các trường hợp sử dụng kiểm toán thực tế trong ngành.
+#### 2. Tư duy phía sau việc xây dựng agent
 
-#### 🌐 Thương mại điện tử, Học thuật và Bảo mật (Floor 26 & 36)
+Trọng tâm là cách AI Agent hiểu ngữ cảnh, sử dụng bộ nhớ, lựa chọn bước tiếp theo và hỗ trợ developer như một đồng đội. Từ đó đặt ra câu hỏi về công việc nào nên giao cho agent và hệ thống được phép tự quyết đến đâu.
 
-* **Scaling eCommerce with GenAI**: Phân tích cách GenAI có thể được sử dụng để nâng cao trải nghiệm khách hàng, cá nhân hóa sản phẩm, và tối ưu hóa hiệu suất mở rộng trên AWS cho các nền tảng thương mại điện tử lớn.
-* **Smart Data Contracts Powered by GenAI**: Một phiên quan trọng về bảo mật, trình bày cách GenAI có thể được áp dụng để xây dựng và xác thực các hợp đồng dữ liệu thông minh an toàn, đặc biệt trong các kịch bản Fintech.
+Buổi trao đổi có góc nhìn từ bài toán phát triển phần mềm, ứng dụng doanh nghiệp và thử thách tìm hiểu cách bot hoạt động. Bên cạnh phần chuyên môn thì còn có hoạt động kết nối với doanh nghiệp, trao đổi và phỏng vấn.
 
-### Kết Luận và Bài Học Quan Trọng (Key Takeaways)
+#### 3. Demo phối hợp business–dev trái múi giờ và QA
 
-#### 1. GenAI và Tính Ứng Dụng Doanh Nghiệp (GenAI and Enterprise Utility)
+- Demo đặt ra tình huống team business và team dev làm việc ở các múi giờ khác nhau. Khi dev đang ngoài giờ làm việc, business gửi ticket cho AI Agent tiếp nhận và xử lý.
+- Agent xử lý yêu cầu, ghi chú công việc và các vấn đề phát sinh, đồng thời thông báo để dev xem lại khi bắt đầu ngày làm việc. Tình huống minh họa cách agent hỗ trợ phối hợp bất đồng bộ và giữ ngữ cảnh giữa các team.
 
-* **MCP là Chìa Khóa Ngữ Cảnh**: Để các chatbot doanh nghiệp có thể thực sự hoạt động, việc tích hợp **Model Context Protocol (MCP)** là bắt buộc, cho phép mô hình truy cập dữ liệu doanh nghiệp một cách có cấu trúc và an toàn, giải quyết vấn đề "mất ngữ cảnh".
-* **RAG Serverless là Tiêu Chuẩn**: Kiến trúc RAG Serverless (sử dụng AWS Lambda, S3, DynamoDB) là mẫu hình triển khai hiệu quả và tiết kiệm chi phí nhất cho các ứng dụng kiến thức nội bộ.
+### Kết luận và bài học quan trọng
 
-#### 2. Vai trò của Multi-Agent (The Role of Multi-Agent Systems)
+#### 1. Thiết kế mục tiêu và vòng lặp thực thi
 
-* **Tự động hóa Quy trình Phức tạp**: Multi-agent không chỉ là lý thuyết; nó là một giải pháp thực tế để phân chia và tự động hóa các quy trình phức tạp, đa bước như kiểm toán nội bộ hay phê duyệt tài chính, nơi các tác nhân chuyên biệt hợp tác.
+- Xác định nhiệm vụ cụ thể, tiêu chí hoàn thành, công cụ được phép và điều kiện dừng. Với agent dùng LLM, mô hình đề xuất bước tiếp theo; mã ứng dụng thực thi công cụ được cho phép rồi đưa kết quả trở lại vòng xử lý. Xem [mô tả cơ chế điều phối agent của AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-how.html).
+- Demo ticket cho thấy ghi chú tiến độ cần phân biệt việc đã hoàn thành, điểm đang vướng và hành động tiếp theo dành cho dev. Với công việc liên quan QA, thông báo hoàn tất cần đi kèm kết quả kiểm tra hoặc ghi rõ phần còn cần xác minh.
 
-#### 3. Cân bằng Đổi mới và Tuân thủ (Balancing Innovation and Compliance)
+#### 2. Phân biệt ngữ cảnh, bộ nhớ và RAG
 
-* **Bảo mật Tích hợp Sâu**: Các phiên đã nhấn mạnh tầm quan trọng của việc thiết kế kiến trúc bảo mật ngay từ đầu, từ việc sử dụng các agent cho kiểm toán tự động đến việc áp dụng GenAI để xây dựng các hợp đồng dữ liệu an toàn.
+- Lịch sử hội thoại giúp giữ ngữ cảnh trong quá trình tương tác; bộ nhớ cần chiến lược lưu, truy hồi thông tin rõ ràng. RAG tìm tài liệu liên quan làm căn cứ trả lời, có vai trò khác với ghi nhớ yêu cầu trước của người dùng. Tham khảo [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html) và [Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html).
+- Khi bàn giao trái múi giờ, dev cần xem được yêu cầu ban đầu, các hành động đã thực hiện và câu hỏi còn mở. Lưu trạng thái ticket phục vụ mục đích khác với truy xuất tài liệu tham khảo; chất lượng nguồn và quyền truy cập vẫn cần được kiểm tra riêng.
+
+#### 3. Trao quyền phù hợp với rủi ro nghiệp vụ
+
+- Giới hạn quyền công cụ và kiểm tra tham số. Thao tác thay đổi dữ liệu hoặc hệ thống quan trọng cần cơ chế phê duyệt, khôi phục phù hợp; quyết định của mô hình không thay thế việc phân quyền. AWS mô tả [cơ chế xác nhận trước hành động của agent](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-userconfirmation.html) như một cách triển khai.
+- Đánh giá tỷ lệ hoàn thành nhiệm vụ, trường hợp lỗi, độ trễ, chi phí; xem trace thực thi khi hành vi khác kỳ vọng. Những kiểm tra này giúp chuyển từ demo ấn tượng sang ứng dụng có thể vận hành, cải thiện. Tham khảo [AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html).
+
+### Nguồn tham khảo
+
+- [Chương trình và poster sự kiện](https://luma.com/8fe9vvps)
+- [CMC Global Careers: bài recap sự kiện](https://vn.linkedin.com/company/cmc-global-careers)
+- [AWS: AI Agent và các thành phần](https://aws.amazon.com/what-is/ai-agents/)
+- [AWS: AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html)
+- [AWS: Amazon Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
+- [AWS: xác nhận trước khi thực hiện hành động](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-userconfirmation.html)
+- [AWS: AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html)
+
+---
+
+![Đã Check in tại sự kiện](/images/4-EventParticipated/4.1-Event1/check-in.png)
+
+*Đã Check in tại sự kiện*

@@ -13,7 +13,7 @@ pre: " <b> 1. </b> "
 
 **Week 4:** [IAM controls, Systems Manager, CloudFormation, and multi-account identity](1.4-week4/)
 
-**Week 5:** [Finish Module 04 and Translate AWS Blogs](1.5-week5/)
+**Week 5:** [IAM roles, temporary credentials, and conditional access](1.5-week5/)
 
 **Week 6:** [Design Project UI](1.6-week6/)
 

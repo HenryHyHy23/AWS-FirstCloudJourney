@@ -13,7 +13,7 @@ pre: " <b> 1. </b> "
 
 **Tuần 4:** [Kiểm soát IAM, Systems Manager, CloudFormation và danh tính đa tài khoản](1.4-week4/)
 
-**Tuần 5:** [Hoàn thành Module 04 và Biên dịch Blog của AWS](1.5-week5/)
+**Tuần 5:** [IAM Role, credential tạm thời và điều kiện truy cập](1.5-week5/)
 
 **Tuần 6:** [Thiết kế UI project](1.6-week6/)
 

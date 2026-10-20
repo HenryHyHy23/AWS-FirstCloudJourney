@@ -1,45 +1,25 @@
 ---
 title: "Week 5 Worklog"
-weight: 1
+date: 2026-10-12
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
 ### Week 5 Objectives:
 
-- Complete Lab 10, 19
-- Translate AWS Blogs
+- Distinguish user/group permissions, role trust, and the permissions of an assumed-role session.
+- Explain temporary STS credentials and evaluate role access using request context.
+- Interpret IP/time conditions, time zones, and the difference between role assumption and subsequent service access.
 
 ### Tasks to be carried out this week:
 
-| Day | Task               | Start Date | Completion Date | Reference Sources                                                                                                                                                   |
-| --- | ------------------ | ---------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | - Complete Lab 10  | 06/10/2025 | 06/10/2025      | [Lab10](https://000010.awsstudygroup.com/)                                                                                                                          |
-| 3   | - Complete Lab 19  | 07/10/2025 | 07/10/2025      | [Lab19](https://000019.awsstudygroup.com/)                                                                                                                          |
-| 4   | - Translate Blog 1 | 08/10/2025 | 08/10/2025      | [Blog 1](https://aws.amazon.com/blogs/machine-learning/integrate-tokenization-with-amazon-bedrock-guardrails-for-secure-data-handling/)                             |
-| 5   | - Translate Blog 2 | 09/10/2025 | 09/10/2025      | [Blog 2](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/)                                                |
-| 6   | - Translate Blog 3 | 10/10/2025 | 10/10/2025      | [Blog 3](https://aws.amazon.com/blogs/awsforsap/enhance-resiliency-and-data-protection-for-sap-hana-high-availability-deployments-with-amazon-backup-for-sap-hana/) |
+| Day | Task | Start Date | Completion Date | Reference Sources |
+| --- | --- | --- | --- | --- |
+| 1 | - **Identity and permission scope:** Compare direct EC2/RDS policies with permissions inherited through a group. A group organizes users and is not itself a request principal. Service-wide FullAccess policies illustrate separation of duties but still exceed many routine tasks. <br> - **AssumeRole flow:** A trust policy defines who may assume a role; its permissions policy defines allowed service actions. STS returns an access key ID, secret access key, session token, and expiration. The role session uses role permissions rather than adding them to the user's existing permissions. <br> - **Request conditions:** `IpAddress` with `aws:SourceIp` checks the public source address seen by AWS, which may be a NAT/VPN address. `DateGreaterThan`/`DateLessThan` with `aws:CurrentTime` define a fixed interval; `Z` denotes UTC, not Vietnam local time. <br> - **Control scope:** IP/time conditions in the trust policy gate `sts:AssumeRole`. They do not automatically constrain later EC2/RDS calls or invalidate issued credentials; continued-use restrictions need appropriate permissions-policy or organization controls. | 12/10/2026 | 12/10/2026 | - [Module 3 - 10: IAM Role & Condition](https://000044.awsstudygroup.com/) <br> - [AWS Docs: AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) <br> - [AWS Docs: Condition keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) <br> - [AWS Security Blog: Role trust policies](https://aws.amazon.com/blogs/security/how-to-use-trust-policies-with-iam-roles/) |
 
-### Week 5 Achievements:=
+### Week 5 Achievements:
 
-- Completed Lab 10 with the following outcomes:
-
-  - Received an overview of the AWS CloudFormation service.
-  - Gained hands-on practice by building a template, updating a Security Group (SG), and accessing an EC2 instance through a Remote Desktop Gateway Server (RDGW).
-  - Worked on setting up a Directory Service.
-
-- Explored Route 53 functionality:
-
-  - Configured a Route 53 Outbound Endpoint.
-  - Created DNS Resolver Rules.
-  - Set up an Inbound Endpoint for Route 53.
-  - Verified that all connections were working correctly afterward.
-  - Successfully established communication between an on-premises environment and the AWS cloud using Directory Service and a Remote Desktop Gateway Server.
-
-- Completed Lab 19 with the following achievements:
-  - Understood the concept of VPC isolation and the purpose of establishing VPC Peering for secure, private communication between VPCs.
-  - Successfully configured a VPC Peering connection between two VPCs to enable direct traffic routing via private IP.
-  - Practiced working with Network ACLs as subnet-level stateless firewalls and updated ACL rules to allow required traffic.
-  - Implemented routing updates in Route Tables to enable bidirectional communication between the two VPCs.
-  - Configured Cross-Peer DNS to allow resources in each VPC to resolve DNS names across the peering connection.
-  - Completed the full workflow: preparation → updating Network ACLs → creating the Peering connection → configuring route tables → enabling Cross-Peer DNS.
+- **Least privilege:** Can distinguish separating EC2/RDS administration from granting only the actions needed. Broad managed policies remain a starting point for analysis rather than proof of least privilege.
+- **Trust reasoning:** A same-account user explicitly trusted by a role can be allowed to assume it without a separate identity-policy allow. No direct service permissions is different from an applicable explicit deny.
+- **Conditional access:** Can separate an assumption failure from a later API denial. A trust-policy time window is not a daily schedule or a guarantee that an existing session ends at that boundary.

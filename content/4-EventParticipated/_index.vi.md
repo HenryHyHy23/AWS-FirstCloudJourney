@@ -6,16 +6,16 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-Trong kỳ thực tập của mình, em đã tham gia bốn sự kiện. Mỗi sự kiện đều là một trải nghiệm đáng nhớ, mang lại những kiến thức mới mẻ, thú vị và bổ ích, cùng với những món quà và khoảnh khắc tuyệt vời.
+Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, nội dung trao đổi và những bài học có thể áp dụng vào việc học, xây dựng hệ thống trên AWS.
 
 ---
 
 ### [Sự kiện 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** Kick-off AWS FCJ Workforce OJT FALL 2025
+&emsp;**Tên sự kiện:** Talkshow: The Thinking Behind Building the Bot — CMC Global × VietAWS
 
-&emsp;**Thời gian:** 8h30 sáng, Thứ Bảy 06/09/2025
+&emsp;**Thời gian:** 09:00–12:00 (UTC+7), Thứ Bảy 26/09/2026
 
-&emsp;**Địa điểm:** Tầng 26, Bitexco Financial Tower, 2 Hải Triều, P. Bến Nghé, Quận 1, TP.HCM
+&emsp;**Địa điểm:** Tầng 26, Bitexco Financial Tower, 2 Hải Triều, phường Sài Gòn, TP. Hồ Chí Minh
 
 &emsp;**Vai trò:** Người tham dự
 

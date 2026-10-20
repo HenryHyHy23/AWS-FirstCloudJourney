@@ -1,67 +1,89 @@
 ---
 title: "Event 1"
-date: 2025-06-09
+date: 2026-09-26
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-# Summary Report: AWS First Cloud Journey Community Day 2025
+# Summary Report: The Thinking Behind Building the Bot
+
+The talkshow **The Thinking Behind Building the Bot**, organized by **CMC Global and VietAWS**, explored the thinking behind building AI Agents, from software development problems to business applications and the level of autonomy given to a bot.
+
+### Event Information
+
+| Field      | Details                                                                                |
+| ---------- | -------------------------------------------------------------------------------------- |
+| Date       | Saturday, September 26, 2026                                                           |
+| Time       | 09:00–12:00 (UTC+7)                                                                    |
+| Location   | 26th Floor, Bitexco Financial Tower, 2 Hai Trieu Street, Saigon Ward, Ho Chi Minh City |
+| Organizers | CMC Global × VietAWS                                                                   |
+| Role       | Attendee                                                                               |
 
 ### Event Objectives
 
-* The **AWS First Cloud Journey Community Day 2025** was organized to gather the cloud community, focusing on the practical application of cutting-edge solutions, especially Generative AI (GenAI), in critical sectors such as Finance/Banking, eCommerce, and Academia.
-* The goal was to share reference architectures, practical models, and implementation experiences for **Multi-Agent Systems** and **enterprise-grade chatbot solutions** built on AWS Serverless infrastructure.
-* To provide deep insights into data security tools and modern cloud architectures, including the use of the **Model Context Protocol (MCP)** for advanced context handling and automated auditing frameworks.
-* To foster collaboration and knowledge sharing among developers, solution architects, and security experts.
+- Understand how an AI Agent moves from generating answers to selecting tools and taking actions toward a defined goal.
+- Relate agent design to business–development collaboration across time zones, including ticket context, progress notes, issue notifications, and controlled autonomy.
+- Explore the AI Agent Challenge and exchange perspectives on Cloud & AI skills, practical projects, and career development.
 
 ### Featured Speakers
 
-* **Nguyễn Gia Hưng** – Head of Solutions Architect, AWS
-* **Phạm Tiến Thuận Phát, Lê Minh Nghĩa, Trần Đoàn Công Lý** (Enterprise Chatbot)
-* **Đinh Lê Hoàng Anh, Nguyễn Hồng Nhung, Nguyễn Tài Minh Huy** (FinTech, Academic)
-* **Hải Trần** (Banking / FinTech)
-* **Kiệt Lâm, Nguyễn Ngọc Quỳnh Mai** (Banking / Internal IT)
-* **Nguyễn Việt Pháp** (ISV / eCommerce)
-* **Lê Phạm Ngọc Uyển, Phan Thị Thanh Thảo, Hồ Điền Đăng Khoa, Nguyễn Quang Nhật Linh** (GenAI Multi-Agent)
-* **Hiền Hà, Phát Phạm, Anh Phạm, Pháp Nguyễn, Việt Lý** (Auto Audit, GenAI R&D)
-* **Trần Đức Anh, Lê Huỳnh Nghiêm, Nguyễn Anh Tuấn** (Smart Data Contracts)
+- **Bùi Nhật Trường** – Technical Leader, CMC Global.
+- **Nguyễn Gia Hưng** – Head of Solutions Architect, AWS.
 
 ### Key Highlights
 
-#### 🚀 Advanced Chatbots and Context Handling (Floor 26)
+#### 1. Published Program
 
-* **Enterprise Chatbot: Unlocking Context with MCP on AWS**: This session demonstrated how to build enterprise chatbots capable of handling complex context and accessing backend systems via the **Model Context Protocol (MCP)**, ensuring accurate and timely information.
-* **Internal Chatbot with RAG on AWS Serverless**: A deep dive into deploying an internal FAQ chatbot using **Retrieval-Augmented Generation (RAG)**, implemented entirely with AWS Serverless architecture for optimized cost and scalability.
+| Time (UTC+7) | Session                                   | Focus                                                                               |
+| ------------ | ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| 09:00–09:30  | Buildathon Kickoff                        | Challenge introduction, objectives, judging criteria, AWS Cloud and GenAI overview. |
+| 09:30–09:45  | Ice-breaking                              | Meet other participants and prepare for collaboration.                              |
+| 09:45–10:30  | Talkshow: Building a Career in Cloud & AI | Industry perspectives, practical projects, and career opportunities.                |
+| 10:30–10:45  | Q&A                                       | AWS, GenAI, careers, certifications, and challenge questions.                       |
+| 10:45–11:15  | AI Agent Challenge                        | Prompt engineering, RAG, knowledge bases, and agent concepts.                       |
+| 11:15–11:20  | Closing Remarks                           | Learning resources and community activities.                                        |
 
-#### 🏦 AI Applications in Finance and Banking (Floor 36)
+#### 2. The Thinking Behind an Agent
 
-* **Stock Trading Chatbot**: Presented a serverless architecture for a stock trading chatbot, including AWS reference architecture patterns and a real-time demo of its market data analysis and response capabilities.
-* **Amazon Nova Act: The Revolutionary New AI Agent**: Introduced cloud-native architecture solutions for banking workloads, focusing on scalability patterns and best practices when utilizing next-generation AI Agents.
+The central topic was how an AI Agent can understand context, use memory, decide a next step, and act as a developer's teammate. This raises design questions about which tasks to delegate and how much authority the system should have.
 
-#### 🤖 Multi-Agent Systems and Automation (Floor 26 & 36)
+The discussions covered software development problems, enterprise applications, and a challenge focused on understanding how a bot works. Alongside the technical content, there were opportunities to connect with companies, exchange ideas, and take part in interviews.
 
-* **GenAI Multi-Agent Systems for Process Automation (Banking)**: Showcased case studies on using multi-agent systems to automate complex banking business processes, leveraging serverless workflows.
-* **Auto Audit Framework by AI**: Introduced an AI-powered automated auditing framework, illustrating how multi-agent workflows can be orchestrated to execute real-world auditing use cases in the industry.
+#### 3. Demo: Business–Dev Coordination Across Time Zones and QA
 
-#### 🌐 eCommerce, Academic, and Security (Floor 26 & 36)
-
-* **Scaling eCommerce with GenAI**: Analyzed how GenAI can be used to enhance customer experience, product personalization, and optimize scaling performance on AWS for large eCommerce platforms.
-* **Smart Data Contracts Powered by GenAI**: A crucial session on security, presenting how GenAI can be applied to build and validate secure smart data contracts, particularly in Fintech scenarios.
+- The demo presented a scenario in which the business and development teams worked in different time zones. The business team sent tickets to an AI Agent while developers were offline.
+- The agent handled the requests, recorded notes and issues, and provided notifications so developers could review the work when they started their working day. This illustrated how an agent can support asynchronous collaboration and preserve context between teams.
 
 ### Key Takeaways
 
-#### 1. GenAI and Enterprise Utility
+#### 1. Design the Goal and Execution Loop
 
-* **MCP is the Context Key**: For enterprise chatbots to be truly functional, integrating the **Model Context Protocol (MCP)** is essential, allowing the model to access proprietary business data in a structured and secure manner, solving the "context loss" problem.
-* **Serverless RAG is the Standard**: The Serverless RAG architecture (using AWS Lambda, S3, DynamoDB) is the most cost-effective and scalable deployment pattern for internal knowledge applications.
+- Define a specific task, success criteria, permitted tools, and a stopping condition. In an LLM-based agent, the model proposes a next step; application code executes the allowed tool and returns its result for the next iteration. See the [AWS explanation of agent orchestration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-how.html).
+- The ticket demo illustrates why progress notes should distinguish work completed, blockers, and the next action for the developer. For QA-related work, a completion message should be supported by check results or a clear record of what still needs verification.
 
-#### 2. The Role of Multi-Agent Systems
+#### 2. Distinguish Context, Memory, and RAG
 
-* **Automation of Complex Processes**: Multi-agent is not just theoretical; it is a practical solution for breaking down and automating complex, multi-step processes such as internal auditing or financial approvals, where specialized agents collaborate.
+- Conversation history helps preserve context within an interaction; memory requires a deliberate strategy for storing and retrieving information. RAG retrieves relevant documents to ground a response and serves a different role from remembering a user's previous requests. See [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html) and [Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html).
+- In a handoff across time zones, the returning developer needs the original request, a record of actions taken, and open questions. Preserving this ticket state serves a different purpose from retrieving reference documents; source quality and access permissions still need separate checks.
 
-#### 3. Balancing Innovation and Compliance
+#### 3. Match Autonomy to Business Risk
 
-* **Deeply Integrated Security**: Sessions emphasized the importance of architecting security from the ground up, from using agents for automated auditing to applying GenAI to build secure data contracts.
+- Limit tool permissions and validate parameters. Operations that change important data or systems should have suitable approval and recovery paths; the model's decision is not a substitute for authorization. AWS documents [user confirmation for agent actions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-userconfirmation.html) as one such mechanism.
+- Evaluate task completion, failure cases, latency, and cost, and inspect execution traces when behavior differs from expectations. These checks connect an impressive demonstration to an application that can be operated and improved. See [AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html).
+
+### References
+
+- [Event program and poster](https://luma.com/8fe9vvps)
+- [CMC Global Careers: event recap](https://vn.linkedin.com/company/cmc-global-careers)
+- [AWS: What are AI Agents?](https://aws.amazon.com/what-is/ai-agents/)
+- [AWS: AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html)
+- [AWS: Amazon Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
+- [AWS: Agent action confirmation](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-userconfirmation.html)
+- [AWS: AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html)
 
 ---
+
+![Checked in at the event](/images/4-EventParticipated/4.1-Event1/check-in.png)
+
+*Checked in at the event*

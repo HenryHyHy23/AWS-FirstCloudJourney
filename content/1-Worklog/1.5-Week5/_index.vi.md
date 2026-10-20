@@ -1,46 +1,25 @@
 ---
-title: "Worklog Tuần 5"
-weight: 1
+title: "Báo cáo công việc Tuần 5"
+date: 2026-10-12
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
 ### Mục tiêu tuần 5:
 
-- Hoàn thành Lab 10, 19
-- Biên dịch Blog của AWS
+- Phân biệt quyền user/group, trust policy và quyền của phiên assume role.
+- Hiểu credential tạm thời do STS cấp, đánh giá truy cập role theo ngữ cảnh request.
+- Diễn giải điều kiện IP/thời gian, múi giờ và phạm vi kiểm soát lúc assume role so với khi gọi dịch vụ.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Day | Task                | Start Date | Completion Date | Reference Sources                                                                                                                                                   |
-| --- | ------------------- | ---------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | - Hoàn thành Lab 10 | 06/10/2025 | 06/10/2025      | [Lab10](https://000010.awsstudygroup.com/)                                                                                                                          |
-| 3   | - Hoàn thành Lab 19 | 07/10/2025 | 07/10/2025      | [Lab19](https://000019.awsstudygroup.com/)                                                                                                                          |
-| 4   | - Dịch Blog 1       | 08/10/2025 | 08/10/2025      | [Blog 1](https://aws.amazon.com/blogs/machine-learning/integrate-tokenization-with-amazon-bedrock-guardrails-for-secure-data-handling/)                             |
-| 5   | - Dịch Blog 2       | 09/10/2025 | 09/10/2025      | [Blog 2](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/)                                                |
-| 6   | - Dịch Blog 3       | 10/10/2025 | 10/10/2025      | [Blog 3](https://aws.amazon.com/blogs/training-and-certification/introducing-aws-card-clash-mobile-learn-aws-architecture-through-strategic-gameplay/)              |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 1 | - **Danh tính và phạm vi quyền:** So sánh policy EC2/RDS gắn trực tiếp với quyền nhận qua group. Group tổ chức user, không phải principal tự gửi request. Policy FullAccess cấp dịch vụ minh họa phân chia trách nhiệm nhưng vẫn rộng hơn nhiều công việc thông thường. <br> - **Luồng AssumeRole:** Trust policy xác định ai được assume role; permissions policy xác định hành động dịch vụ được phép. STS trả access key ID, secret access key, session token và thời điểm hết hạn. Phiên role dùng quyền của role thay vì cộng thêm vào quyền sẵn có của user. <br> - **Điều kiện request:** `IpAddress` với `aws:SourceIp` kiểm tra public IP mà AWS quan sát, có thể là địa chỉ NAT/VPN. `DateGreaterThan`/`DateLessThan` với `aws:CurrentTime` tạo khoảng thời gian cố định; hậu tố `Z` là UTC, không phải giờ Việt Nam. <br> - **Phạm vi kiểm soát:** Điều kiện IP/thời gian trong trust policy kiểm soát `sts:AssumeRole`. Chúng không tự giới hạn mọi API EC2/RDS sau đó hoặc vô hiệu credential đã cấp; muốn kiểm soát việc tiếp tục sử dụng cần điều kiện phù hợp trong permissions policy hoặc kiểm soát cấp tổ chức. | 12/10/2026 | 12/10/2026 | - [Module 3 - 10: IAM Role & Condition](https://000044.awsstudygroup.com/) <br> - [AWS Docs: AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) <br> - [AWS Docs: Condition keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) <br> - [AWS Security Blog: Role trust policies](https://aws.amazon.com/blogs/security/how-to-use-trust-policies-with-iam-roles/) |
 
 ### Kết quả đạt được tuần 5:
 
-- Hoàn thành Lab 10 với các kết quả sau:
-
-  - Được giới thiệu tổng quan về dịch vụ AWS CloudFormation.
-  - Thực hành tạo template, chỉnh sửa Security Group (SG), và truy cập EC2 thông qua Remote Desktop Gateway Server (RDGW).
-  - Thực hành cấu hình Directory Service.
-
-- Tìm hiểu các chức năng của Route 53:
-
-  - Thiết lập Outbound Endpoint cho Route 53.
-  - Tạo DNS Resolver Rules.
-  - Cấu hình Inbound Endpoint cho Route 53.
-  - Kiểm tra và xác nhận kết nối hoạt động thành công sau khi cấu hình.
-  - Thiết lập thành công kết nối giữa hệ thống on-premises và môi trường AWS thông qua Directory Service và Remote Desktop Gateway Server.
-
-- Hoàn thành Lab 19 với các kết quả sau:
-
-  - Hiểu được cơ chế VPC hoạt động độc lập và mục tiêu của VPC Peering để cho phép hai VPC giao tiếp an toàn qua địa chỉ private.
-  - Thiết lập thành công kết nối VPC Peering giữa hai VPC, cho phép định tuyến traffic trực tiếp mà không đi qua Internet công cộng.
-  - Thực hành cấu hình Network ACL như một lớp firewall stateless ở cấp độ subnet và cập nhật rule để cho phép lưu lượng cần thiết.
-  - Cập nhật Route Tables để hỗ trợ giao tiếp hai chiều giữa hai VPC.
-  - Cấu hình Cross-Peer DNS giúp các tài nguyên ở mỗi VPC phân giải DNS của nhau thông qua kết nối Peering.
-  - Hoàn tất toàn bộ quy trình: chuẩn bị → cấu hình Network ACL → tạo kết nối Peering → cập nhật route tables → thiết lập Cross-Peer DNS.
+- **Least privilege:** Phân biệt tách trách nhiệm quản trị EC2/RDS với chỉ cấp hành động cần thiết. Managed policy rộng là điểm khởi đầu để phân tích, chưa chứng minh đã đạt quyền tối thiểu.
+- **Phân tích trust:** User cùng account được role tin cậy trực tiếp có thể được phép assume mà không cần Allow riêng trong identity policy. Không có quyền dịch vụ trực tiếp khác với bị Explicit Deny áp dụng.
+- **Truy cập có điều kiện:** Phân biệt lỗi lúc assume với lỗi API sau đó. Khoảng thời gian trong trust policy không phải lịch lặp hằng ngày và không bảo đảm phiên đang tồn tại kết thúc ngay tại mốc đó.
