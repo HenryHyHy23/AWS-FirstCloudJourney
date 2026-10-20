@@ -5,13 +5,13 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-**Tuần 1:** [Làm quen với AWS và các dịch vụ cơ bản trong AWS](1.1-week1/)
+**Tuần 1:** [Nền tảng AWS, IAM, VPC, EC2 và credential ứng dụng](1.1-week1/)
 
-**Tuần 2:** [Hoàn thành Module 1 và tạo tài khoản AWS](1.2-week2/)
+**Tuần 2:** [Lưu trữ, dự phòng dữ liệu, co giãn, giám sát và Hybrid DNS](1.2-week2/)
 
-**Tuần 3:** [Hoàn thành Module 2 và thiết kế UI dự án](1.3-week3/)
+**Tuần 3:** [AWS CLI, migration, tối ưu EC2, Grafana và quản lý tag](1.3-week3/)
 
-**Tuần 4:** [Quản lý quyền EC2 bằng IAM và Resource Tags](1.4-week4/)
+**Tuần 4:** [Kiểm soát IAM, Systems Manager, CloudFormation và danh tính đa tài khoản](1.4-week4/)
 
 **Tuần 5:** [Hoàn thành Module 04 và Biên dịch Blog của AWS](1.5-week5/)
 

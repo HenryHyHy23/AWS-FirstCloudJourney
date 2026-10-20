@@ -5,13 +5,13 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-**Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
+**Week 1:** [AWS foundations, IAM, VPC, EC2, and application credentials](1.1-week1/)
 
-**Week 2:** [Finish Module 1 and Create AWS Account](1.2-week2/)
+**Week 2:** [Storage, database resilience, scaling, monitoring, and hybrid DNS](1.2-week2/)
 
-**Week 3:** [Finish Module 2 and Design Project UI](1.3-week3/)
+**Week 3:** [AWS CLI, migration, EC2 cost automation, Grafana, and tagging](1.3-week3/)
 
-**Week 4:** [EC2 access control with IAM and resource tags](1.4-week4/)
+**Week 4:** [IAM controls, Systems Manager, CloudFormation, and multi-account identity](1.4-week4/)
 
 **Week 5:** [Finish Module 04 and Translate AWS Blogs](1.5-week5/)
 
