@@ -22,11 +22,9 @@ Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, n�
 ---
 
 ### [Sự kiện 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** AWS Cloud Mastery Series #1 : AI/ML/GenAI on AWS Workshop
+&emsp;**Tên sự kiện:** AWS Cloud Day and AI
 
-&emsp;**Thời gian:** 8:00, ngày 15 tháng 11 năm 2025
-
-&emsp;**Địa điểm:** Tầng 26, Tháp Bitexco, 02 đường Hải Triều, Phường Bến Nghé, Quận 1, TP.HCM
+&emsp;**Địa điểm:** Floor 26, Bitexco Financial Tower, TP. Hồ Chí Minh
 
 &emsp;**Vai trò:** Người tham dự
 

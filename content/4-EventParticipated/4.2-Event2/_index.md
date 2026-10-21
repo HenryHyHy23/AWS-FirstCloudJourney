@@ -1,57 +1,89 @@
 ---
 title: "Event 2"
-date: 2025-11-15
 weight: 1
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-# Event Report: AWS Cloud Mastery Series #1 : AI/ML/GenAI on AWS Workshop
-### Purpose of the Event
-- **Demystify AI for Practical Application**: To break down the complex worlds of Machine Learning and Generative AI into understandable, actionable concepts for developers, architects, and tech enthusiasts.
-- **Showcase the AWS AI/ML Stack**: To provide a comprehensive overview of AWS's key services, demonstrating how Amazon SageMaker covers the end-to-end traditional ML lifecycle and how Amazon Bedrock simplifies access to powerful Generative AI.
-- **Equip with Hands-On Skills**: To move beyond presentations and provide practical knowledge through live demonstrations, showing attendees exactly how to navigate SageMaker Studio and build a functional GenAI chatbot with Bedrock.
-- **Connect Theory to Real-World Value**: To illustrate how these advanced technologies can be leveraged to solve business problems, enhance products, and drive innovation within the Vietnamese market.
+# Event Report: AWS Cloud Day and AI
 
-### List of Speakers
--  **Dinh Le Hoang Anh** - AWS Vietnam
--  **Lam Tuan Kiet** - AWS Vietnam
--  **Danh Hoang Hieu Nghi** - AWS Vietnam
+**Location:** Floor 26, Bitexco Financial Tower, Ho Chi Minh City.
 
-### Key Content & Highlights
+**Role:** Attendee.
 
-#### The Complete Machine Learning Lifecycle with Amazon SageMaker:
-- **Focus**: The first half of the workshop provided a structured, end-to-end journey through a typical machine learning project.
-- **Content**: The session covered every critical stage, from data preparation and labeling to model training, hyperparameter tuning, and seamless deployment. A key emphasis was placed on MLOps, showcasing how SageMaker integrates tools to automate and manage the entire lifecycle efficiently.
-- **Key Moment**: The live demo of SageMaker Studio was a major highlight. It brought the concepts to life, giving attendees a clear visual walkthrough of the unified environment and demystifying the complexity of managing an ML workflow.
-- **Related Session**: "AWS AI/ML Services Overview".
+AWS Cloud Day and AI connected cloud architecture, data modernization, and agentic AI with practical enterprise use cases. The report brings together the keynote's engineering principles and selected program highlights, focusing on what makes an AI-enabled system reliable, governable, and useful in production.
 
-#### A Practical Deep Dive into Generative AI with Amazon Bedrock:
-- **Focus**: This session pivoted to the cutting edge, exploring the transformative potential of Generative AI in a highly accessible way.
-- **Content**: The presentation masterfully covered the core components of building with GenAI on AWS:
-    - **Foundation Models**: A clear guide on how to compare and select the right model (like Claude, Llama, Titan) for specific tasks.
-    - **Prompt Engineering**: Practical techniques to communicate effectively with models, including advanced methods like Chain-of-Thought reasoning.
-    - **Retrieval-Augmented Generation (RAG)**: An architectural overview of how to connect models to private knowledge bases, making them smarter and more context-aware.
-    - **Bedrock Agents & Guardrails**: A look into building autonomous agents that can perform multi-step tasks and the crucial importance of implementing safety filters.
-- **Key Moment**: The climax of the morning was the live demo of building a GenAI chatbot using Bedrock. In a matter of minutes, the speaker created a functional, intelligent application, proving how quickly developers can go from idea to prototype.
-- **Related Session**: "Generative AI with Amazon Bedrock".
+### Event Objectives
 
-### What You Learned
+- Understand the relationship between workload characteristics, systems thinking, and operational excellence.
+- Explore how data foundations, agent architecture, and AI-assisted development fit together across the software lifecycle.
+- Connect enterprise examples with decisions about reliability, security, cost, and human ownership.
 
-#### On Traditional Machine Learning
-- **End-to-End Project Management**: You learned how to use Amazon SageMaker as a single, unified platform to manage the entire ML workflow. You now have a clear understanding of the steps required to take a project from raw data to a deployed model in production.
-- **MLOps for Efficiency**: You grasped the importance of MLOps and saw how SageMaker's integrated capabilities can help automate, monitor, and govern machine learning models at scale, reducing manual effort and improving reliability.
+### Keynote: Systems Thinking and the Renaissance Developer
 
-#### On Generative AI
-- **How to Choose and Use Foundation Models**: You gained practical criteria for selecting the best foundation model for your needs and learned fundamental prompt engineering techniques to get high-quality, relevant responses.
-- **Making AI Smarter with Your Data**: You now understand the concept and architecture of RAG, giving you a clear path to building applications that can reason over your company's private documents and data.
-- **Building and Securing AI Applications**: You learned how Bedrock Agents can automate complex workflows and how to use Guardrails to ensure your AI applications are safe, responsible, and aligned with your business policies.
+Keynote by **Dr. Werner Vogels – Chief Technology Officer and Vice President, Amazon**
 
-### Experience at the Event
-Spending a Saturday morning at the AWS Vietnam office for this workshop felt like a powerful investment in the future. The atmosphere was focused and energetic, filled with a shared desire to understand and harness the power of AI.
+#### 1. Choose Architecture from Actual Workloads
 
-#### Building a Solid Foundation
-The session on SageMaker was incredibly grounding. Instead of abstract concepts, we were walked through a logical, structured process that made the entire machine learning lifecycle feel manageable. The SageMaker Studio demo was the "aha!" moment, transforming a complex diagram on a slide into a tangible, navigable tool. You left that session feeling that building and deploying a machine learning model was no longer a mysterious art, but a clear engineering discipline.
+- The account of a major database outage at Amazon illustrated the limits of applying one technology to every access pattern. Simple key-value lookups and workloads requiring relational operations have different needs; examining those needs informed the development of Dynamo.
+- The lesson is to justify a data-store choice through query patterns, consistency requirements, scale, and failure behavior.
 
-#### A Thrilling Leap into GenAI
-The transition to the Amazon Bedrock session was palpable—the energy in the room shifted towards excitement and wonder. The speaker did a fantastic job of breaking down what could be intimidating topics (like RAG and Agents) into simple, powerful ideas. But the true magic was the live chatbot demo. Witnessing a sophisticated AI assistant come to life so quickly and easily was incredibly inspiring. It wasn't just a demonstration of a product; it was a demonstration of possibility.
+#### 2. Design and Measure for Failure
+
+- Tail latency reveals slow requests that averages or medians can hide. P99.9 describes a latency threshold covering approximately 99.9% of observed requests, not a percentage of service availability.
+- Failure isolation, tested failover, recovery procedures, and GameDay exercises turn resilience from an architectural assumption into something teams can validate. Operational readiness includes understanding how dependencies behave during an outage.
+
+#### 3. Develop Beyond Code Generation
+
+- The Renaissance Developer combines curiosity, systems thinking, ownership, T-shaped expertise, and communication. Understanding business goals and explaining architectural trade-offs remain necessary even when AI accelerates implementation.
+- AI-generated output still needs review for correctness, security, and edge cases. Engineers retain responsibility for what reaches production and should evaluate the effect of a change across the whole system.
+
+### Main Content and Key Highlights
+
+#### 1. AI-Ready Data Foundations and Enterprise Analytics
+
+- The VPBank case described consolidating more than 600 TB from legacy warehouses into a Redshift analytics platform, with lakehouse integration and data sharing across teams. The architectural issue was enabling shared analytics while managing duplication, performance, and governance.
+- Other data sessions emphasized Amazon S3, Apache Iceberg, open catalogs, and consistent governance. Data freshness, lineage, quality, and permissions determine whether retrieved information is suitable evidence for an agent's answer or action.
+
+#### 2. AI-Native SDLC and Independent Quality Checks
+
+- TCBS presented its adoption of Kiro and AI-DLC, reporting a 26% reduction in development time in its own case. The broader theme was applying AI to requirements, design, testing, documentation, and delivery rather than measuring progress only by generated code.
+- Spec-driven development makes requirements and acceptance criteria explicit. Katalon's software-quality example reinforced the need to validate AI-generated work independently and retain traceable evidence of checks and decisions.
+
+#### 3. Agent Architecture, Frameworks, and Production Services
+
+- Sessions on agent harnesses, Strands, LangGraph, and Bedrock AgentCore examined orchestration, tool execution, state, memory, and observability. Framework-level control flow and managed operating services address different parts of the system.
+- ReAct loops, MCP tools, retrieval, and multi-agent specialization connect reasoning to actions and external context. Extra agents or tools also introduce coordination and latency trade-offs, so their value should follow the task's requirements.
+
+#### 4. GitOps, Platform Engineering, and Modernization
+
+- Vinamilk's example linked AI-assisted infrastructure work with GitOps, EKS, Argo CD, human approval gates, and temporary access. Related IaC sessions used pull requests to review generated Terraform/OpenTofu changes and address configuration drift.
+- Platform-engineering sessions discussed reusable developer paths and reducing manual provisioning bottlenecks. EKS and AWS Transform examples also highlighted migration dependencies, application compatibility, and the operational work that continues after deployment.
+
+#### 5. Security, Workload Identity, and Controlled Autonomy
+
+- Workload-identity sessions connected IAM, STS, short-lived sessions, and identity context with least-privilege access across services and accounts. Removing static keys is only one part of establishing which workload may perform an action.
+- Defense-in-depth and governance sessions combined data protection, evaluations, policy controls, and human approval. Agent access should expand according to verified evidence and business authority, with clear ownership of consequential changes.
+
+#### 6. Cost Control and Observability for GenAI
+
+- Bedrock cost-control and model-routing sessions addressed long prompts, repeated agent loops, traffic spikes, and choosing models appropriate to task complexity. Usage visibility needs actionable limits and stopping mechanisms; a strong model is not automatically the most efficient choice for every request.
+- Monitoring discussions added cost, safety, and answer quality to latency, errors, traffic, and saturation. S3 storage-tiering sessions made a related point: a cheaper storage class must also satisfy retrieval, access-frequency, and recovery requirements.
+
+#### 7. Business Applications and Evidence-Based Operations
+
+- Examples ranged from insurance and fraud investigation to manufacturing and enterprise knowledge assistants. Amazon Quick and knowledge-hub sessions focused on connecting fragmented information to useful business actions under appropriate access controls.
+- GoTyme's investigation workflow correlated traces, metrics, and infrastructure signals; TechX's Xora material connected incident context with human-controlled recovery and verification. A plausible root-cause explanation still needs supporting evidence and a checked recovery outcome.
+
+### Knowledge and Lessons Learned
+
+- **Start with the workload:** Define access patterns, quality expectations, and business constraints before choosing a database, model, or agent architecture.
+- **Keep ownership with engineers:** Review requirements, proposed changes, test evidence, and rollback plans even when AI performs much of the implementation.
+- **Treat production readiness as a complete system:** Data governance, identity, resilience, observability, and cost controls need to work together.
+- **Measure business outcomes:** Evaluate completed tasks, reliable recovery, delivery quality, and cost per useful result, alongside coding speed.
+
+---
+
+![Checked in at the event](/images/4-EventParticipated/4.2-Event2/check-in.png)
+
+_Checked in at the event_

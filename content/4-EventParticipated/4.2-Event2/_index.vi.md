@@ -1,58 +1,89 @@
 ---
 title: "Event 2"
-date: 2025-11-15
 weight: 1
 chapter: false
 pre: " <b> 4.2. </b> "
---- 
+---
 
-# Bài thu hoạch: AWS Cloud Mastery Series #1 : AI/ML/GenAI on AWS Workshop
+# Bài thu hoạch: AWS Cloud Day and AI
 
-### Mục Đích Của Sự Kiện
-- **Giải mã AI cho Ứng dụng thực tiễn**: Phân tích các thế giới phức tạp của Học máy (Machine Learning) và AI Tạo sinh (Generative AI) thành những khái niệm dễ hiểu, có thể áp dụng ngay cho các nhà phát triển, kiến trúc sư và những người đam mê công nghệ.
-- **Trình bày toàn cảnh hệ sinh thái AI/ML của AWS**: Cung cấp một cái nhìn tổng quan toàn diện về các dịch vụ chính của AWS, chứng minh cách Amazon SageMaker bao quát toàn bộ vòng đời học máy truyền thống và cách Amazon Bedrock đơn giản hóa việc tiếp cận AI Tạo sinh mạnh mẽ.
-- **Trang bị kỹ năng thực hành**: Vượt ra ngoài khuôn khổ bài giảng để cung cấp kiến thức thực tế thông qua các buổi demo trực tiếp, cho người tham dự thấy chính xác cách điều hướng SageMaker Studio và xây dựng một chatbot AI Tạo sinh hoạt động được với Bedrock.
-- **Kết nối Lý thuyết với Giá trị thực tiễn**: Minh họa cách các công nghệ tiên tiến này có thể được tận dụng để giải quyết các bài toán kinh doanh, nâng cao sản phẩm và thúc đẩy sự đổi mới trong thị trường Việt Nam.
+**Địa điểm:** Floor 26, Bitexco Financial Tower, TP. Hồ Chí Minh.
 
-### Danh Sách Diễn Giả
--   **Đinh Lê Hoàng Anh**- AWS Vietnam
--   **Lâm Tuấn Kiệt** - AWS Vietnam
--   **Danh Hoàng Hiếu Nghị** - AWS Vietnam
+**Vai trò:** Người tham dự.
 
-### Nội Dung Chính & Điểm Nổi Bật
+AWS Cloud Day and AI kết nối kiến trúc cloud, hiện đại hóa dữ liệu và Agentic AI với các bài toán doanh nghiệp. Bài thu hoạch tổng hợp tư duy kỹ thuật từ keynote cùng các nội dung tiêu biểu của chương trình, tập trung vào điều kiện để hệ thống ứng dụng AI vận hành tin cậy, có kiểm soát và tạo giá trị thực tế.
 
-#### Vòng đời Học máy Toàn diện với Amazon SageMaker:
-- **Trọng tâm**: Nửa đầu của hội thảo đã cung cấp một hành trình có cấu trúc, toàn diện từ đầu đến cuối của một dự án học máy điển hình.
-- **Nội dung**: Phiên này đã bao quát mọi giai đoạn quan trọng, từ chuẩn bị và gán nhãn dữ liệu đến huấn luyện mô hình, tinh chỉnh siêu tham số và triển khai liền mạch. Một điểm nhấn chính được đặt vào MLOps, cho thấy cách SageMaker tích hợp các công cụ để tự động hóa và quản lý toàn bộ vòng đời một cách hiệu quả.
-- **Khoảnh khắc chính**: Phần demo trực tiếp SageMaker Studio là một điểm nhấn lớn. Nó đã làm cho các khái niệm trở nên sống động, mang đến cho người tham dự một cái nhìn trực quan, rõ ràng về môi trường hợp nhất và giải mã sự phức tạp của việc quản lý một quy trình học máy.
-- **Phiên liên quan**: "AWS AI/ML Services Overview".
+### Mục tiêu sự kiện
 
-#### Khám phá chuyên sâu và thực tế về AI Tạo sinh với Amazon Bedrock:
-- **Trọng tâm**: Phiên này chuyển hướng sang công nghệ tiên tiến nhất, khám phá tiềm năng chuyển đổi của AI Tạo sinh theo một cách cực kỳ dễ tiếp cận.
-- **Nội dung**: Bài trình bày đã bao quát một cách xuất sắc các thành phần cốt lõi để xây dựng với AI Tạo sinh trên AWS:
-    - **Mô hình nền tảng (Foundation Models)**: Hướng dẫn rõ ràng về cách so sánh và chọn đúng mô hình (như Claude, Llama, Titan) cho các tác vụ cụ thể.
-    - **Kỹ thuật Prompt (Prompt Engineering)**: Các kỹ thuật thực tế để giao tiếp hiệu quả với mô hình, bao gồm các phương pháp nâng cao như suy luận theo chuỗi tư duy (Chain-of-Thought).
-    - **Tạo sinh Tăng cường truy xuất (RAG)**: Tổng quan về kiến trúc và cách kết nối các mô hình với kho tri thức riêng, giúp chúng thông minh hơn và nhận biết ngữ cảnh tốt hơn.
-    - **Bedrock Agents & Guardrails**: Giới thiệu về việc xây dựng các agent tự hành có thể thực hiện các tác vụ đa bước và tầm quan trọng sống còn của việc triển khai các bộ lọc an toàn.
-- **Khoảnh khắc chính**: Điểm nhấn cao trào của buổi sáng là phần demo trực tiếp xây dựng một chatbot AI Tạo sinh bằng Bedrock. Chỉ trong vài phút, diễn giả đã tạo ra một ứng dụng thông minh, hoạt động được, chứng minh các nhà phát triển có thể đi từ ý tưởng đến sản phẩm mẫu nhanh như thế nào.
-- **Phiên liên quan**: "Generative AI with Amazon Bedrock".
+- Hiểu mối liên hệ giữa đặc điểm workload, tư duy hệ thống và năng lực vận hành.
+- Tìm hiểu cách nền tảng dữ liệu, kiến trúc agent và phát triển phần mềm có AI hỗ trợ kết hợp trong toàn bộ vòng đời ứng dụng.
+- Liên hệ các case doanh nghiệp với quyết định về độ tin cậy, bảo mật, chi phí và trách nhiệm của con người.
 
-### Những Gì Học Được
+### Keynote: Tư duy hệ thống và Renaissance Developer
 
-#### Về Học máy Truyền thống
-- **Quản lý dự án toàn trình**: Bạn đã học cách sử dụng Amazon SageMaker như một nền tảng duy nhất, hợp nhất để quản lý toàn bộ quy trình học máy. Giờ đây, bạn đã có một sự hiểu biết rõ ràng về các bước cần thiết để đưa một dự án từ dữ liệu thô đến một mô hình được triển khai trong môi trường sản phẩm.
-- **MLOps để tối ưu hiệu suất**: Bạn đã nắm bắt được tầm quan trọng của MLOps và thấy được cách các tính năng tích hợp của SageMaker có thể giúp tự động hóa, giám sát và quản trị các mô hình học máy ở quy mô lớn, giảm thiểu công sức thủ công và cải thiện độ tin cậy.
+Keynote của **Dr. Werner Vogels – Chief Technology Officer and Vice President, Amazon**
 
-#### Về GenAI
-- **Cách chọn và sử dụng Mô hình Nền tảng**: Bạn đã có được các tiêu chí thực tế để chọn mô hình nền tảng tốt nhất cho nhu cầu của mình và học được các kỹ thuật prompt cơ bản để nhận được phản hồi chất lượng cao và phù hợp.
-- **Làm cho AI thông minh hơn với dữ liệu của bạn**: Bây giờ bạn đã hiểu khái niệm và kiến trúc của RAG, mang lại cho bạn một lộ trình rõ ràng để xây dựng các ứng dụng có thể suy luận dựa trên tài liệu và dữ liệu nội bộ của công ty bạn.
-- **Xây dựng và Bảo mật Ứng dụng AI**: Bạn đã học được cách Bedrock Agents có thể tự động hóa các quy trình phức tạp và cách sử dụng Guardrails để đảm bảo các ứng dụng AI của bạn an toàn, có trách nhiệm và tuân thủ các chính sách kinh doanh của bạn.
+#### 1. Chọn kiến trúc theo cách sử dụng thực tế
 
-### Trải nghiệm tại sự kiện
-Dành một buổi sáng thứ Bảy tại văn phòng AWS Việt Nam cho hội thảo này giống như một sự đầu tư mạnh mẽ cho tương lai. Bầu không khí tập trung và tràn đầy năng lượng, được lấp đầy bởi một khát khao chung là thấu hiểu và khai thác sức mạnh của AI.
+- Câu chuyện về sự cố cơ sở dữ liệu lớn tại Amazon cho thấy giới hạn của việc dùng một công nghệ cho mọi kiểu truy cập. Tra cứu key-value đơn giản và nghiệp vụ cần quan hệ dữ liệu có nhu cầu khác nhau; việc phân tích các nhu cầu này góp phần định hướng phát triển Dynamo.
+- Bài học là lựa chọn data store dựa trên mẫu truy vấn, yêu cầu nhất quán, quy mô và hành vi khi có lỗi.
 
-#### Xây dựng một Nền tảng Vững chắc
-Phiên về SageMaker cực kỳ nền tảng và thực tế. Thay vì những khái niệm trừu tượng, chúng tôi được dẫn dắt qua một quy trình logic, có cấu trúc, khiến toàn bộ vòng đời học máy trở nên dễ quản lý. Phần demo SageMaker Studio chính là khoảnh khắc "à há!", biến một sơ đồ phức tạp trên slide thành một công cụ hữu hình, có thể điều hướng. Bạn rời khỏi phiên đó với cảm giác rằng việc xây dựng và triển khai một mô hình học máy không còn là một nghệ thuật bí ẩn, mà là một quy trình kỹ thuật rõ ràng.
+#### 2. Thiết kế và đo lường với giả định có sự cố
 
-#### Một Bước nhảy vọt đầy hứng khởi vào AI Tạo sinh
-Sự chuyển đổi sang phiên Amazon Bedrock có thể cảm nhận rất rõ ràng—năng lượng trong phòng chuyển sang sự hào hứng và kinh ngạc. Diễn giả đã làm một công việc tuyệt vời khi phân tích các chủ đề có thể gây choáng ngợp (như RAG và Agents) thành những ý tưởng đơn giản nhưng mạnh mẽ. Nhưng phép màu thực sự là phần demo chatbot trực tiếp. Chứng kiến một trợ lý AI tinh vi ra đời nhanh chóng và dễ dàng đến vậy thực sự vô cùng truyền cảm hứng. Đó không chỉ là màn trình diễn một sản phẩm; đó là màn trình diễn về những gì có thể.
+- Tail latency thể hiện các request chậm mà số trung bình hoặc trung vị có thể che khuất. P99.9 là ngưỡng độ trễ bao phủ khoảng 99,9% request quan sát được, khác với tỷ lệ sẵn sàng của dịch vụ.
+- Cô lập lỗi, kiểm tra failover, quy trình khôi phục và diễn tập GameDay giúp biến giả định về khả năng chịu lỗi thành điều có thể kiểm chứng. Sẵn sàng vận hành còn bao gồm hiểu cách các thành phần phụ thuộc phản ứng khi xảy ra sự cố.
+
+#### 3. Phát triển năng lực vượt ra ngoài sinh mã
+
+- Renaissance Developer kết hợp sự tò mò, tư duy hệ thống, ownership, chuyên môn hình chữ T và kỹ năng giao tiếp. Hiểu mục tiêu nghiệp vụ, giải thích được đánh đổi kiến trúc vẫn cần thiết khi AI giúp triển khai nhanh hơn.
+- Đầu ra do AI tạo vẫn cần kiểm tra tính đúng đắn, bảo mật và tình huống biên. Kỹ sư chịu trách nhiệm với thay đổi đưa lên production và cần đánh giá ảnh hưởng trên toàn hệ thống.
+
+### Nội dung chính và Key Highlights
+
+#### 1. Nền tảng dữ liệu sẵn sàng cho AI và phân tích doanh nghiệp
+
+- Case VPBank mô tả việc hợp nhất hơn 600 TB từ các kho dữ liệu cũ lên nền tảng phân tích Redshift, kết hợp lakehouse và chia sẻ dữ liệu giữa các team. Vấn đề kiến trúc là hỗ trợ phân tích dùng chung đồng thời kiểm soát sao chép dữ liệu, hiệu năng và governance.
+- Các phiên dữ liệu khác đề cập Amazon S3, Apache Iceberg, open catalog và quản trị nhất quán. Độ mới, lineage, chất lượng và quyền truy cập quyết định dữ liệu truy xuất có phù hợp làm căn cứ cho câu trả lời hoặc hành động của agent hay không.
+
+#### 2. AI-native SDLC và kiểm chứng chất lượng độc lập
+
+- TCBS chia sẻ việc áp dụng Kiro, AI-DLC và nêu mức giảm 26% thời gian phát triển trong case của đơn vị. Chủ đề rộng hơn là đưa AI vào yêu cầu, thiết kế, kiểm thử, tài liệu và bàn giao, thay vì chỉ đo tiến độ bằng lượng mã sinh ra.
+- Spec-driven development giúp làm rõ yêu cầu, tiêu chí chấp nhận. Ví dụ về chất lượng phần mềm của Katalon nhấn mạnh kiểm chứng độc lập với phần việc AI tạo, lưu bằng chứng kiểm tra và quyết định để có thể truy vết.
+
+#### 3. Kiến trúc agent, framework và dịch vụ vận hành
+
+- Các phiên về agent harness, Strands, LangGraph, Bedrock AgentCore phân tích điều phối, thực thi công cụ, state, memory và observability. Luồng xử lý trong framework và các dịch vụ vận hành được quản lý giải quyết những phần khác nhau của hệ thống.
+- Vòng lặp ReAct, công cụ MCP, truy xuất tri thức và chuyên môn hóa nhiều agent nối suy luận với hành động, ngữ cảnh bên ngoài. Thêm agent hoặc công cụ cũng tạo đánh đổi về phối hợp, độ trễ; giá trị cần xuất phát từ yêu cầu nhiệm vụ.
+
+#### 4. GitOps, Platform Engineering và hiện đại hóa
+
+- Ví dụ Vinamilk kết hợp AI hỗ trợ hạ tầng với GitOps, EKS, Argo CD, bước phê duyệt của con người và quyền truy cập tạm thời. Các phiên IaC liên quan sử dụng pull request để review Terraform/OpenTofu được tạo và xử lý configuration drift.
+- Platform Engineering đề cập quy trình chuẩn có thể tái sử dụng cho developer, giảm nút thắt cấp phát thủ công. Các ví dụ EKS, AWS Transform còn cho thấy cần xét phụ thuộc migration, tính tương thích ứng dụng và công việc vận hành sau triển khai.
+
+#### 5. Bảo mật, danh tính workload và tự chủ có kiểm soát
+
+- Các phiên workload identity liên hệ IAM, STS, phiên ngắn hạn và ngữ cảnh danh tính với least privilege giữa dịch vụ, account. Loại bỏ static key mới là một phần của việc xác định workload nào được phép thực hiện hành động.
+- Defense in depth và governance kết hợp bảo vệ dữ liệu, đánh giá, chính sách và phê duyệt của con người. Phạm vi truy cập của agent cần mở rộng dựa trên bằng chứng đã kiểm chứng, thẩm quyền nghiệp vụ và người chịu trách nhiệm rõ ràng.
+
+#### 6. Kiểm soát chi phí và observability cho GenAI
+
+- Các phiên kiểm soát chi phí Bedrock, model routing đề cập prompt dài, agent loop lặp lại, lưu lượng tăng đột biến và chọn model theo độ khó nhiệm vụ. Theo dõi mức dùng cần gắn với giới hạn, cơ chế dừng; model mạnh chưa chắc hiệu quả nhất cho mọi request.
+- Nội dung monitoring bổ sung chi phí, an toàn và chất lượng câu trả lời bên cạnh latency, errors, traffic, saturation. Phiên S3 storage tiering nêu đánh đổi tương tự: lớp lưu trữ rẻ hơn còn phải đáp ứng tốc độ truy xuất, tần suất truy cập và yêu cầu khôi phục.
+
+#### 7. Ứng dụng nghiệp vụ và vận hành dựa trên bằng chứng
+
+- Các ví dụ trải rộng từ bảo hiểm, điều tra gian lận đến sản xuất, trợ lý tri thức doanh nghiệp. Amazon Quick và Enterprise Knowledge Hub tập trung nối thông tin phân mảnh với hành động nghiệp vụ trong phạm vi quyền phù hợp.
+- Quy trình điều tra GoTyme liên hệ trace, metric và tín hiệu hạ tầng; nội dung Xora của TechX kết nối ngữ cảnh sự cố với khôi phục do con người kiểm soát, xác minh kết quả. Một giả thuyết nguyên nhân hợp lý vẫn cần chứng cứ và kiểm tra sau khôi phục.
+
+### Kiến thức và bài học rút ra
+
+- **Bắt đầu từ workload:** Xác định kiểu truy cập, chất lượng kỳ vọng và ràng buộc nghiệp vụ trước khi chọn database, model hoặc kiến trúc agent.
+- **Kỹ sư giữ ownership:** Rà soát yêu cầu, thay đổi đề xuất, bằng chứng kiểm thử và phương án rollback dù AI thực hiện phần lớn việc triển khai.
+- **Xem production readiness là bài toán toàn hệ thống:** Governance dữ liệu, danh tính, chịu lỗi, observability và kiểm soát chi phí cần phối hợp với nhau.
+- **Đo kết quả nghiệp vụ:** Đánh giá nhiệm vụ hoàn thành, khôi phục tin cậy, chất lượng bàn giao và chi phí trên kết quả hữu ích, bên cạnh tốc độ viết mã.
+
+---
+
+![Đã Check in tại sự kiện](/images/4-EventParticipated/4.2-Event2/check-in.png)
+
+_Đã Check in tại sự kiện_

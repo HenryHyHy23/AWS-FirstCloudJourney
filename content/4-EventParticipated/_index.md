@@ -22,11 +22,9 @@ This section records events I attended during my internship, the topics discusse
 ---
 
 ### [Event 2](4.2-Event2/)
-&emsp;**Event Name:** AWS Cloud Mastery Series #1 : AI/ML/GenAI on AWS Workshop
+&emsp;**Event Name:** AWS Cloud Day and AI
 
-&emsp;**Time:** 8:00 AM, November 15, 2025
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, HCMC
+&emsp;**Location:** Floor 26, Bitexco Financial Tower, Ho Chi Minh City
 
 &emsp;**Role:** Attendee
 
