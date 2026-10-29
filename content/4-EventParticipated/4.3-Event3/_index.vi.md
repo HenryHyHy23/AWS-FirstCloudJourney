@@ -28,7 +28,7 @@ Meetup ngày 24/10/2026 kết hợp các chủ đề Voice AI tiếng Việt, qu
 ### Diễn giả tiêu biểu
 
 - **Kiệt Trần** – AI Engineer, Revve AI.
-- **Long Huỳnh** – Styl Solution.
+- **Long Huỳnh** – DevSecOps, Styl Solution.
 - **Thịnh Nguyễn** – Styl Solution.
 - **Xuân An** – Leader AWS Student Builder Group HCMUTE.
 - **Khoa Kiều** – Tech Lead ACB.
@@ -75,8 +75,36 @@ Một POC được trình bày với luồng **Chào hỏi → Xác minh → Nh�
 
 #### Session 2: AWS Resource Access Manager
 
-- Chia sẻ tài nguyên giữa các account trong AWS Organizations, kết hợp quản trị mạng tập trung và tối ưu chi phí.
-- Ghi nhận chủ đề phối hợp IAM policy với SCP để kiểm soát phạm vi quyền trong mô hình nhiều account.
+**Bài toán quản trị tài nguyên ở quy mô enterprise**
+
+AWS RAM giúp chia sẻ các loại tài nguyên được hỗ trợ giữa nhiều account, trong khi quyền sở hữu vẫn ở account tạo tài nguyên. Các mô hình trong phiên đặc biệt phù hợp với doanh nghiệp tách account theo team, môi trường hoặc chức năng: đội hạ tầng quản trị phần dùng chung, các đội workload triển khai trong phạm vi được cấp.
+
+**Luồng chia sẻ từ owner đến consumer**
+
+Một **resource share** gồm tài nguyên, principals được chia sẻ và **managed permission** cho từng loại tài nguyên. Luồng được trình bày là:
+
+**Bật Organizations sharing (nếu dùng Organizations) → Tạo share theo Region → Thêm resources → Gắn permissions → Chọn principals → Consumer cấp quyền IAM cho user/role.**
+
+- Khi đã bật tích hợp RAM–Organizations, chia sẻ trong cùng tổ chức không cần lời mời; quyền truy cập qua share theo OU thay đổi cùng thành viên OU. Chia sẻ ra ngoài tổ chức cần loại tài nguyên hỗ trợ, cho phép external principals và bên nhận chấp nhận lời mời. [AWS RAM sharing](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing-create.html).
+- Consumer sử dụng tài nguyên trong console/API của dịch vụ tương ứng; owner tiếp tục quản lý tài nguyên gốc và phạm vi chia sẻ.
+
+**Least privilege qua nhiều lớp**
+
+- **RAM managed permission:** Xác định các thao tác được chia sẻ; chọn AWS managed hoặc customer managed khi loại tài nguyên hỗ trợ tùy chỉnh.
+- **IAM bên consumer và SCP:** Admin cấp quyền cho từng user/role trong giới hạn share; SCP giới hạn quyền của principal trong member account. Explicit Deny vẫn được ưu tiên.
+- **Phiên bản và nhóm người dùng:** Tách share theo nhu cầu của từng nhóm. Khi đổi default version của customer managed permission, cần chủ động cập nhật các share đang dùng phiên bản cũ. [Managed permission versions](https://docs.aws.amazon.com/ram/latest/userguide/create-customer-managed-permissions.html).
+
+**Kiến trúc và ứng dụng enterprise**
+
+- **Shared VPC:** Network account chia sẻ subnet cho workload account triển khai tài nguyên như EC2, đồng thời giữ quyền quản lý mạng. Chia sẻ subnet áp dụng giữa các account trong cùng AWS Organization. [Trách nhiệm owner/participant](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-share-limitations.html).
+- **Hub-and-spoke:** Network account chia sẻ Transit Gateway, Resolver rules và prefix lists. Các spoke tạo VPC attachment; đội network quản lý TGW route tables để phân đoạn Prod/Dev và tập trung DNS hybrid. Kết nối cần đầy đủ routing, kiểm soát lưu lượng và phê duyệt attachment nếu tắt auto-accept. [TGW sharing](https://docs.aws.amazon.com/vpc/latest/tgw/working-with-transit-gateways.html).
+- **Landing zone:** Infrastructure OU và Security OU cung cấp tài nguyên dùng chung cho Workloads OU. Account mới vào OU được hưởng các share đã nhắm đến OU đó, giúp chuẩn hóa baseline khi mở rộng.
+
+**Vận hành, kiểm toán và IaC**
+
+- Quản lý share bằng CloudFormation/Terraform; kiểm tra Region, quota và **AZ ID** khi phối hợp tài nguyên giữa các account.
+- CloudTrail hỗ trợ truy vết ai tạo, sửa hoặc chấp nhận share. EventBridge kết nối SNS/Lambda để cảnh báo hoặc xử lý thay đổi; do event được gửi theo cơ chế best effort, cần đối soát trạng thái định kỳ. [Giám sát RAM](https://docs.aws.amazon.com/ram/latest/userguide/using-eventbridge.html).
+- Theo dõi share cho external principals, principal ngoài dự kiến, association thất bại và lời mời tồn đọng.
 
 #### Session 3: AWS Pentest with AWS Continuum / Security Agent
 
@@ -103,12 +131,15 @@ Phiên Kiro Crew tập trung vào việc để AI Agent hoạt động 24/7 hỗ
 
 - **Thiết kế theo luồng nghiệp vụ:** Cuộc gọi sơ tuyển cần các bước hỏi rõ ràng, nhánh hẹn lại và đầu ra sau cuộc gọi để phục vụ bước xử lý tiếp theo.
 - **Đánh giá cả luồng hội thoại:** Phân biệt thời gian chờ kết thúc lượt nói với độ trễ phản hồi hoàn chỉnh; kiểm thử turn detection, ngắt lời và TTS bằng tiếng Việt, đồng thời kiểm tra nội dung trước khi phát âm thanh.
-- **Kết nối quản trị tài nguyên với quyền truy cập:** Nội dung AWS RAM gắn việc dùng chung tài nguyên với phạm vi quyền trong mô hình nhiều account.
+- **Dùng chung hạ tầng với trách nhiệm rõ ràng:** Shared VPC, TGW và DNS tập trung giúp đội network quản lý nền tảng, còn đội workload sử dụng theo phạm vi được phân quyền.
+- **Kết hợp phân quyền với quản trị vòng đời:** RAM managed permissions, IAM và SCP kiểm soát quyền; OU membership, phiên bản permission và nhật ký thay đổi cần được theo dõi khi mở rộng account.
 - **Đưa kiểm tra bảo mật vào quá trình phát triển:** Phần Terraform và pentest SIT/UAT cho thấy hai thời điểm kiểm tra khác nhau: khi review thay đổi và khi hệ thống đã có môi trường chạy thử.
 - **Quan tâm đến toàn bộ vòng đời agent:** Runtime, memory, context window và guardrails đều ảnh hưởng đến cách agent hỗ trợ công việc liên tục. Phiên Kiro Crew đặt các vấn đề này vào cùng bài toán quản lý hiệu quả và mức tự chủ.
 
 ### Trải nghiệm tại sự kiện
 
 Phần live demo AI chủ động gọi đến ứng viên để sơ tuyển Cloud Engineer bằng tiếng Việt trong khoảng ba phút là một điểm nhấn đáng nhớ. Luồng từ chào hỏi, tìm hiểu kinh nghiệm đến câu hỏi kỹ thuật giúp mình thấy rõ cách Voice AI hỗ trợ một công đoạn cụ thể của tuyển dụng. Các tình huống ngắt lời, thuật ngữ tiếng Anh và yêu cầu làm lệch đánh giá còn cho thấy cần xem cả cách hệ thống xử lý hội thoại, bên cạnh chất lượng giọng nói.
+
+Session RAM giúp mình hình dung rõ hơn bài toán enterprise: nhiều team và account cùng dùng hạ tầng nhưng vẫn cần ranh giới sở hữu, quyền truy cập và trách nhiệm vận hành. Giá trị của việc chia sẻ tăng lên khi doanh nghiệp chuẩn hóa tài nguyên theo OU và mở rộng thêm account.
 
 Session Kiro Crew là phần mình tâm đắc nhất, đặc biệt buổi hỏi đáp kỹ thuật cuối chương trình. Các câu hỏi về Artifacts, token, memory và quyền thực thi gắn trực tiếp với mong muốn để agent hỗ trợ review code, kiểm tra hệ thống 24/7 nhưng vẫn kiểm soát được hành động và chi phí.

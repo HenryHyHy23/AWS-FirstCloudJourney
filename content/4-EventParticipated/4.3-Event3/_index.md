@@ -28,7 +28,7 @@ The October 24, 2026 meetup brought together Vietnamese Voice AI, multi-account 
 ### Featured Speakers
 
 - **Kiệt Trần** – AI Engineer, Revve AI.
-- **Long Huỳnh** – Styl Solution.
+- **Long Huỳnh** – DevSecOps, Styl Solution.
 - **Thịnh Nguyễn** – Styl Solution.
 - **Xuân An** – Leader, AWS Student Builder Group HCMUTE.
 - **Khoa Kiều** – Tech Lead, ACB.
@@ -75,8 +75,36 @@ A separate POC used **Greeting → Verification → Intent → API action → Ti
 
 #### Session 2: AWS Resource Access Manager
 
-- Resource sharing across accounts in AWS Organizations, combining centralized network administration with cost optimization.
-- Notes cover the interaction between IAM policies and SCPs in controlling permissions across multiple accounts.
+**Resource governance at enterprise scale**
+
+AWS RAM shares supported resources across accounts while ownership remains with the resource-owning account. The session's architectures fit enterprises separating accounts by team, environment, or function: infrastructure teams manage shared foundations, and workload teams deploy within delegated permissions.
+
+**From resource owner to consumer**
+
+A **resource share** contains resources, recipient principals, and a **managed permission** for each resource type. The presented flow was:
+
+**Enable Organizations sharing (when using Organizations) → Create a regional share → Add resources → Attach permissions → Select principals → Consumer grants IAM access to users/roles.**
+
+- With RAM–Organizations integration enabled, sharing within the organization requires no invitations; OU-based access follows OU membership. External sharing requires a supported resource type, external principals to be allowed, and invitation acceptance. [AWS RAM sharing](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing-create.html).
+- Consumers use resources through the owning service's console/API; the owner retains control of the original resources and sharing scope.
+
+**Layered least privilege**
+
+- **RAM managed permissions:** Define the shared actions; use AWS managed permissions or customer managed permissions where the resource type supports customization.
+- **Consumer IAM and SCPs:** Administrators grant users/roles access within the share's limits; SCPs constrain principals in member accounts. Explicit Deny still takes precedence.
+- **Versions and audiences:** Separate shares by audience needs. Changing a customer managed permission's default version requires deliberate updates to shares using older versions. [Managed permission versions](https://docs.aws.amazon.com/ram/latest/userguide/create-customer-managed-permissions.html).
+
+**Enterprise architectures and use cases**
+
+- **Shared VPC:** A network account shares subnets for workload accounts to deploy resources such as EC2 while retaining network administration. Subnet sharing applies to accounts within the same AWS Organization. [Owner/participant responsibilities](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-share-limitations.html).
+- **Hub-and-spoke:** The network account shares a Transit Gateway, Resolver rules, and prefix lists. Spokes create VPC attachments; the network team controls TGW route tables for Prod/Dev segmentation and centralized hybrid DNS. Connectivity requires routing, traffic controls, and attachment approval when auto-accept is disabled. [TGW sharing](https://docs.aws.amazon.com/vpc/latest/tgw/working-with-transit-gateways.html).
+- **Landing zone:** Infrastructure and Security OUs supply shared resources to the Workloads OU. New accounts joining the target OU receive access through its existing shares, supporting a consistent baseline as the organization grows.
+
+**Operations, auditing, and IaC**
+
+- Manage shares with CloudFormation/Terraform; check Region, quotas, and **AZ IDs** when coordinating resources across accounts.
+- CloudTrail traces who created, changed, or accepted a share. EventBridge connects SNS/Lambda for alerts or automated responses; because delivery is best effort, periodically reconcile actual sharing state. [Monitoring RAM](https://docs.aws.amazon.com/ram/latest/userguide/using-eventbridge.html).
+- Monitor external sharing, unexpected principals, failed associations, and pending invitations.
 
 #### Session 3: AWS Pentest with AWS Continuum / Security Agent
 
@@ -103,12 +131,15 @@ Kiro Crew focused on agents running around the clock to support code reviews and
 
 - **Design around the workflow:** A screening call needs clear question stages, a rescheduling path, and post-call outputs that support the next step.
 - **Evaluate the whole conversation:** Distinguish end-of-turn waiting from complete response latency; test Vietnamese turn detection, interruptions, and TTS, and check content before audio is played.
-- **Connect resource governance with access:** The AWS RAM session linked shared resources with permission scope across multiple accounts.
+- **Share infrastructure with clear responsibilities:** Shared VPCs, TGWs, and centralized DNS let network teams manage foundations while workload teams operate within delegated permissions.
+- **Connect permissions with lifecycle governance:** RAM managed permissions, IAM, and SCPs control access; OU membership, permission versions, and change logs need attention as accounts grow.
 - **Include security checks throughout development:** Terraform reviews and SIT/UAT pentesting illustrated two different assessment points: reviewing a change and testing a running environment.
 - **Consider the agent's whole lifecycle:** Runtime, memory, context windows, and guardrails all shape ongoing agent support. Kiro Crew brought these concerns together in the discussion of efficiency and autonomy.
 
 ### Experience at the Event
 
 The live demo of an AI calling a candidate for an approximately three-minute Vietnamese Cloud Engineer screening was a memorable highlight. The flow from greeting and experience to technical questions showed how Voice AI can support a specific recruitment stage. Interruptions, English technical terms, and attempts to influence scoring also drew attention to conversation handling alongside voice quality.
+
+The RAM session helped me picture enterprise governance more clearly: many teams and accounts sharing infrastructure still need explicit ownership, access boundaries, and operational responsibilities. Sharing becomes more valuable as organizations standardize resources by OU and add accounts.
 
 Kiro Crew was the session I found most valuable, especially the closing technical Q&A. Questions about Artifacts, tokens, memory, and execution permissions connected directly with the idea of agents supporting code reviews and system checks around the clock while keeping actions and costs under control.

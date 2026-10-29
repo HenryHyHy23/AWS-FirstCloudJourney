@@ -19,9 +19,37 @@ AWS Cloud Day and AI connected cloud architecture, data modernization, and agent
 - Explore how data foundations, agent architecture, and AI-assisted development fit together across the software lifecycle.
 - Connect enterprise examples with decisions about reliability, security, cost, and human ownership.
 
-### Keynote: Systems Thinking and the Renaissance Developer
+### Featured Speakers
 
-Keynote by **Dr. Werner Vogels – Chief Technology Officer and Vice President, Amazon**
+Speakers from the keynote and the 39 program sessions, grouped by organization.
+
+| Organization / Group | Speakers and Roles |
+| --- | --- |
+| Amazon / Keynote | **Dr. Werner Vogels** – Chief Technology Officer and Vice President, Amazon (Keynote) |
+| AWS – Solutions Architects | **Phuc Nguyen**, **Diep Nguyen Hoang**, **Dzung Ha**, **Khoi Phan**, **Quan Phuong**, **Trung Nguyen**, **Thanh Dang**, **Taiki Dang**, **Hien** |
+| AWS – Senior / Specialist Solutions Architects | **Thi Nguyen**, **Lai Trung Hieu**, **Huy Tran** – Senior Solutions Architect; **Trung Tri Nguyen** – Analytics Specialist Solutions Architect; **Toan Huynh** – Specialist Solutions Architect |
+| AWS – Customer / Account Management | **Hung Hoang**, **Linh Pham** – Senior Customer Solutions Manager; **Luu Thuy Linh** – Account Manager; **Tan Huynh**, **Trung Nguyen** – Technical Account Manager |
+| AWS Professional Services | **Thanh Nguyen** – Senior Delivery Consultant |
+| VPBank | **Thai Hong Pham** – Head of Enterprise Data Architect; **Yen Trinh** – Application Platform Engineer |
+| Techcom Securities (TCBS) | **Đoàn Thế Long** – Senior Manager, Software Engineering |
+| Vietnam International Bank (VIB) | **Tuan Le** – Head of AI Center; **Hoang Nguyen** – AWS Cloud Engineer |
+| TechX Corporation | **Ngô Mạnh Hà** – CEO |
+| Techcom Life | **Pham Tan Anh Khoa** – Head of Technology Governance & Delivery; **Vu Quang Tam** – Project Manager, AI Initiatives |
+| G-AsiaPacific Vietnam | **Vo Xuan Minh Tuan** – Senior Solutions Architect; **Phạm Thị Hồng Hạnh** – Cloud Consultant |
+| FCAJ | **Phuong Nguyen Huu** – Cloud Engineering; **Bui Huy Hoang** – Data Engineer |
+| VinUni | **Nguyen Duc Manh** – AI Researcher |
+| Canon Vietnam | **Dinh Ngoc Hieu** – System Administrator |
+| SoftwareOne Việt Nam | **Nguyen Huu Toan** – Solution Architect |
+| eCloudvalley | **Vu Gia Khanh** – Solution Architect Lead |
+| Cloud Kinetics | **Dung Luong Tien** – Cloud Engineer |
+| Katalon | **Vu Bui** – Technical Director |
+| NTQ Solution | **Phạm Minh Quang** – DevOps Engineer |
+| Renova Cloud | **Nguyễn Thái Bình** – Head of DevOps |
+| Datadog | **Bang Truong** – Sales Engineer |
+| Vingroup | **Kha Văn** – Cloud Infrastructure Security Specialist |
+| GoTymeX | **Nguyễn Trung Trực** – Senior Platform Engineer; **Huỳnh Văn Toán** – Platform Lead |
+
+### Keynote: Systems Thinking and the Renaissance Developer
 
 #### 1. Choose Architecture from Actual Workloads
 
@@ -54,26 +82,30 @@ Keynote by **Dr. Werner Vogels – Chief Technology Officer and Vice President, 
 
 - Sessions on agent harnesses, Strands, LangGraph, and Bedrock AgentCore examined orchestration, tool execution, state, memory, and observability. Framework-level control flow and managed operating services address different parts of the system.
 - ReAct loops, MCP tools, retrieval, and multi-agent specialization connect reasoning to actions and external context. Extra agents or tools also introduce coordination and latency trade-offs, so their value should follow the task's requirements.
+- MCP and codebase Knowledge Servers supplied AWS guidance and dependency graphs to coding assistants, helping them assess how changes affect connected services.
 
 #### 4. GitOps, Platform Engineering, and Modernization
 
 - Vinamilk's example linked AI-assisted infrastructure work with GitOps, EKS, Argo CD, human approval gates, and temporary access. Related IaC sessions used pull requests to review generated Terraform/OpenTofu changes and address configuration drift.
-- Platform-engineering sessions discussed reusable developer paths and reducing manual provisioning bottlenecks. EKS and AWS Transform examples also highlighted migration dependencies, application compatibility, and the operational work that continues after deployment.
+- The NestJS/Angular case moved from EC2/PM2 to EKS with FluxCD, making Git the source of truth and rollback a Git revert. The EKS IDP example used Backstage, Crossplane, and Terragrunt to standardize multi-account provisioning and reduce TicketOps.
+- EKS Hybrid Nodes and AWS Transform sessions addressed containerization, SQL Server/.NET modernization, and migration-wave planning, with dependency, compatibility, and cutover checks.
 
 #### 5. Security, Workload Identity, and Controlled Autonomy
 
 - Workload-identity sessions connected IAM, STS, short-lived sessions, and identity context with least-privilege access across services and accounts. Removing static keys is only one part of establishing which workload may perform an action.
 - Defense-in-depth and governance sessions combined data protection, evaluations, policy controls, and human approval. Agent access should expand according to verified evidence and business authority, with clear ownership of consequential changes.
+- The DevOps Agent landing-zone session examined infrastructure read access, compliance, and hidden costs. AWS Security Agent covered organization-specific security reviews and on-demand application penetration testing.
 
 #### 6. Cost Control and Observability for GenAI
 
-- Bedrock cost-control and model-routing sessions addressed long prompts, repeated agent loops, traffic spikes, and choosing models appropriate to task complexity. Usage visibility needs actionable limits and stopping mechanisms; a strong model is not automatically the most efficient choice for every request.
+- Bedrock cost-control and model-routing sessions addressed long prompts, repeated agent loops, traffic spikes, and choosing models appropriate to task complexity. Usage visibility needs actionable limits and near-real-time kill switches; a strong model is not automatically the most efficient choice for every request.
 - Monitoring discussions added cost, safety, and answer quality to latency, errors, traffic, and saturation. S3 storage-tiering sessions made a related point: a cheaper storage class must also satisfy retrieval, access-frequency, and recovery requirements.
 
 #### 7. Business Applications and Evidence-Based Operations
 
-- Examples ranged from insurance and fraud investigation to manufacturing and enterprise knowledge assistants. Amazon Quick and knowledge-hub sessions focused on connecting fragmented information to useful business actions under appropriate access controls.
-- GoTyme's investigation workflow correlated traces, metrics, and infrastructure signals; TechX's Xora material connected incident context with human-controlled recovery and verification. A plausible root-cause explanation still needs supporting evidence and a checked recovery outcome.
+- TechcomLife illustrated cloud-native insurance. Amazon Quick Suite and Enterprise Knowledge Hub sessions connected fragmented data to governed business actions; Quick workshops explored custom agents, knowledge bases, prompts, skills, and deep research.
+- Fraud detection combined Iceberg/Athena, Neptune knowledge graphs, XGBoost, and GraphRAG to investigate connected fraud. Manufacturing sessions linked SCADA, Historian, and MES data through an Industrial Data Fabric for contextualized analytics.
+- GoTymeX's AWS DevOps Agent workflow correlated APM traces, Datadog metrics, and infrastructure signals across services and accounts; TechX's Xora material connected incident context with human-controlled recovery and verification. A plausible root-cause explanation still needs supporting evidence and a checked recovery outcome.
 
 ### Knowledge and Lessons Learned
 
