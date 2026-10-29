@@ -1,22 +1,30 @@
 ---
-title: "Worklog Tuần 6"
-weight: 1
+title: "Báo cáo công việc Tuần 6"
+date: 2026-10-19
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
 ### Mục tiêu tuần 6:
 
-- Thiết kế UI project
+- Hiểu kết nối riêng giữa các VPC, yêu cầu CIDR không chồng lấn và giới hạn không hỗ trợ định tuyến bắc cầu của peering.
+- Phân tích đường đi hai chiều, phân biệt security group có trạng thái với NACL không lưu trạng thái ở cấp subnet.
+- Diễn giải tùy chọn DNS peering, kiểm chứng riêng kết nối và phân giải tên, đánh giá phí truyền dữ liệu theo topology.
+- So sánh peering full mesh với Transit Gateway, hiểu phạm vi VPC attachment và AZ được kết nối.
+- Phân biệt association, propagation và route subnet VPC; đánh giá đường về, phân đoạn mạng và Internet egress tập trung.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Day | Task                            | Start Date | Completion Date | Resources |
-| --- | ------------------------------- | ---------- | --------------- | --------- |
-| 2   | - Thiết kế UI project với Figma | 13/10/2025 | 13/10/2025      |           |
-| 3   | - Thiết kế UI project với Figma | 14/10/2025 | 14/10/2025      |           |
-| 4   | - Thiết kế UI project với Figma | 15/10/2025 | 15/10/2025      |           |
-| 5   | - Thiết kế UI project với Figma | 16/10/2025 | 16/10/2025      |           |
-| 6   | - Thiết kế UI project với Figma | 17/10/2025 | 17/10/2025      |           |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 1 | - **Topology và địa chỉ:** Peering tạo kết nối riêng trực tiếp giữa hai VPC, kể cả khác account/Region. Đối chiếu hai dải không chồng lấn `172.31.0.0/16` và `10.10.0.0/16` của bài. Peering không bắc cầu: kết nối A–B và B–C không tạo đường A–C. <br> - **Định tuyến hai chiều:** Accept và trạng thái `active` vẫn cần route trong bảng gắn với subnet của cả hai instance: My VPC gửi `10.10.0.0/16` đến `pcx-…`; HG VPC gửi `172.31.0.0/16` về qua kết nối đó. Các route cụ thể này được ưu tiên hơn `0.0.0.0/0`. <br> - **Lọc lưu lượng:** SG có trạng thái, tổng hợp các rule Allow: giữ ICMP Anywhere thì thêm rule CIDR peer không làm SG chặt hơn. NACL ở cấp subnet không lưu trạng thái, áp dụng rule khớp đầu tiên theo số thứ tự; phải cho phép cả request và phản hồi theo chiều tương ứng. <br> - **Hành vi DNS:** Bật cả `enableDnsSupport` và `enableDnsHostnames` trên mỗi VPC, cấu hình tùy chọn DNS peering ở phía requester/accepter. Hostname public IPv4 của EC2 peer khi đó có thể trả về địa chỉ private IPv4. Private hosted zone cần liên kết VPC riêng. <br> - **Trình tự kiểm chứng:** So sánh kết nối IP private trước/sau khi sửa route, rồi dùng `nslookup`/`dig` xem DNS và kiểm tra giao thức ứng dụng. Tách việc kiểm tra trạng thái peering, route thực tế, SG/NACL và firewall/dịch vụ trên máy; ping thành công chưa chứng minh dịch vụ TCP hoạt động. | 19/10/2026 | 19/10/2026 | - [Module 3 - 16: Setting up VPC Peering](https://000019.awsfcaj.com/) <br> - [AWS Docs: Peering topology and limitations](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html) <br> - [AWS Docs: Peering and transfer pricing](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) <br> - [AWS Docs: Bidirectional routes](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) <br> - [AWS Docs: Route priority](https://docs.aws.amazon.com/vpc/latest/userguide/route-tables-priority.html) <br> - [AWS Docs: Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html) <br> - [AWS Docs: Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html) <br> - [AWS Docs: Peering DNS resolution](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-dns.html) <br> - [AWS Docs: Private hosted zone associations](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-associate-vpcs.html) |
+| 2 | - **Mô hình hub:** Full mesh n VPC cần `n(n-1)/2` peering: bốn VPC cần sáu kết nối, tăng theo bậc hai. TGW là router Layer 3 cấp Region, kết nối bốn VPC của bài qua bốn VPC attachment. <br> - **Phạm vi attachment:** Một VPC attachment chọn một subnet trong mỗi AZ được bật, không tạo attachment riêng cho từng subnet ứng dụng. AZ có workload cần được attachment bao phủ và có route subnet phù hợp. Giữ CIDR của bốn VPC không chồng lấn. <br> - **Association và propagation:** Association chọn bảng TGW dùng tra cứu traffic đi vào từ attachment; mỗi attachment gắn với một bảng. Propagation đưa prefix VPC vào một hoặc nhiều bảng TGW. Khi tắt mặc định phải cấu hình rõ; cả hai không tự sửa route subnet VPC. <br> - **Đường đi và phân đoạn:** Theo dõi route subnet VPC → bảng TGW của attachment đầu vào → attachment đích, rồi kiểm tra đường về. Dùng chung bảng chứa prefix cả bốn VPC tạo định tuyến liên VPC; phân đoạn cần chủ động thiết kế bảng/route, kết hợp SG/NACL. <br> - **Hành vi route mặc định:** So sánh `172.16.0.0/16 → TGW` với `0.0.0.0/0 → TGW`: route sau đưa cả đích Internet đến TGW. Egress IPv4 tập trung cần VPC egress, NAT/IGW, định tuyến TGW và đường về. Kiểm chứng riêng kết nối private và Internet. | 20/10/2026 | 20/10/2026 | - [Module 3 - 17: Set up AWS Transit Gateway](https://000020.awsfcaj.com/) <br> - [AWS Docs: TGW routing model](https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html) <br> - [AWS Docs: VPC attachments and AZs](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html) <br> - [AWS Docs: Route table association](https://docs.aws.amazon.com/vpc/latest/tgw/associate-tgw-route-table.html) <br> - [AWS Docs: Route propagation](https://docs.aws.amazon.com/vpc/latest/tgw/enable-tgw-route-propagation.html) <br> - [AWS Whitepaper: Hub-and-spoke design](https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html) <br> - [AWS Whitepaper: Centralized IPv4 egress](https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/using-nat-gateway-for-centralized-egress.html) <br> - [AWS: Transit Gateway pricing](https://aws.amazon.com/transit-gateway/pricing/) |
 
 ### Kết quả đạt được tuần 6:
+
+- **Chẩn đoán định tuyến:** Giải thích được vì sao ping IP public có thể thành công trước khi peering, còn ping IP private vẫn thất bại sau accept. Kiểm tra bảng route thực sự gắn với subnet và đường về trước khi quy mọi lỗi cho firewall.
+- **Phạm vi DNS:** Phân biệt phân giải hostname qua peering với liên kết private hosted zone và DNS server tùy chỉnh. Khi dùng AmazonProvidedDNS, mở UDP 53 giữa các EC2 không phải điều kiện để bật tùy chọn DNS peering.
+- **Chi phí và quy mô:** Tạo peering và truyền dữ liệu peering trong cùng AZ miễn phí; truyền khác AZ/Region có thể tính phí. Mô hình mesh lớn còn làm tăng số kết nối peering trực tiếp và cấu hình route/bảo mật cần quản lý.
+- **Chẩn đoán định tuyến:** Xác định được route thiếu ở VPC nguồn, bảng TGW gắn với attachment đầu vào hoặc đường về. Chỉ trạng thái attachment sẵn sàng, association và propagation chưa chứng minh ứng dụng truy cập được.
+- **Chi phí và thiết kế:** Đối chiếu công quản lý peering với attachment-hour, phí xử lý theo GB và phí truyền dữ liệu/egress liên quan của TGW. Ít kết nối giúp đơn giản quản lý nhưng chưa bảo đảm rẻ hơn; phân đoạn route vẫn là lựa chọn thiết kế riêng.

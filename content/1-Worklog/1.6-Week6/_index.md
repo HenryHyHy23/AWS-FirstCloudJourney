@@ -1,22 +1,30 @@
 ---
 title: "Week 6 Worklog"
-weight: 1
+date: 2026-10-19
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
 ### Week 6 Objectives:
 
-- Design Project UI
+- Explain private VPC connectivity, nonoverlapping CIDRs, and the limits of a non-transitive peering topology.
+- Trace bidirectional routes and distinguish stateful security groups from stateless subnet NACLs.
+- Interpret peering DNS options, verify network and name-resolution behavior separately, and assess topology-dependent transfer costs.
+- Compare full-mesh peering with Transit Gateway and explain VPC attachment/AZ coverage.
+- Distinguish association, propagation, and VPC subnet routes; assess return paths, segmentation, and centralized Internet egress.
 
 ### Tasks to be carried out this week:
 
-| Day | Task                           | Start Date | Completion Date | Resources |
-| --- | ------------------------------ | ---------- | --------------- | --------- |
-| 2   | - Design Project UI with Figma | 13/10/2025 | 13/10/2025      |           |
-| 3   | - Design Project UI with Figma | 14/10/2025 | 14/10/2025      |           |
-| 4   | - Design Project UI with Figma | 15/10/2025 | 15/10/2025      |           |
-| 5   | - Design Project UI with Figma | 16/10/2025 | 16/10/2025      |           |
-| 6   | - Design Project UI with Figma | 17/10/2025 | 17/10/2025      |           |
+| Day | Task | Start Date | Completion Date | Reference Sources |
+| --- | --- | --- | --- | --- |
+| 1 | - **Topology and addressing:** Peering provides point-to-point private connectivity, including across accounts/Regions. Review the lab's nonoverlapping `172.31.0.0/16` and `10.10.0.0/16` ranges. Peering is non-transitive: A–B and B–C links do not create an A–C path. <br> - **Bidirectional routing:** Acceptance and `active` status still require routes in both instance-subnet route tables: My VPC sends `10.10.0.0/16` to `pcx-…`; HG VPC sends `172.31.0.0/16` back through the connection. These specific routes outrank `0.0.0.0/0`. <br> - **Filtering:** SGs are stateful and combine allow rules: an ICMP Anywhere rule remains broad despite an added peer-CIDR rule. Subnet NACLs are stateless and use the first matching numbered rule; permit both request and response traffic in the appropriate directions. <br> - **DNS behavior:** Enable both `enableDnsSupport` and `enableDnsHostnames` in each VPC and configure the requester/accepter peering DNS options. Peer EC2 public IPv4 DNS hostnames can then resolve to private IPv4 addresses. Private hosted zones require their own VPC associations. <br> - **Verification sequence:** Compare private-IP connectivity before/after route changes, then inspect DNS with `nslookup`/`dig` and test the application protocol. Diagnose peering state, effective routes, SG/NACL rules, and host firewall/listening service separately; ICMP success does not establish TCP service availability. | 19/10/2026 | 19/10/2026 | - [Module 3 - 16: Setting up VPC Peering](https://000019.awsfcaj.com/) <br> - [AWS Docs: Peering topology and limitations](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html) <br> - [AWS Docs: Peering and transfer pricing](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) <br> - [AWS Docs: Bidirectional routes](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) <br> - [AWS Docs: Route priority](https://docs.aws.amazon.com/vpc/latest/userguide/route-tables-priority.html) <br> - [AWS Docs: Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html) <br> - [AWS Docs: Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html) <br> - [AWS Docs: Peering DNS resolution](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-dns.html) <br> - [AWS Docs: Private hosted zone associations](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-associate-vpcs.html) |
+| 2 | - **Hub model:** A full mesh of n VPCs needs `n(n-1)/2` peerings: four need six, a quadratic increase. A Regional Layer-3 TGW connects the lab's four VPCs through four VPC attachments. <br> - **Attachment scope:** One VPC attachment selects one subnet per enabled AZ; it is not a separate attachment per workload subnet. Workload AZs need attachment coverage and suitable subnet routes. Keep the four VPC CIDRs nonoverlapping. <br> - **Association vs propagation:** Association selects the TGW table used for traffic entering from an attachment; each attachment associates with one table. Propagation installs its VPC prefixes in one or more TGW tables. Disabled defaults require explicit setup; neither operation edits VPC subnet routes. <br> - **Packet path and isolation:** Trace VPC subnet route → TGW ingress table → destination attachment, then verify the return path. Sharing a table with all four VPC prefixes enables inter-VPC routing; segmentation requires deliberate table/route policies, alongside SG/NACL rules. <br> - **Default route behavior:** Compare `172.16.0.0/16 → TGW` with `0.0.0.0/0 → TGW`: the latter also sends Internet destinations to TGW. Centralized IPv4 egress needs an egress VPC, NAT/IGW, TGW forwarding and return routes. Test private connectivity and Internet access separately. | 20/10/2026 | 20/10/2026 | - [Module 3 - 17: Set up AWS Transit Gateway](https://000020.awsfcaj.com/) <br> - [AWS Docs: TGW routing model](https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html) <br> - [AWS Docs: VPC attachments and AZs](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html) <br> - [AWS Docs: Route table association](https://docs.aws.amazon.com/vpc/latest/tgw/associate-tgw-route-table.html) <br> - [AWS Docs: Route propagation](https://docs.aws.amazon.com/vpc/latest/tgw/enable-tgw-route-propagation.html) <br> - [AWS Whitepaper: Hub-and-spoke design](https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html) <br> - [AWS Whitepaper: Centralized IPv4 egress](https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/using-nat-gateway-for-centralized-egress.html) <br> - [AWS: Transit Gateway pricing](https://aws.amazon.com/transit-gateway/pricing/) |
 
 ### Week 6 Achievements:
+
+- **Routing diagnosis:** Can explain why a public-IP ping may succeed before peering while a private-IP ping still fails after acceptance. Check the subnet's actual route-table association and return path before attributing every failure to a firewall.
+- **DNS boundaries:** Distinguish peering hostname resolution from private hosted zone associations and custom DNS servers. Opening UDP 53 between EC2 instances is not a prerequisite for the peering DNS option when using AmazonProvidedDNS.
+- **Cost and scaling:** Peering creation and same-AZ peering data transfer are free; cross-AZ/inter-Region transfer can incur charges. A larger mesh also increases the direct peering links and route/security configurations that need to be maintained.
+- **Routing diagnosis:** Can locate a missing route in the source VPC, the ingress-associated TGW table, or the return path. Attachment availability, association, and propagation status alone do not establish application reachability.
+- **Cost and design:** Compare peering administration with TGW attachment-hours, per-GB processing, and applicable transfer/egress charges. Fewer connections simplify management without guaranteeing lower cost; route segmentation remains a separate design choice.

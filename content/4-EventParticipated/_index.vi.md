@@ -31,11 +31,11 @@ Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, n�
 ---
 
 ### [Sự kiện 3](4.3-Event3/)
-&emsp;**Tên sự kiện:** AWS Cloud Mastery Series #2 : DevOps on AWS Workshop
+&emsp;**Tên sự kiện:** MEET UP
 
-&emsp;**Thời gian:** 8:00, ngày 17 tháng 11 năm 2025
+&emsp;**Thời gian:** 09:00–12:00 (UTC+7), ngày 24/10/2026
 
-&emsp;**Địa điểm:** Tầng 26, Tháp Bitexco, 02 đường Hải Triều, Phường Bến Nghé, Quận 1, TP.HCM
+&emsp;**Địa điểm:** Tầng 26, Bitexco Financial Tower, TP. Hồ Chí Minh
 
 &emsp;**Vai trò:** Người tham dự
 

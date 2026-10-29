@@ -13,9 +13,9 @@ pre: " <b> 1. </b> "
 
 **Tuần 4:** [Kiểm soát IAM, Systems Manager, CloudFormation và danh tính đa tài khoản](1.4-week4/)
 
-**Tuần 5:** [IAM Role, credential tạm thời và điều kiện truy cập](1.5-week5/)
+**Tuần 5:** [IAM, Security Hub CSPM, AWS WAF, KMS và AWS Backup](1.5-week5/)
 
-**Tuần 6:** [Thiết kế UI project](1.6-week6/)
+**Tuần 6:** [VPC Peering, Transit Gateway, định tuyến và DNS](1.6-week6/)
 
 **Tuần 7:** [Thiết kế UI project](1.7-week7/)
 

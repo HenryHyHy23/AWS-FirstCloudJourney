@@ -1,78 +1,114 @@
 ---
 title: "Event 3"
-date: 2025-09-09
+date: 2026-10-24
 weight: 1
 chapter: false
 pre: " <b> 4.3. </b> "
 ---
 
-# Event Report: AWS Cloud Mastery Series #2 : DevOps on AWS Workshop
+# Event Report: MEET UP
+
+The October 24, 2026 meetup brought together Vietnamese Voice AI, multi-account resource management, security testing, and AI agent operations. Its five sessions offered different perspectives on applying AI to practical work, from conversational experience to context management, cost, and execution permissions.
+
+### Event Information
+
+| Item     | Details                                             |
+| -------- | --------------------------------------------------- |
+| Date     | October 24, 2026                                    |
+| Time     | 09:00–12:00 (UTC+7)                                 |
+| Location | Floor 26, Bitexco Financial Tower, Ho Chi Minh City |
+| Role     | Attendee                                            |
 
 ### Purpose of the Event
-- **Instill the DevOps Mindset**: To move beyond tools and establish a deep understanding of the DevOps culture, principles, and key metrics (like DORA) that drive high-performing technology teams.
-- **Provide an End-to-End Technical Blueprint**: To offer a comprehensive, full-day deep dive into the AWS DevOps toolchain, covering the entire software delivery lifecycle from source code to production monitoring.
-- **Master Automation Through Live Demos**: To provide practical, hands-on demonstrations of core DevOps workflows, including building a full CI/CD pipeline, deploying infrastructure as code (IaC), and managing containerized applications.
-- **Build Resilient and Observable Systems**: To equip attendees with the knowledge to not only deploy applications efficiently but also to monitor, trace, and manage them effectively in a complex, distributed environment.
 
-### List of Speakers
--   **Truong Quang Tinh** - DevOps Engineer, TymeX
--   **Van Hoang Kha** - Cloud Security Engineer, AWS Vietnam
--   **Quoc Bao** - AWS Vietnam
--   **Phuc Thinh** - AWS Vietnam
--   **Dai Vi** - AWS Vietnam
--   **Long Huynh** - AWS Vietnam
--   **Quy Pham** - AWS Vietnam
--   **Nghiem Le** - AWS Vietnam
+- Explore how Voice AI and AI agents support practical use cases.
+- Connect multi-account resource sharing, security testing, and permission controls with system development and operations.
+- Understand Runtime, Memory, context windows, cost, and guardrails when agents support ongoing work.
+
+### Featured Speakers
+
+- **Kiệt Trần** – AI Engineer, Revve AI.
+- **Long Huỳnh** – Styl Solution.
+- **Thịnh Nguyễn** – Styl Solution.
+- **Xuân An** – Leader, AWS Student Builder Group HCMUTE.
+- **Khoa Kiều** – Tech Lead, ACB.
+- **Nghi Danh** – AWS Community Builder.
 
 ### Key Content & Highlights
 
-#### From Code to Cloud: The Automated CI/CD Pipeline
-- **Focus**: The morning's core session was dedicated to building a fully automated software delivery pipeline from scratch.
-- **Content**: The instructors provided a deep dive into the AWS CodeSuite, covering:
-    - **Source**: AWS CodeCommit and best practices for Git strategies (GitFlow vs. Trunk-based).
-    - **Build & Test**: Configuring automated builds and integrating testing stages with CodeBuild.
-    - **Deploy**: A detailed look at CodeDeploy, comparing modern deployment strategies like Blue/Green, Canary, and Rolling updates.
-    - **Orchestrate**: Tying everything together into a seamless workflow with CodePipeline.
-- **Key Moment**: The live demonstration of a complete CI/CD pipeline in action was a standout. It connected all the theoretical pieces into a tangible, working system, showing how a single code commit could automatically trigger the entire build, test, and deployment process.
-- **Related Session**: "AWS DevOps Services – CI/CD Pipeline".
+#### Session 1: Hear, Think, Speak – Building a Vietnamese voice-AI contact center on AWS
 
-#### Building the Foundation: Infrastructure as Code (IaC)
-- **Focus**: This session shifted from application code to infrastructure, teaching attendees how to manage cloud resources programmatically.
-- **Content**: The workshop explored the two primary IaC tools on AWS: the declarative power of AWS CloudFormation (templates, stacks, drift detection) and the imperative flexibility of the AWS CDK, which allows developers to use familiar programming languages.
-- **Key Moment**: The side-by-side demo of deploying infrastructure with both CloudFormation and the CDK provided immense clarity. The following discussion on when to choose each tool gave attendees a practical framework for making informed architectural decisions.
-- **Related Session**: "Infrastructure as Code (IaC)".
+**Use case and demo workflow**
 
-#### Running Modern Applications: The World of Containers
-- **Focus**: The afternoon began with a deep dive into containerization, the backbone of modern microservices architecture.
-- **Content**: Attendees were taken on a journey from Docker fundamentals to managing containers at scale on AWS. This included securing images in Amazon ECR, comparing the orchestration power of Amazon ECS and EKS, and exploring the simplicity of AWS App Runner for simple deployments.
-- **Key Moment**: The case study and demo comparing different microservices deployment strategies was incredibly valuable. It illustrated the real-world trade-offs between simplicity (App Runner), managed control (ECS), and ultimate flexibility (EKS).
-- **Related Session**: "Container Services on AWS".
+The AI initiates a Vietnamese phone call to conduct an approximately **three-minute** Cloud Engineer screening interview. The broader contact-center problem involves peak call volumes, repetitive requests, and call-quality assessment.
 
-#### Closing the Loop: Full-Stack Observability
-- **Focus**: This critical session taught attendees how to see inside their applications and infrastructure once they are live.
-- **Content**: The presentation went beyond basic monitoring, covering the three pillars of observability: logs and metrics with Amazon CloudWatch, and distributed tracing with AWS X-Ray. Best practices for setting up meaningful alarms, dashboards, and on-call processes were also shared.
-- **Key Moment**: The full-stack observability demo was like turning on the lights in a dark room. It showed how to trace a single user request as it traveled through multiple microservices, pinpointing bottlenecks and errors with precision.
-- **Related Session**: "Monitoring & Observability".
+The interview flow shown on the slide was:
 
-### What You Learned
+**Greeting → Experience → Two technical questions → Candidate questions → Goodbye.**
 
-#### On Automation & Pipelines
-- **Build a Complete CI/CD Workflow**: You learned how to construct an automated pipeline on AWS that takes code from a Git repository and safely deploys it to production using modern strategies like Blue/Green.
-- **Manage Infrastructure as Code**: You now understand how to define and manage your entire cloud infrastructure programmatically, enabling version control, peer reviews, and repeatable deployments for your environments. You also know the key differences between CloudFormation and the CDK.
+A **Reschedule** node supports arranging another call. Post-call outputs include a transcript, summary, and score. The demo slide highlighted situations to watch: Vietnamese mixed with terms such as “EKS”, “subnet”, and “auto scaling”; candidate interruptions; and attempts to influence the assessment, such as asking the bot to pass the candidate outright.
 
-#### On Modern Application Deployment
-- **Master Containerization on AWS**: You gained a clear framework for choosing the right container service (ECS, EKS, or App Runner) based on your team's skills, application complexity, and operational needs.
-- **Implement Advanced Deployment Strategies**: You moved beyond simple deployments and learned how to use techniques like feature flags and A/B testing to release new features to users with minimal risk and maximum feedback.
+**Three approaches to voice agents**
 
-#### On System Reliability and Operations
-- **Build Observable Systems**: You learned to create systems that are not just monitored, but truly observable. You can now use CloudWatch and X-Ray together to gain deep insights into application performance and quickly diagnose issues in a distributed architecture.
-- **Adopt DevOps Best Practices**: You gained insights into proven practices for incident management, writing effective postmortems, and fostering a culture of continuous improvement within your team.
+| Approach | Processing flow | Trade-off presented |
+| --- | --- | --- |
+| Cascade | ASR/STT → LLM → TTS | Intermediate text provides a checkpoint before speech output; latency passes through several stages. |
+| Turn-based speech-to-speech | Audio → speech model → audio | Fewer intermediate stages and retained vocal information; output controls have different intervention timing from a cascade. |
+| Full-duplex speech-to-speech | Listening and speaking simultaneously | Supports backchannels, overlap, and more flexible turn-taking; the speaker's comparison highlighted greater control and deployment complexity. |
+
+**Anatomy of a call**
+
+A SIP trunk brings the call to an EC2 SIP server and a WebRTC media server. Voice workers on EKS handle **noise cancellation → VAD/turn detection → STT → LLM and flow engine → TTS**, then return audio through the media server.
+
+The presented deployment uses one Region and a multi-AZ VPC in the customer's account. STT/TTS include self-hosted GPU components, and the LLM layer has a Bedrock connection through PrivateLink. RDS, ElastiCache, and S3 support data, cache/state, and storage, with CRM/core-banking integration through APIs.
+
+**Latency, Vietnamese, and guardrails**
+
+- **Identify the measurement:** The approximately 200 ms figure on the slide describes human turn-taking. **0.3–1.8 seconds** refers to end-of-turn waiting, not the bot's complete response time. Model selection and conversation design need to account for the whole pipeline.
+- **Intentional interruption handling:** The slide described approximately 0.3 seconds of caller speech to trigger barge-in, distinguishing interruptions from brief acknowledgments such as “vâng” and “dạ”.
+- **Benchmark in Vietnamese:** Turn detection needs evaluation in the actual language; a padding mismatch can cut callers off. Normalizing numbers and forms such as “500K” before TTS also affects the listening experience.
+- **Check before speaking:** In the slide's six-case test, a gateway guard let callers hear the beginning of an unwanted sentence in 5/6 cases; checking each sentence before TTS produced 0/6. These are results from that test set, illustrating why guardrail placement matters.
+
+**Banking POC**
+
+A separate POC used **Greeting → Verification → Intent → API action → Ticket/human handoff**. The speaker reported **799 test calls in one month**, **93% intent match across 871 labeled turns**, and **35/35 outbound outcomes correctly classified**. These figures belong to the banking POC and should be read within its evaluation scope.
+
+#### Session 2: AWS Resource Access Manager
+
+- Resource sharing across accounts in AWS Organizations, combining centralized network administration with cost optimization.
+- Notes cover the interaction between IAM policies and SCPs in controlling permissions across multiple accounts.
+
+#### Session 3: AWS Pentest with AWS Continuum / Security Agent
+
+- Early infrastructure security assessment through Terraform reviews and checks integrated into GitLab/GitHub pull requests.
+- A Security Agent acts as a user to perform automated pentesting in SIT/UAT before production deployment.
+- Tool names and the integration flow will be clarified in the detailed session notes.
+
+#### Session 4: Amazon Bedrock AgentCore
+
+- The two components noted for taking agents into production were Agent Runtime and Memory.
+- Runtime notes mention MicroVMs and EC2 Spot alongside cost optimization; their deployment relationship will be checked against the session details.
+- Memory notes describe synchronous short-term and asynchronous long-term handling for user context; the specific processing flow will be added later.
+
+#### Session 5: Kiro Crew
+
+Kiro Crew focused on agents running around the clock to support code reviews and system checks, with a Q&A on practical operational concerns.
+
+- **Artifacts:** A demo collected real job-market data and generated statistical charts directly in the chat.
+- **Context window:** Notes record Auto Compact at approximately **70–90%**, as recalled from the session, and **Break down context** for inspecting token usage by component. The specific threshold and mechanism will be expanded with the session details.
+- **Memory:** Removing old memories and managing their lifecycle to control costs.
+- **Guardrails:** Limiting agent actions to prevent unauthorized infrastructure deletion and exposure of server secrets or credentials.
+
+### Knowledge and Key Takeaways
+
+- **Design around the workflow:** A screening call needs clear question stages, a rescheduling path, and post-call outputs that support the next step.
+- **Evaluate the whole conversation:** Distinguish end-of-turn waiting from complete response latency; test Vietnamese turn detection, interruptions, and TTS, and check content before audio is played.
+- **Connect resource governance with access:** The AWS RAM session linked shared resources with permission scope across multiple accounts.
+- **Include security checks throughout development:** Terraform reviews and SIT/UAT pentesting illustrated two different assessment points: reviewing a change and testing a running environment.
+- **Consider the agent's whole lifecycle:** Runtime, memory, context windows, and guardrails all shape ongoing agent support. Kiro Crew brought these concerns together in the discussion of efficiency and autonomy.
 
 ### Experience at the Event
-The full-day "DevOps on AWS" workshop was an intensive and incredibly rewarding masterclass. From the moment it began, there was a clear sense that this was not just a series of lectures, but a cohesive journey through the entire lifecycle of a modern application.
 
-#### The Morning: Building the Blueprint
-The morning sessions felt like being handed the architectural blueprints for building a world-class software factory. The CI/CD pipeline demo wasn't just a technical walkthrough; it was a moment of clarity where the abstract concept of automation became a tangible, powerful reality. The deep dive into IaC felt equally empowering, as if we were being given the tools to sculpt the cloud with code, ensuring consistency and eliminating manual errors forever.
+The live demo of an AI calling a candidate for an approximately three-minute Vietnamese Cloud Engineer screening was a memorable highlight. The flow from greeting and experience to technical questions showed how Voice AI can support a specific recruitment stage. Interruptions, English technical terms, and attempts to influence scoring also drew attention to conversation handling alongside voice quality.
 
-#### The Afternoon: Navigating Real-World Complexity
-After lunch, the workshop shifted into the complex realities of running modern applications. The session on containers was a masterclass in navigating choices, clarifying the often-confusing landscape of ECS, EKS, and App Runner. The observability session was perhaps the most eye-opening part of the day. The demo showing how to trace a single request across a dozen services was a powerful illustration of how to find a needle in a haystack, transforming the daunting task of debugging into a systematic process.
+Kiro Crew was the session I found most valuable, especially the closing technical Q&A. Questions about Artifacts, tokens, memory, and execution permissions connected directly with the idea of agents supporting code reviews and system checks around the clock while keeping actions and costs under control.

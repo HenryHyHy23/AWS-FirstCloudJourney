@@ -31,11 +31,11 @@ This section records events I attended during my internship, the topics discusse
 ---
 
 ### [Event 3](4.3-Event3/)
-&emsp;**Event Name:** AWS Cloud Mastery Series #2 : DevOps on AWS Workshop
+&emsp;**Event Name:** MEET UP
 
-&emsp;**Time:** 8:00 AM, November 17, 2025
+&emsp;**Time:** 09:00–12:00 (UTC+7), October 24, 2026
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, HCMC
+&emsp;**Location:** Floor 26, Bitexco Financial Tower, Ho Chi Minh City
 
 &emsp;**Role:** Attendee
 
