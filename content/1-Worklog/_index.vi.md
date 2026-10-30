@@ -15,7 +15,7 @@ pre: " <b> 1. </b> "
 
 **Tuần 5:** [IAM, Security Hub CSPM, AWS WAF, KMS và AWS Backup](1.5-week5/)
 
-**Tuần 6:** [VPC Peering, Transit Gateway, định tuyến và DNS](1.6-week6/)
+**Tuần 6:** [VPC Peering, Transit Gateway, Docker, ECS và CI/CD](1.6-week6/)
 
 **Tuần 7:** [Thiết kế UI project](1.7-week7/)
 

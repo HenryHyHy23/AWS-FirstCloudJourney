@@ -37,7 +37,7 @@ The company provides an internship allowance and offers flexible working hours w
 
 - What do you think the company **should improve** for future interns?
 
-- Increase the amount of study seeions, events, ect.
+- Increase the amount of study sessions, events, ect.
 
 - If recommending to a friend, would you **suggest they intern here**? Why or why not?
 
