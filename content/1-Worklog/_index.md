@@ -17,7 +17,7 @@ pre: " <b> 1. </b> "
 
 **Week 6:** [VPC peering, Transit Gateway, Docker, ECS, and CI/CD](1.6-week6/)
 
-**Week 7:** [Design Project UI](1.7-week7/)
+**Week 7:** [EC2 application deployment with AWS CodePipeline](1.7-week7/)
 
 **Week 8:** [Review and take mid-term exam](1.8-week8/)
 
