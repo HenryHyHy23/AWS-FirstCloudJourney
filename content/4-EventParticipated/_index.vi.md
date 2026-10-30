@@ -42,13 +42,11 @@ Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, n�
 ---
 
 ### [Sự kiện 4](4.4-Event4/)
-&emsp;**Tên sự kiện:** Workshop về Dịch vụ AWS Edge
+&emsp;**Tên sự kiện:** Smart Plushies for Children
 
-&emsp;**Thời gian:** 09:00, ngày 18 tháng 11 năm 2025
+&emsp;**Nội dung:** Lập trình, huấn luyện âm thanh và làm gấu bông thông minh tặng trẻ em.
 
-&emsp;**Địa điểm:** Tầng 26, Tháp Bitexco, 02 đường Hải Triều, Phường Bến Nghé, Quận 1, TP.HCM
-
-&emsp;**Vai trò:** Người tham dự
+&emsp;**Vai trò:** Người tham gia
 
 ---
 

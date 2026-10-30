@@ -42,13 +42,11 @@ This section records events I attended during my internship, the topics discusse
 ---
 
 ### [Event 4](4.4-Event4/)
-&emsp;**Event Name:** Workshop on AWS Edge Services
+&emsp;**Event Name:** Smart Plushies for Children
 
-&emsp;**Time:** 09:00 AM, November 18, 2025
+&emsp;**Activities:** Programming, sound training, and making smart plush toys as gifts for children.
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, HCMC
-
-&emsp;**Role:** Attendee
+&emsp;**Role:** Participant
 
 ---
 
