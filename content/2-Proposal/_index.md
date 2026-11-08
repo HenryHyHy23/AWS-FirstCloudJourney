@@ -5,52 +5,76 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# SnapResume Platform
+# Bite to Business
 
 ### 1. Project Summary
 
-**SnapResume** is an intelligent resume/CV building platform powered by AI, helping job seekers create professional, ATS-friendly (Applicant Tracking System) resumes quickly and efficiently. The platform provides modern design templates, an intuitive editor, and an AI assistant to optimize content, fix grammar, and suggest keywords relevant to job descriptions.
+**Bite to Business** is a project to build a food sales website, focusing on business customers such as restaurants, hotels, and catering providers while also supporting individuals and households. The system supports the workflow from browsing products and creating purchase requests (Quotes) through staff review, order confirmation when all requested items are available, preparation, and delivery.
 
-Its key differentiator is the integration of AI content generation (`GenAI`) using `AWS Bedrock` (`Claude 3 Sonnet`), allowing users to produce professional summaries and impressive experience descriptions from only basic bullet points. The system is fully built on a `Serverless` architecture, ensuring infinite scalability and optimized cost.
+Its key feature is **Generative UI**, which adapts the interface to each user's intent, preferences, and purchasing context. The system plans to integrate **Amazon Bedrock**, with **Claude Haiku 5.5** proposed as the primary model for the MVP, to recommend products and generate JSON UI configurations using a component library built by the team. React renders validated configurations, while the backend manages authorization, pricing, inventory, and transactions. AI also supports role-scoped chatbot assistance and drafts poster content and layouts for E-commerce staff to preview, edit, and approve.
+
+The application uses **React/TypeScript**, **Spring Boot**, and **Supabase PostgreSQL**, with deployment planned on **AWS**. The project aims to simplify purchasing, support coordination between sales, warehouse, and delivery teams, and evaluate the effectiveness of personalized interfaces.
 
 ### 2. Problem Statement
 
 #### What is the problem?
 
-- **Difficult formatting**: Job seekers spend hours formatting text in `Word` or complex design tools but still fail to achieve a professional look.
-- **Weak content**: Candidates struggle to write concise content, use industry terminology, and highlight achievements. “Writer’s block” is extremely common.
-- **Fails ATS screening**: Manually designed resumes often contain graphics or table structures that employer ATS systems cannot parse.
+In B2B food purchasing, customers may need to discover ingredients, compare quantity-based prices, reorder familiar products, or allocate items across delivery addresses. Each task requires different information and interactions to take priority.
+
+- **A fixed interface may not fit each purchasing need:** A shared layout can require repeated searches, filtering, and page navigation, even when buyers can clearly express their goals.
+- **Changing interfaces can lose task context:** Selected products, quantities, sales units, Quotes, and delivery groups need to remain consistent as customers ask follow-up questions or switch layouts.
+- **Generated interfaces need correct data and workflows:** Quantity changes can affect price tiers, totals, and availability. The UI needs current backend data and actions appropriate to the user's permissions and approval status.
+- **Slow or failed responses can interrupt purchasing:** An outdated response can overwrite newer interactions, while interrupted UI generation can lose progress or leave stale information on screen.
+
+The challenge for **Bite to Business** is to adapt the interface to each user's intent and context while preserving purchasing continuity and valid transactions.
 
 #### The Solution
 
-SnapResume solves these problems using a modern `React` web application built on `AWS Serverless`.
+**Bite to Business** proposes integrating **Generative UI** through **Amazon Bedrock**, with **Claude Haiku 5.5** proposed as the primary model for the MVP. The solution includes:
 
-- **Visual editor**: Drag-and-drop UI or simple form-based input with real-time preview.
-- **AI Copilot**: Uses `AWS Bedrock` to rewrite sentences and generate content tailored to the job role.
-- **ATS-Friendly**: Templates designed to remain machine-readable while still visually appealing.
-- **Centralized management**: Store multiple resume versions and export high-quality `PDF`.
+- **Task-based personalization:** The backend supplies relevant context and preferences; AI proposes layouts using the team's component catalog. For example, it can prioritize a table for bulk purchasing or a reorder list for returning customers.
+- **A validated A2UI runtime:** Receive JSON messages using the selected protocol version, validate schemas, components, data bindings, and permitted actions, then render them through the website's React component library.
+- **Continuous interaction context:** Send product identifiers, quantities, the Quote, and the state revision with each action to the backend. Apply results that remain relevant to the current task and preserve valid selections across layout changes.
+- **Backend-controlled transactions:** Validate pricing, promotions, inventory, authorization, and approval steps on the backend. Order confirmation succeeds only when all requested items are available, staff review is complete, and the buyer confirms.
+- **Fallback when AI fails:** Retain valid interface elements or return to the base UI, preserve drafts where possible, and explain the current state so users can continue.
+
+Effectiveness will be compared with the fixed interface using task completion rate and time, interaction count, rendering and data-binding correctness, and recovery from failures.
 
 ### 3. Solution Architecture
 
-The system uses a `Serverless` and `Event-driven` architecture on AWS.
-![AWS Architecture](/images/2-Proposal/SnapResume.png)
+**Bite to Business** plans to deploy on AWS with the following components:
 
-#### Architecture Overview
+| Component | Responsibility |
+| --- | --- |
+| **Frontend** | React/TypeScript on private S3 + CloudFront, including the base UI and A2UI runtime. |
+| **Backend** | Spring Boot on private ECS Fargate tasks behind an ALB; handles APIs, authorization, and business rules. |
+| **Data / Authentication** | Supabase PostgreSQL stores data; Supabase Auth manages authentication. |
+| **AI** | The backend calls Amazon Bedrock — Claude Haiku 5.5 for product recommendations and proposed UI configurations. |
+| **External integrations** | Cloudinary for images, Vietmap for maps, SePay for payments, and SMTP for email. |
+| **Operations** | ECR stores images, Secrets Manager manages secrets, and CloudWatch collects logs and metrics. |
 
-- **Frontend**: `React 19` + `Vite` (hosted on `S3` + `CloudFront` or `AWS Amplify`).
-- **API Layer**: `Amazon API Gateway` + `AWS Lambda` (`Node.js`/`Express`).
-- **Database**: `Amazon DynamoDB` (Single Table Design) storing `User`, `Resume`, `Section`, `Template`.
-- **Authentication**: `Amazon Cognito` (User Pools & Identity Pools).
-- **AI Engine**: `Amazon Bedrock` (`Claude 3 Sonnet`) for content generation.
-- **Storage**: `Amazon S3` for storing profile images and exported `PDF` files.
+**Generate UI flow:** Request and context → backend authentication/data retrieval → Bedrock UI proposal → backend validation/A2UI conversion → runtime validation and React rendering.
+
+Actions return to the backend for authorization, pricing, inventory, and transaction checks. The runtime preserves context, rejects outdated responses, and falls back to the base UI when AI fails.
 
 ### 4. Technical Implementation
 
 #### Technology Stack
 
-- **Frontend**: `ReactJS`, `TailwindCSS`, `Ant Design`, `html2pdf.js` for PDF export.
-- **Backend**: `NodeJS`, `TypeScript`, `Express` (running inside `Lambda`).
-- **IaC**: `Terraform` managing all infrastructure.
+| Category | Technologies |
+| --- | --- |
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS, React Router |
+| **State and API data** | TanStack Query, Zustand, Axios |
+| **Forms and validation** | React Hook Form, Zod |
+| **Backend** | Java 21, Spring Boot, Spring Security, Spring Data JPA/Hibernate |
+| **Database / Migration** | Supabase PostgreSQL, Flyway |
+| **Authentication** | Supabase Auth, JWT |
+| **Generative UI — planned** | A2UI, JSON Schema, React component catalog and runtime |
+| **AI — planned** | Amazon Bedrock, Claude Haiku 5.5 |
+| **Deployment — planned** | Docker, ECR, ECS Fargate, ALB, S3, CloudFront |
+| **Monitoring and secrets — planned** | CloudWatch, Secrets Manager |
+| **External integrations** | Cloudinary (planned), Vietmap, SePay, SMTP |
+| **Localization** | i18next, react-i18next |
 
 #### Development Phases
 

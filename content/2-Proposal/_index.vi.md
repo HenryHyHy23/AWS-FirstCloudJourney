@@ -5,52 +5,76 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# Nền tảng SnapResume
+# Bite to Business
 
 ### 1. Tóm tắt Dự án
 
-**SnapResume** là một nền tảng xây dựng hồ sơ năng lực (CV/Resume) thông minh, được hỗ trợ bởi AI, giúp người tìm việc tạo ra các hồ sơ chuyên nghiệp, chuẩn `ATS` (Applicant Tracking System) một cách nhanh chóng và hiệu quả. Nền tảng cung cấp các mẫu thiết kế hiện đại, công cụ chỉnh sửa trực quan và trợ lý AI để tối ưu hóa nội dung, sửa lỗi ngữ pháp và gợi ý từ khóa phù hợp với mô tả công việc.
+**Bite to Business** là dự án xây dựng website bán thực phẩm, ưu tiên khách hàng doanh nghiệp như nhà hàng, khách sạn và đơn vị cung cấp suất ăn, đồng thời hỗ trợ cá nhân/hộ gia đình. Hệ thống hỗ trợ quy trình từ xem sản phẩm, lập yêu cầu mua (Quote), nhân viên duyệt đến xác nhận đơn khi đủ hàng, chuẩn bị và giao hàng.
 
-Điểm khác biệt chính là việc tích hợp Sáng tạo nội dung bằng AI (`GenAI`) sử dụng `AWS Bedrock` (`Claude 3 Sonnet`), cho phép người dùng tạo ra các bản tóm tắt chuyên nghiệp, mô tả kinh nghiệm làm việc ấn tượng chỉ từ những gạch đầu dòng cơ bản. Hệ thống được xây dựng hoàn toàn trên kiến trúc `Serverless`, đảm bảo khả năng mở rộng vô hạn và chi phí tối ưu.
+Điểm nổi bật là **Generative UI**, giúp điều chỉnh giao diện theo ý định, sở thích và ngữ cảnh mua hàng của từng người dùng. Hệ thống dự kiến tích hợp **Amazon Bedrock**, với **Claude Haiku 5.5** được đề xuất làm model chính cho MVP, để gợi ý sản phẩm và sinh cấu hình UI dạng JSON từ thư viện component do team xây dựng. React hiển thị cấu hình đã kiểm tra; backend quản lý quyền, giá, tồn kho và giao dịch. AI cũng hỗ trợ chatbot theo quyền của từng vai trò và soạn nội dung/bố cục poster để nhân viên E-commerce xem trước, chỉnh sửa và duyệt.
+
+Ứng dụng sử dụng **React/TypeScript**, **Spring Boot** và **Supabase PostgreSQL**, với kế hoạch triển khai trên **AWS**. Dự án hướng tới đơn giản hóa thao tác mua hàng, hỗ trợ phối hợp giữa bán hàng, kho và giao nhận, đồng thời đánh giá hiệu quả của giao diện cá nhân hóa.
 
 ### 2. Bài toán Cần giải quyết
 
 #### Vấn đề là gì?
 
-- **Khó khăn trong Trình bày**: Người tìm việc thường mất hàng giờ để định dạng văn bản trong `Word` hoặc các công cụ thiết kế phức tạp mà vẫn không đạt được vẻ ngoài chuyên nghiệp.
-- **Nội dung kém thu hút**: Ứng viên gặp khó khăn trong việc viết nội dung cô đọng, sử dụng từ ngữ chuyên ngành và làm nổi bật thành tích của mình. "Writer's block" (bí ý tưởng) là vấn đề phổ biến.
-- **Không vượt qua được ATS**: Các CV thiết kế thủ công thường chứa các yếu tố đồ họa hoặc cấu trúc bảng biểu khiến hệ thống quét hồ sơ tự động (`ATS`) của nhà tuyển dụng không thể đọc được nội dung.
+Trong mua thực phẩm B2B, khách hàng có thể cần tìm nguyên liệu mới, so sánh giá theo số lượng, mua lại hàng quen thuộc hoặc chia hàng cho nhiều địa chỉ. Mỗi tác vụ cần cách ưu tiên thông tin và thao tác khác nhau.
+
+- **Giao diện cố định chưa phù hợp với từng nhu cầu:** Một bố cục chung có thể khiến người mua phải tìm kiếm, lọc và chuyển trang nhiều lần, kể cả khi đã diễn đạt rõ mục tiêu.
+- **Dễ mất ngữ cảnh khi giao diện thay đổi:** Sản phẩm, số lượng, đơn vị bán, Quote và nhóm giao hàng đang chọn cần được giữ nhất quán khi khách hỏi tiếp hoặc đổi cách hiển thị.
+- **Giao diện sinh ra cần đúng dữ liệu và quy trình:** Thay đổi số lượng có thể làm đổi bậc giá, tổng tiền hoặc khả năng đáp ứng. UI cần hiển thị dữ liệu backend hiện hành và chỉ cung cấp thao tác phù hợp với quyền, trạng thái duyệt.
+- **Phản hồi chậm hoặc lỗi gây gián đoạn:** Kết quả từ yêu cầu cũ có thể ghi đè thao tác mới; quá trình tạo UI bị ngắt có thể làm mất tiến trình hoặc để lại thông tin lỗi thời.
+
+Bài toán của **Bite to Business** là tạo giao diện thích ứng theo ý định và ngữ cảnh của từng người dùng, đồng thời duy trì tác vụ mua hàng và bảo đảm giao dịch đúng quy trình.
 
 #### Giải pháp
 
-SnapResume giải quyết các vấn đề này bằng một ứng dụng web `React` hiện đại trên nền tảng `AWS Serverless`.
+**Bite to Business** đề xuất tích hợp **Generative UI** qua **Amazon Bedrock**, với **Claude Haiku 5.5** là model được đề xuất cho MVP. Giải pháp gồm:
 
-- **Trình chỉnh sửa trực quan**: Giao diện kéo thả hoặc điền biểu mẫu đơn giản, xem trước thời gian thực (`Real-time Preview`).
-- **AI Copilot**: Sử dụng `AWS Bedrock` để tự động viết lại câu, đề xuất nội dung dựa trên vị trí ứng tuyển.
-- **Chuẩn ATS**: Các mẫu (`Templates`) được thiết kế để thân thiện với máy đọc nhưng vẫn đẹp mắt với người đọc.
-- **Quản lý tập trung**: Lưu trữ nhiều phiên bản CV, xuất ra `PDF` chất lượng cao.
+- **Cá nhân hóa theo tác vụ:** Backend cung cấp ngữ cảnh và sở thích liên quan; AI đề xuất bố cục từ catalog component của team. Ví dụ, ưu tiên bảng khi mua số lượng lớn hoặc danh sách mua lại khi khách quay lại.
+- **Runtime A2UI có kiểm tra:** Tiếp nhận thông điệp JSON theo phiên bản giao thức đã chọn, kiểm tra schema, component, data binding và action được phép, rồi render bằng thư viện React của website.
+- **Giữ ngữ cảnh tương tác:** Gửi định danh sản phẩm, số lượng, Quote và phiên bản trạng thái cùng mỗi thao tác về backend. Áp dụng kết quả còn phù hợp với tác vụ hiện tại và giữ lựa chọn hợp lệ khi đổi bố cục.
+- **Backend kiểm soát giao dịch:** Giá, ưu đãi, tồn kho, quyền và bước duyệt được kiểm tra tại backend. Xác nhận Order chỉ thành công khi đủ toàn bộ hàng, đã qua bước duyệt và người mua xác nhận.
+- **Fallback khi AI lỗi:** Giữ phần giao diện hợp lệ hoặc chuyển về giao diện cơ bản, bảo toàn bản nháp khi có thể và thông báo trạng thái để người dùng tiếp tục thao tác.
+
+Hiệu quả sẽ được so sánh với giao diện cố định qua tỷ lệ và thời gian hoàn thành tác vụ, số thao tác, độ đúng của render/data binding và khả năng phục hồi khi lỗi.
 
 ### 3. Kiến trúc Giải pháp
 
-Hệ thống sử dụng kiến trúc `Serverless` và `Event-driven` trên `AWS`.
-![AWS Architecture](/images/2-Proposal/SnapResume.png)
+**Bite to Business** dự kiến triển khai trên AWS, với các thành phần:
 
-#### Tổng quan Kiến trúc
+| Thành phần | Vai trò |
+| --- | --- |
+| **Frontend** | React/TypeScript trên S3 private + CloudFront; gồm giao diện cơ bản và A2UI runtime. |
+| **Backend** | Spring Boot trên ECS Fargate private, sau ALB; xử lý API, quyền và nghiệp vụ. |
+| **Dữ liệu / Xác thực** | Supabase PostgreSQL lưu dữ liệu; Supabase Auth quản lý xác thực. |
+| **AI** | Backend gọi Amazon Bedrock — Claude Haiku 5.5 để gợi ý sản phẩm và đề xuất cấu hình UI. |
+| **Tích hợp ngoài** | Cloudinary cho ảnh, Vietmap cho bản đồ, SePay cho thanh toán và SMTP cho email. |
+| **Vận hành** | ECR lưu image, Secrets Manager quản lý secrets, CloudWatch thu log và metric. |
 
-- **Frontend**: `React 19` + `Vite` (hosting trên `S3` + `CloudFront` hoặc `AWS Amplify`).
-- **API Layer**: `Amazon API Gateway` + `AWS Lambda` (`Node.js`/`Express`).
-- **Database**: `Amazon DynamoDB` (Single Table Design) lưu trữ `User`, `Resume`, `Section`, `Template`.
-- **Authentication**: `Amazon Cognito` (User Pools & Identity Pools).
-- **AI Engine**: `Amazon Bedrock` (`Claude 3 Sonnet`) cho các tác vụ sinh nội dung.
-- **Storage**: `Amazon S3` để lưu trữ ảnh đại diện, tệp `PDF` đã xuất.
+**Luồng Generate UI:** Yêu cầu và ngữ cảnh → backend xác thực/lấy dữ liệu → Bedrock đề xuất UI → backend kiểm tra/chuyển thành A2UI → runtime kiểm tra và render bằng React.
+
+Các action quay về backend để kiểm tra quyền, giá, tồn kho và giao dịch. Runtime giữ ngữ cảnh, loại phản hồi cũ và fallback về giao diện cơ bản khi AI lỗi.
 
 ### 4. Triển khai Kỹ thuật
 
 #### Stack Công nghệ
 
-- **Frontend**: `ReactJS`, `TailwindCSS`, `Ant Design`, `html2pdf.js` cho việc xuất `PDF`.
-- **Backend**: `NodeJS`, `TypeScript`, `Express` (chạy trong `Lambda`).
-- **IaC**: `Terraform` để quản lý toàn bộ hạ tầng.
+| Nhóm | Công nghệ |
+| --- | --- |
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS, React Router |
+| **State và dữ liệu API** | TanStack Query, Zustand, Axios |
+| **Form và validation** | React Hook Form, Zod |
+| **Backend** | Java 21, Spring Boot, Spring Security, Spring Data JPA/Hibernate |
+| **Database / Migration** | Supabase PostgreSQL, Flyway |
+| **Authentication** | Supabase Auth, JWT |
+| **Generative UI — dự kiến** | A2UI, JSON Schema, React component catalog và runtime |
+| **AI — dự kiến** | Amazon Bedrock, Claude Haiku 5.5 |
+| **Triển khai — dự kiến** | Docker, ECR, ECS Fargate, ALB, S3, CloudFront |
+| **Giám sát và secrets — dự kiến** | CloudWatch, Secrets Manager |
+| **Tích hợp ngoài** | Cloudinary (dự kiến), Vietmap, SePay, SMTP |
+| **Đa ngôn ngữ** | i18next, react-i18next |
 
 #### Các Giai đoạn
 
