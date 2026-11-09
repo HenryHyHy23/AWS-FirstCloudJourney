@@ -17,7 +17,7 @@ pre: " <b> 1. </b> "
 
 **Tuần 6:** [VPC Peering, Transit Gateway, Docker, ECS và CI/CD](1.6-week6/)
 
-**Tuần 7:** [Triển khai ứng dụng EC2 với AWS CodePipeline](1.7-week7/)
+**Tuần 7:** [CodePipeline, lưu trữ, Data Lake, DynamoDB và Savings Plans](1.7-week7/)
 
 **Tuần 8:** [Ôn tập và thi giữa kì](1.8-week8/)
 

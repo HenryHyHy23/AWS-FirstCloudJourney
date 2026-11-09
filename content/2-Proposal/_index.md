@@ -78,18 +78,12 @@ Actions return to the backend for authorization, pricing, inventory, and transac
 
 #### Development Phases
 
-- **Phase 1: Core Foundation (January)**
-  - Set up AWS infrastructure (`Terraform`).
-  - Build Authentication (`Cognito`).
-  - Basic Resume `CRUD` (`DynamoDB` + `Lambda`).
-- **Phase 2: Editor & Templates (February)**
-  - Develop drag-and-drop Editor UI.
-  - Build dynamic Template system.
-  - PDF export (`html2pdf.js` / `Puppeteer`).
-- **Phase 3: AI Integration & Polish (March)**
-  - Integrate `Amazon Bedrock` for “AI Writer”.
-  - UX/UI optimization.
-  - Load testing & security hardening.
+1. **Requirements and database:** Write requirements, define business workflows, and design the schema and create the database on Supabase PostgreSQL.
+2. **UI design and repository:** Design the interface in Figma; create the GitHub repository and frontend/backend project structure.
+3. **Development and authentication:** Implement the interface and APIs, build authentication with Supabase Auth, and enforce role-based access for core features.
+4. **Service integration:** Connect SePay, Amazon Bedrock/Claude Haiku 5.5, the A2UI runtime, and Vietmap API.
+5. **UX/UI and performance optimization:** Refine the experience and optimize page loading, API response times, and database queries.
+6. **AWS setup and deployment:** Provision infrastructure following the AWS architecture, configure the environment, deploy, and verify the website.
 
 ### 5. Budget Estimation (AWS Cost)
 

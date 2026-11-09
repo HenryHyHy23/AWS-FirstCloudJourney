@@ -78,18 +78,12 @@ Các action quay về backend để kiểm tra quyền, giá, tồn kho và giao
 
 #### Các Giai đoạn
 
-- **Giai đoạn 1: Core Foundation (Tháng 1)**
-  - Thiết lập hạ tầng `AWS` (`Terraform`).
-  - Xây dựng Authentication (`Cognito`).
-  - `CRUD` cơ bản cho Hồ sơ (`DynamoDB` + `Lambda`).
-- **Giai đoạn 2: Editor & Templates (Tháng 2)**
-  - Phát triển giao diện Editor kéo thả.
-  - Xây dựng hệ thống Template động.
-  - Tính năng xuất `PDF` (`html2pdf.js` / `Puppeteer`).
-- **Giai đoạn 3: AI Integration & Polish (Tháng 3)**
-  - Tích hợp `Amazon Bedrock` cho tính năng "AI Writer".
-  - Tối ưu hóa `UX`/`UI`.
-  - Kiểm thử tải và bảo mật.
+1. **Yêu cầu và database:** Viết requirement, xác định luồng nghiệp vụ; thiết kế schema và xây dựng database trên Supabase PostgreSQL.
+2. **Thiết kế UI và repository:** Thiết kế giao diện trên Figma; tạo GitHub repository và cấu trúc dự án frontend/backend.
+3. **Phát triển và xác thực:** Code giao diện/API, xây dựng authentication với Supabase Auth và phân quyền cho các chức năng chính.
+4. **Tích hợp dịch vụ:** Kết nối SePay, Amazon Bedrock/Claude Haiku 5.5, A2UI runtime và Vietmap API.
+5. **Tối ưu UX/UI và hiệu năng:** Hoàn thiện trải nghiệm; tối ưu thời gian tải trang, phản hồi API và truy vấn database.
+6. **Thiết lập AWS và triển khai:** Xây dựng hạ tầng theo kiến trúc AWS, cấu hình môi trường, triển khai và kiểm tra website.
 
 ### 5. Ước tính Ngân sách (Chi phí AWS)
 
