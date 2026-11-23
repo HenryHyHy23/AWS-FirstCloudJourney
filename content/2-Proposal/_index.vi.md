@@ -9,11 +9,11 @@ pre: " <b> 2. </b> "
 
 ### 1. Tóm tắt Dự án
 
-**Bite to Business** là dự án xây dựng website bán thực phẩm, ưu tiên khách hàng doanh nghiệp như nhà hàng, khách sạn và đơn vị cung cấp suất ăn, đồng thời hỗ trợ cá nhân/hộ gia đình. Hệ thống hỗ trợ quy trình từ xem sản phẩm, lập yêu cầu mua (Quote), nhân viên duyệt đến xác nhận đơn khi đủ hàng, chuẩn bị và giao hàng.
+**Bite to Business** là dự án xây dựng website bán thực phẩm, ưu tiên khách hàng doanh nghiệp như nhà hàng, khách sạn và đơn vị cung cấp suất ăn, đồng thời hỗ trợ cá nhân/hộ gia đình. Hệ thống hỗ trợ quy trình từ xem sản phẩm, lập báo giá (Quote), backend kiểm tra giá – ưu đãi – VAT – phí giao – tồn kho, khách hàng xác nhận báo giá cuối, thanh toán QR qua SePay đến chuẩn bị và giao hàng.
 
-Điểm nổi bật là **Generative UI**, giúp điều chỉnh giao diện theo ý định, sở thích và ngữ cảnh mua hàng của từng người dùng. Hệ thống dự kiến tích hợp **Amazon Bedrock**, với **Claude Haiku 5.5** được đề xuất làm model chính cho MVP, để gợi ý sản phẩm và sinh cấu hình UI dạng JSON từ thư viện component do team xây dựng. React hiển thị cấu hình đã kiểm tra; backend quản lý quyền, giá, tồn kho và giao dịch. AI cũng hỗ trợ chatbot theo quyền của từng vai trò và soạn nội dung/bố cục poster để nhân viên E-commerce xem trước, chỉnh sửa và duyệt.
+Điểm nổi bật là **Generative UI**, giúp điều chỉnh giao diện theo ý định, sở thích và ngữ cảnh mua hàng của từng người dùng. Backend gọi **Amazon Bedrock** với model **Amazon Nova Pro** để gợi ý sản phẩm và sinh cấu hình UI dạng JSON từ thư viện component do team xây dựng; **Amazon Bedrock Guardrails** kiểm tra nội dung người dùng nhập vào AI. React hiển thị cấu hình đã kiểm tra; backend quản lý quyền, giá, tồn kho và giao dịch.
 
-Ứng dụng sử dụng **React/TypeScript**, **Spring Boot** và **Supabase PostgreSQL**, với kế hoạch triển khai trên **AWS**. Dự án hướng tới đơn giản hóa thao tác mua hàng, hỗ trợ phối hợp giữa bán hàng, kho và giao nhận, đồng thời đánh giá hiệu quả của giao diện cá nhân hóa.
+Ứng dụng dùng **React/TypeScript**, **Spring Boot (Java 21)** và **Supabase PostgreSQL**, và đã được triển khai trên **AWS** tại region Singapore (`ap-southeast-1`). Dự án hướng tới đơn giản hóa thao tác mua hàng, hỗ trợ phối hợp giữa bán hàng, kho và giao nhận, đồng thời đánh giá hiệu quả của giao diện cá nhân hóa.
 
 ### 2. Bài toán Cần giải quyết
 
@@ -23,37 +23,46 @@ Trong mua thực phẩm B2B, khách hàng có thể cần tìm nguyên liệu m�
 
 - **Giao diện cố định chưa phù hợp với từng nhu cầu:** Một bố cục chung có thể khiến người mua phải tìm kiếm, lọc và chuyển trang nhiều lần, kể cả khi đã diễn đạt rõ mục tiêu.
 - **Dễ mất ngữ cảnh khi giao diện thay đổi:** Sản phẩm, số lượng, đơn vị bán, Quote và nhóm giao hàng đang chọn cần được giữ nhất quán khi khách hỏi tiếp hoặc đổi cách hiển thị.
-- **Giao diện sinh ra cần đúng dữ liệu và quy trình:** Thay đổi số lượng có thể làm đổi bậc giá, tổng tiền hoặc khả năng đáp ứng. UI cần hiển thị dữ liệu backend hiện hành và chỉ cung cấp thao tác phù hợp với quyền, trạng thái duyệt.
+- **Giao diện sinh ra cần đúng dữ liệu và quy trình:** Thay đổi số lượng có thể làm đổi bậc giá, tổng tiền hoặc khả năng đáp ứng. UI cần hiển thị dữ liệu backend hiện hành và chỉ cung cấp thao tác phù hợp với quyền và trạng thái đơn.
 - **Phản hồi chậm hoặc lỗi gây gián đoạn:** Kết quả từ yêu cầu cũ có thể ghi đè thao tác mới; quá trình tạo UI bị ngắt có thể làm mất tiến trình hoặc để lại thông tin lỗi thời.
 
 Bài toán của **Bite to Business** là tạo giao diện thích ứng theo ý định và ngữ cảnh của từng người dùng, đồng thời duy trì tác vụ mua hàng và bảo đảm giao dịch đúng quy trình.
 
 #### Giải pháp
 
-**Bite to Business** đề xuất tích hợp **Generative UI** qua **Amazon Bedrock**, với **Claude Haiku 5.5** là model được đề xuất cho MVP. Giải pháp gồm:
+**Bite to Business** tích hợp **Generative UI** qua **Amazon Bedrock (Amazon Nova Pro)**. Giải pháp gồm:
 
 - **Cá nhân hóa theo tác vụ:** Backend cung cấp ngữ cảnh và sở thích liên quan; AI đề xuất bố cục từ catalog component của team. Ví dụ, ưu tiên bảng khi mua số lượng lớn hoặc danh sách mua lại khi khách quay lại.
 - **Runtime A2UI có kiểm tra:** Tiếp nhận thông điệp JSON theo phiên bản giao thức đã chọn, kiểm tra schema, component, data binding và action được phép, rồi render bằng thư viện React của website.
-- **Giữ ngữ cảnh tương tác:** Gửi định danh sản phẩm, số lượng, Quote và phiên bản trạng thái cùng mỗi thao tác về backend. Áp dụng kết quả còn phù hợp với tác vụ hiện tại và giữ lựa chọn hợp lệ khi đổi bố cục.
-- **Backend kiểm soát giao dịch:** Giá, ưu đãi, tồn kho, quyền và bước duyệt được kiểm tra tại backend. Xác nhận Order chỉ thành công khi đủ toàn bộ hàng, đã qua bước duyệt và người mua xác nhận.
+- **Giữ ngữ cảnh tương tác:** Gửi định danh sản phẩm, số lượng, Quote và phiên bản trạng thái (revision) cùng mỗi thao tác về backend. Áp dụng kết quả còn phù hợp với tác vụ hiện tại và giữ lựa chọn hợp lệ khi đổi bố cục.
+- **Backend kiểm soát giao dịch:** Giá, ưu đãi, VAT, phí giao, tồn kho và quyền được kiểm tra tại backend. Khi khách xác nhận báo giá cuối, hệ thống tạo Order, giữ hàng tối đa một giờ và cho thanh toán QR qua SePay; trạng thái thanh toán chỉ cập nhật khi webhook SePay hợp lệ.
 - **Fallback khi AI lỗi:** Giữ phần giao diện hợp lệ hoặc chuyển về giao diện cơ bản, bảo toàn bản nháp khi có thể và thông báo trạng thái để người dùng tiếp tục thao tác.
 
 Hiệu quả sẽ được so sánh với giao diện cố định qua tỷ lệ và thời gian hoàn thành tác vụ, số thao tác, độ đúng của render/data binding và khả năng phục hồi khi lỗi.
 
 ### 3. Kiến trúc Giải pháp
 
-**Bite to Business** dự kiến triển khai trên AWS, với các thành phần:
+Hệ thống chạy trên AWS tại region Singapore (`ap-southeast-1`); các dịch vụ edge (CloudFront, chứng chỉ ACM và Web ACL cho CloudFront) đặt ở `us-east-1` theo yêu cầu của CloudFront. Trạng thái bên dưới cập nhật đến tháng 11/2026.
 
-| Thành phần | Vai trò |
-| --- | --- |
-| **Frontend** | React/TypeScript trên S3 private + CloudFront; gồm giao diện cơ bản và A2UI runtime. |
-| **Backend** | Spring Boot trên ECS Fargate private, sau ALB; xử lý API, quyền và nghiệp vụ. |
-| **Dữ liệu / Xác thực** | Supabase PostgreSQL lưu dữ liệu; Supabase Auth quản lý xác thực. |
-| **AI** | Backend gọi Amazon Bedrock — Claude Haiku 5.5 để gợi ý sản phẩm và đề xuất cấu hình UI. |
-| **Tích hợp ngoài** | Cloudinary cho ảnh, Vietmap cho bản đồ, SePay cho thanh toán và SMTP cho email. |
-| **Vận hành** | ECR lưu image, Secrets Manager quản lý secrets, CloudWatch thu log và metric. |
+| Thành phần | Dịch vụ / cấu hình | Trạng thái |
+| --- | --- | --- |
+| **Tên miền và HTTPS** | Route 53 quản lý hosted zone; AWS Certificate Manager cấp chứng chỉ HTTPS. | Đã triển khai |
+| **Frontend** | React/Vite build trên S3 private, phân phối qua CloudFront bằng Origin Access Control (OAC). | Đã triển khai |
+| **Bảo vệ** | AWS WAF với 2 Web ACL: một gắn CloudFront (đang ở chế độ Count để theo dõi), một gắn ALB (chế độ Block). | Đã triển khai |
+| **Cổng vào API** | Application Load Balancer, health check `/api/health`; access log của ALB lưu vào S3 và truy vấn bằng Amazon Athena. | Đã triển khai |
+| **Backend** | Spring Boot chạy trên ECS Fargate, mỗi task 0,5 vCPU / 2 GB; Application Auto Scaling giữ 1–3 task theo mục tiêu CPU 60%. | Đã triển khai |
+| **Mạng** | VPC 2 AZ với Internet Gateway; task chạy ở public subnet có public IP, security group chỉ cho phép lưu lượng vào từ ALB; không dùng NAT Gateway. S3 Gateway Endpoint và VPC Flow Logs. | Đã triển khai |
+| **Dữ liệu và xác thực** | Supabase PostgreSQL (schema quản lý bằng Flyway); Supabase Auth phát JWT, Spring Security kiểm tra JWT; refresh token lưu trong cookie HttpOnly. | Đã triển khai |
+| **AI** | Backend gọi Amazon Bedrock (Converse API) với Amazon Nova Pro qua cross-region inference profile APAC; Bedrock Guardrails kiểm tra nội dung; giới hạn số lần gọi AI theo người dùng. Endpoint `/api/ai/agent` trả kết quả dạng stream (SSE). | Đã triển khai |
+| **Thông báo bất đồng bộ** | Backend ghi sự kiện vào bảng outbox rồi đẩy sang Amazon SQS; Lambda đọc hàng đợi, ghi thông báo web và gửi email qua Amazon SES API; tin lỗi nhiều lần chuyển sang DLQ. | Đã triển khai |
+| **Email** | Amazon SES với domain đã xác minh: Lambda gửi qua SES API, backend gửi qua SES SMTP. | Đã triển khai |
+| **Secrets và IAM** | Secrets Manager giữ mật khẩu DB và khóa tích hợp, inject vào container; IAM tách riêng task role, Lambda role, OIDC provider cho GitHub và user SMTP. | Đã triển khai |
+| **Giám sát và cảnh báo** | CloudWatch Logs và Alarms; alarm gửi qua Amazon SNS tới email của team; CloudWatch RUM đo hiệu năng frontend (Cognito Identity Pool chỉ dùng để RUM gửi dữ liệu, không dùng để đăng nhập); AWS Budgets theo dõi chi phí hằng tháng. | Đã triển khai |
+| **CI/CD** | GitHub Actions dùng OIDC để nhận quyền AWS tạm thời: BE build image → ECR → cập nhật ECS service; FE build → đồng bộ lên S3 → invalidate CloudFront. | Đã triển khai |
+| **Generative UI** | Thư viện `@a2ui/react` và `@json-render` đã được thêm vào FE; catalog component và renderer đang xây dựng. | Đang phát triển |
+| **Tích hợp ngoài AWS** | Supabase (PostgreSQL + Auth), Cloudinary (ảnh), SePay (QR chuyển khoản + webhook), Vietmap (bản đồ, tuyến giao), GitHub Actions. | Đã tích hợp |
 
-**Luồng Generate UI:** Yêu cầu và ngữ cảnh → backend xác thực/lấy dữ liệu → Bedrock đề xuất UI → backend kiểm tra/chuyển thành A2UI → runtime kiểm tra và render bằng React.
+**Luồng Generate UI:** Yêu cầu và ngữ cảnh → backend xác thực, lấy dữ liệu trong phạm vi quyền → Guardrails kiểm tra nội dung → Bedrock (Nova Pro) đề xuất UI → backend kiểm tra và chuyển thành A2UI → stream về FE → runtime kiểm tra và render bằng React.
 
 Các action quay về backend để kiểm tra quyền, giá, tồn kho và giao dịch. Runtime giữ ngữ cảnh, loại phản hồi cũ và fallback về giao diện cơ bản khi AI lỗi.
 
@@ -63,80 +72,91 @@ Các action quay về backend để kiểm tra quyền, giá, tồn kho và giao
 
 | Nhóm | Công nghệ |
 | --- | --- |
-| **Frontend** | React, TypeScript, Vite, Tailwind CSS, React Router |
+| **Frontend** | React 19, TypeScript, Vite, Tailwind CSS, React Router |
 | **State và dữ liệu API** | TanStack Query, Zustand, Axios |
 | **Form và validation** | React Hook Form, Zod |
-| **Backend** | Java 21, Spring Boot, Spring Security, Spring Data JPA/Hibernate |
+| **Backend** | Java 21, Spring Boot 4.1, Spring Security (OAuth2 Resource Server), Spring Data JPA/Hibernate |
 | **Database / Migration** | Supabase PostgreSQL, Flyway |
-| **Authentication** | Supabase Auth, JWT |
-| **Generative UI — dự kiến** | A2UI, JSON Schema, React component catalog và runtime |
-| **AI — dự kiến** | Amazon Bedrock, Claude Haiku 5.5 |
-| **Triển khai — dự kiến** | Docker, ECR, ECS Fargate, ALB, S3, CloudFront |
-| **Giám sát và secrets — dự kiến** | CloudWatch, Secrets Manager |
-| **Tích hợp ngoài** | Cloudinary (dự kiến), Vietmap, SePay, SMTP |
+| **Authentication** | Supabase Auth, JWT, refresh token trong cookie HttpOnly |
+| **Generative UI** | A2UI, json-render, JSON Schema, React component catalog và runtime (đang phát triển) |
+| **AI** | Amazon Bedrock (Converse API), Amazon Nova Pro, Bedrock Guardrails |
+| **Edge và bảo mật** | Route 53, CloudFront, AWS Certificate Manager, AWS WAF, IAM, Secrets Manager |
+| **Compute và mạng** | ECS Fargate, Application Auto Scaling, ALB, ECR, VPC (Internet Gateway, S3 Gateway Endpoint) |
+| **Bất đồng bộ và email** | Amazon SQS (kèm DLQ), AWS Lambda, Amazon SES |
+| **Giám sát và chi phí** | CloudWatch Logs, Alarms, RUM; Amazon SNS; VPC Flow Logs; Amazon Athena; AWS Budgets |
+| **CI/CD** | Docker, GitHub Actions + OIDC |
+| **Tích hợp ngoài** | Supabase, SePay, Cloudinary, Vietmap |
 | **Đa ngôn ngữ** | i18next, react-i18next |
 
 #### Các Giai đoạn
 
-1. **Yêu cầu và database:** Viết requirement, xác định luồng nghiệp vụ; thiết kế schema và xây dựng database trên Supabase PostgreSQL.
-2. **Thiết kế UI và repository:** Thiết kế giao diện trên Figma; tạo GitHub repository và cấu trúc dự án frontend/backend.
-3. **Phát triển và xác thực:** Code giao diện/API, xây dựng authentication với Supabase Auth và phân quyền cho các chức năng chính.
-4. **Tích hợp dịch vụ:** Kết nối SePay, Amazon Bedrock/Claude Haiku 5.5, A2UI runtime và Vietmap API.
-5. **Tối ưu UX/UI và hiệu năng:** Hoàn thiện trải nghiệm; tối ưu thời gian tải trang, phản hồi API và truy vấn database.
-6. **Thiết lập AWS và triển khai:** Xây dựng hạ tầng theo kiến trúc AWS, cấu hình môi trường, triển khai và kiểm tra website.
+1. **Yêu cầu và database:** Viết requirement, xác định luồng nghiệp vụ; thiết kế schema và xây dựng database trên Supabase PostgreSQL. *(Hoàn thành)*
+2. **Thiết kế UI và repository:** Thiết kế giao diện trên Figma; tạo GitHub repository và cấu trúc dự án frontend/backend. *(Hoàn thành)*
+3. **Phát triển và xác thực:** Code giao diện/API, xây dựng authentication với Supabase Auth và phân quyền cho các vai trò. *(Hoàn thành phần chính)*
+4. **Thiết lập AWS và triển khai:** Dựng VPC, ALB, ECS Fargate có auto scaling, S3/CloudFront, WAF, Route 53, SES, SQS/Lambda và pipeline GitHub Actions + OIDC. *(Hoàn thành)*
+5. **Tích hợp dịch vụ:** SePay, Vietmap, Cloudinary, Bedrock/Nova Pro + Guardrails; hoàn thiện A2UI runtime. *(Đang thực hiện phần Generative UI)*
+6. **Tối ưu UX/UI, hiệu năng và chi phí:** Theo dõi RUM, ALB log qua Athena, alarm và Budgets; điều chỉnh task size, auto scaling và rule WAF. *(Đang thực hiện)*
 
 ### 5. Ước tính Ngân sách (Chi phí AWS)
 
-Mô hình định giá `Serverless` giúp chi phí tỉ lệ thuận với mức sử dụng. Chi phí AI (`Bedrock`) sẽ là yếu tố mới cần quan tâm so với các app truyền thống.
+Giá lấy từ AWS Price List cho region Singapore (`ap-southeast-1`), bản tháng 11/2026; một tháng tính 730 giờ. Bảng dưới phản ánh cấu hình đang chạy, chưa gồm thuế và các dịch vụ ngoài AWS (Supabase, Cloudinary, Vietmap, SePay).
 
-#### Giả định
+| Dịch vụ | Cách tính | 1 task (thường xuyên) | 3 task (tối đa) |
+| --- | --- | --- | --- |
+| **ECS Fargate** (0,5 vCPU / 2 GB mỗi task) | 0,05056 USD/vCPU-giờ + 0,00553 USD/GB-giờ ≈ 26,5 USD/task | ~ 26,5 USD | ~ 79,6 USD |
+| **Application Load Balancer** | 0,0252 USD/giờ + 0,008 USD/LCU-giờ (giả định 1 LCU) | ~ 24,2 USD | ~ 24,2 USD |
+| **IPv4 công khai** | 0,005 USD/giờ mỗi địa chỉ (2 của ALB + 1 mỗi task) | ~ 11,0 USD | ~ 18,3 USD |
+| **AWS WAF** | 5 USD/Web ACL × 2 + 1 USD/rule (giả định 3 rule mỗi ACL) + 0,60 USD/triệu request | ~ 16 USD | ~ 16 USD |
+| **Secrets Manager** | 0,40 USD/secret (1 secret dạng JSON) | ~ 0,4 USD | ~ 0,4 USD |
+| **S3, CloudFront, Route 53, ECR, CloudWatch, Athena, SNS** | Theo dung lượng, lưu lượng, lượng log và dữ liệu quét; nhỏ ở quy mô MVP | vài USD | vài USD |
+| **Tổng hạ tầng (chưa gồm AI)** | | **~ 80 USD** | **~ 140 USD** |
 
-- 1 Resume = 5 lần gọi AI (Tối ưu hóa, viết lại description).
-- 1 lần gọi AI = 1.000 input tokens + 500 output tokens.
-- Giá `Bedrock` (`Claude 3 Sonnet`): $3.00/1M input, $15.00/1M output.
-- Chi phí AI/Resume: ~ $0.05 (1.200 VND).
-- Dung lượng `PDF`: 2MB.
+Việc bỏ NAT Gateway giúp tiết kiệm khoảng 43 USD/tháng tiền giờ (0,059 USD/giờ × 730 giờ), chưa kể phí 0,059 USD cho mỗi GB dữ liệu đi qua NAT.
 
-| Dịch vụ                  | Mô hình Tính giá | Lưu lượng Thấp (MVP/Test) | Lưu lượng Trung bình    | Lưu lượng Cao            |
-| :----------------------- | :--------------- | :------------------------ | :---------------------- | :----------------------- |
-| **Quy mô**               |                  | **< 500 Users/tháng**     | **~ 5.000 Users/tháng** | **~ 50.000 Users/tháng** |
-| Số lượng Resume tạo ra   |                  | 200 CV                    | 2.000 CV                | 20.000 CV                |
-| Amazon S3                | Lưu trữ          | $0.10                     | $1.00                   | $15.00                   |
-| CloudFront               | CDN              | $0.50                     | $5.00                   | $50.00                   |
-| API GW + Lambda          | Compute          | Free Tier                 | $5.00                   | $40.00                   |
-| DynamoDB                 | Database         | Free Tier                 | $2.00                   | $20.00                   |
-| Cognito                  | Auth             | Free Tier                 | Free Tier               | Free Tier (< 50k MAU)    |
-| Amazon Bedrock (AI)      | Tokens           | $10.00                    | $100.00                 | $1.000.00                |
-| WAF + Route53            | Security         | $7.00                     | $7.00                   | $15.00                   |
-| **Tổng Chi phí / Tháng** |                  | **~ $18**                 | **~ $120**              | **~ $1.140**             |
+**Chi phí AI (Amazon Nova Pro, Singapore):** 0,00108 USD/1.000 token input và 0,00432 USD/1.000 token output. Giả định một lần gọi dùng 3.000 token input và 800 token output: 3 × 0,00108 + 0,8 × 0,00432 ≈ 0,0067 USD. Phí Guardrails tính riêng theo lượng văn bản được kiểm tra.
 
-> Lưu ý: Chi phí AI (`Bedrock`) chiếm phần lớn khi quy mô tăng. Có thể tối ưu bằng cách sử dụng model nhỏ hơn (`Claude 3 Haiku`) cho các tác vụ đơn giản, giúp giảm chi phí AI xuống khoảng 1/5 (ví dụ: `Haiku` rẻ hơn `Sonnet` rất nhiều).
+| Quy mô | Số lần gọi AI / tháng | Chi phí model / tháng |
+| --- | --- | --- |
+| MVP / demo | 1.000 | ~ 6,7 USD |
+| Trung bình | 10.000 | ~ 67 USD |
+| Cao | 100.000 | ~ 670 USD |
+
+Luồng thông báo SQS → Lambda → SES ở quy mô MVP chủ yếu nằm trong mức miễn phí của SQS và Lambda; SES tính 0,10 USD/1.000 email theo giá trả theo dùng (tài khoản mới từ 21/07/2026 mặc định gói Essentials 0,16 USD/1.000 email).
+
+**Hướng tối ưu:**
+
+- Đo CPU/RAM thực tế để chỉnh task size và ngưỡng auto scaling.
+- Đặt lifecycle rule cho bucket log ALB và giới hạn thời gian lưu CloudWatch Logs.
+- Dùng AWS Budgets (đã có) và giới hạn số lần gọi AI theo người dùng (đã có trong backend).
 
 ### 6. Đánh giá Rủi ro
 
 #### Rủi ro Bảo mật & Riêng tư (Cao)
 
-- **Vấn đề**: CV chứa thông tin cá nhân nhạy cảm (`PII`) - SĐT, Email, Địa chỉ.
-- **Giảm thiểu**:
-  - Mã hóa dữ liệu tại chỗ (`Encryption at rest`) trong `DynamoDB` và `S3`.
-  - Quyền truy cập nghiêm ngặt (`IAM Roles`).
-  - Không sử dụng dữ liệu người dùng để train AI (Mặc định `AWS Bedrock` không lưu dữ liệu train).
+- **Vấn đề:** Dữ liệu khách hàng doanh nghiệp (thông tin liên hệ, địa chỉ giao, đơn hàng) và giao dịch thanh toán; nguy cơ webhook giả mạo hoặc prompt injection vào AI.
+- **Giảm thiểu:**
+  - Task ECS có public IP nhưng security group chỉ cho phép lưu lượng vào từ ALB; WAF trên ALB ở chế độ Block.
+  - Web ACL của CloudFront đang ở chế độ Count; sau khi theo dõi đủ log, cần chuyển sang Block.
+  - Secrets nằm trong Secrets Manager, không nằm trong image hay mã nguồn; CI/CD dùng OIDC thay cho access key dài hạn.
+  - Kiểm tra khóa xác thực webhook SePay và đối chiếu số tiền trước khi cập nhật đơn.
+  - AI chỉ nhận dữ liệu trong phạm vi quyền người dùng; giá, tồn kho, trạng thái đơn luôn lấy từ backend; Bedrock Guardrails lọc nội dung đầu vào.
 
 #### Rủi ro Chi phí (Trung bình)
 
-- **Vấn đề**: Tấn công `DDoS` vào `API` hoặc lạm dụng tính năng AI gây tốn kém.
-- **Giảm thiểu**:
-  - Thiết lập Throttling (giới hạn tốc độ) trên `API Gateway`.
-  - Giới hạn số lần gọi AI mỗi ngày cho mỗi tài khoản miễn phí.
-  - Đặt `AWS Budget Alerts` để cảnh báo khi chi phí vượt ngưỡng.
+- **Vấn đề:** Chi phí cố định của ALB, WAF và IPv4 công khai; auto scaling tăng số task khi bị tấn công; lạm dụng tính năng AI.
+- **Giảm thiểu:** Giới hạn tối đa 3 task, WAF chặn request xấu, giới hạn số lần gọi AI, AWS Budgets và alarm gửi qua SNS.
 
-#### Rủi ro Kiến trúc
+#### Rủi ro Kiến trúc và Vận hành
 
-- **Vấn đề**: Cold start của `Lambda` làm chậm trải nghiệm người dùng lần đầu.
-- **Giảm thiểu**: Sử dụng `Lambda SnapStart` (cho `Java`) hoặc giữ ấm (`Provisioned Concurrency`) nếu cần thiết (tuy nhiên `Node.js` cold start thường khá nhanh).
+- **Task ở public subnet:** Không cần NAT nhưng mỗi task có public IP; mọi cổng phải được khóa bằng security group, và không mở thêm port nào ngoài port ứng dụng cho ALB.
+- **AI stream qua ALB:** ALB mặc định đóng kết nối im lặng sau 60 giây; luồng SSE cần gửi heartbeat định kỳ hoặc tăng idle timeout để không bị ngắt khi model xử lý lâu.
+- **Phụ thuộc dịch vụ ngoài AWS:** Supabase, SePay, Vietmap, Cloudinary nằm ngoài AWS; cần timeout, retry và thông báo lỗi rõ ràng.
+- **Secret thay đổi:** Secret được inject khi container khởi động; đổi secret phải triển khai lại ECS service.
+- **Email trùng:** SQS có thể giao một tin nhắn hơn một lần; Lambda ghi nhận sự kiện đã xử lý để không gửi trùng email.
 
 ### 7. Kết quả Dự kiến
 
-- Sở hữu một nền tảng `SaaS` hoàn chỉnh cho thị trường tuyển dụng.
-- Hệ thống có khả năng phục vụ hàng chục nghìn người dùng mà không cần quản lý máy chủ.
-- Tích hợp AI tạo lợi thế cạnh tranh rõ rệt so với các công cụ tạo CV truyền thống.
+- Website bán thực phẩm B2B chạy trên AWS, hỗ trợ đầy đủ luồng báo giá → xác nhận → thanh toán QR → giao hàng, kèm thông báo email bất đồng bộ.
+- Giao diện Generative UI thích ứng theo ý định người mua, có kiểm tra và fallback an toàn về giao diện cơ bản.
+- Số liệu so sánh giao diện cố định và giao diện cá nhân hóa: thời gian hoàn thành tác vụ, số thao tác, tỷ lệ lỗi render.
+- Hạ tầng có auto scaling, CI/CD tự động, quản lý secrets tập trung, giám sát và cảnh báo chi phí, cùng ước tính chi phí rõ ràng để tối ưu sau giai đoạn MVP.
