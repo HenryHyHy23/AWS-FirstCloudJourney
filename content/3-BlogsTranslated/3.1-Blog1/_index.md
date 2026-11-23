@@ -51,7 +51,7 @@ I treat AI as a backend-integrated capability, not as something that automatical
 
 For example, AI may suggest searching products, but it must not read another customer's orders. Operations such as ordering or payment still require backend checks and appropriate user confirmation. Guardrails help assess content but do not replace API authorization.
 
-I learned about this approach from [A2UI 1.0](https://a2ui.org/) and its [Quickstart guide](https://a2ui.org/quickstart/). The catalog and SDK help control UI structure, but do not replace authentication, authorization, or API security.
+I learned about this approach from the A2UI 1.0 documentation and its Quickstart guide (links at the end of this post). The catalog and SDK help control UI structure, but do not replace authentication, authorization, or API security.
 
 **How does Amazon Bedrock Guardrails help protect the AI flow?**
 
@@ -78,4 +78,6 @@ I think these services offer a clear separation of responsibilities: Bedrock han
 
 I think Generative UI opens up opportunities for more flexible and engaging interfaces. The key is to let AI support user needs while the application remains in control of data and actions.
 
-**Reference:** [Amazon Bedrock Guardrails — AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+**References:** [What is Amazon Bedrock?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) · [Carry out a conversation with the Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html) · [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) · [Sensitive information filters in Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html) · [A2UI 1.0](https://a2ui.org/) · [A2UI Quickstart guide](https://a2ui.org/quickstart/)
+
+#AWS #AWSStudyGroup #FirstCloudJourney #AmazonBedrock #GenerativeUI #A2UI #GenerativeAI

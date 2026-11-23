@@ -82,8 +82,3 @@ The discussions covered software development problems, enterprise applications, 
 - [AWS: Agent action confirmation](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-userconfirmation.html)
 - [AWS: AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html)
 
----
-
-![Checked in at the event](/images/4-EventParticipated/4.1-Event1/check-in.png)
-
-*Checked in at the event*

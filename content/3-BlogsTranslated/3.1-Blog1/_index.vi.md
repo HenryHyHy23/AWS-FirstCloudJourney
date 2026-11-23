@@ -51,7 +51,7 @@ Theo mình, AI là một phần được backend tích hợp, chứ không mặc
 
 Ví dụ, AI có thể được phép đề xuất tìm sản phẩm, nhưng không được tự xem đơn hàng của khách khác. Những thao tác như đặt hàng hoặc thanh toán cần được backend kiểm tra và yêu cầu người dùng xác nhận. Guardrails hỗ trợ kiểm tra nội dung, nhưng không thay thế phân quyền API.
 
-Mình tham khảo cách tổ chức luồng này từ [A2UI 1.0](https://a2ui.org/) và [hướng dẫn Quickstart](https://a2ui.org/quickstart/). Catalog và SDK giúp kiểm soát cấu trúc UI, nhưng không tự thay thế việc xác thực, phân quyền hay bảo vệ API.
+Mình tham khảo cách tổ chức luồng này từ tài liệu A2UI 1.0 và hướng dẫn Quickstart (link ở cuối bài). Catalog và SDK giúp kiểm soát cấu trúc UI, nhưng không tự thay thế việc xác thực, phân quyền hay bảo vệ API.
 
 **Amazon Bedrock Guardrails bảo vệ luồng AI như thế nào?**
 
@@ -78,4 +78,6 @@ Theo mình, kết hợp những dịch vụ này giúp chia rõ vai trò: Bedroc
 
 Theo mình, Generative UI mở ra cơ hội tạo ra những giao diện linh hoạt và bớt nhàm chán hơn. Điều quan trọng là AI phải hỗ trợ đúng nhu cầu của người dùng, còn ứng dụng vẫn kiểm soát dữ liệu và hành động.
 
-**Nguồn tham khảo:** [Amazon Bedrock Guardrails — AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+**Nguồn tham khảo:** [Amazon Bedrock là gì?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) · [Hội thoại với model qua Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html) · [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) · [Bộ lọc thông tin nhạy cảm trong Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html) · [A2UI 1.0](https://a2ui.org/) · [Hướng dẫn Quickstart của A2UI](https://a2ui.org/quickstart/)
+
+#AWS #AWSStudyGroup #FirstCloudJourney #AmazonBedrock #GenerativeUI #A2UI #GenerativeAI

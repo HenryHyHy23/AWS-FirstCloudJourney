@@ -114,8 +114,3 @@ Speakers from the keynote and the 39 program sessions, grouped by organization.
 - **Treat production readiness as a complete system:** Data governance, identity, resilience, observability, and cost controls need to work together.
 - **Measure business outcomes:** Evaluate completed tasks, reliable recovery, delivery quality, and cost per useful result, alongside coding speed.
 
----
-
-![Checked in at the event](/images/4-EventParticipated/4.2-Event2/check-in.png)
-
-_Checked in at the event_

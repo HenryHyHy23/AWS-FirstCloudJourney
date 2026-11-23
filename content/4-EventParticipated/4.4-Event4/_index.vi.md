@@ -26,8 +26,3 @@ Tham gia làm gấu bông thông minh qua hoạt động STEM, kết hợp lập
 
 Buổi này vừa được thực hành làm sản phẩm STEM, vừa có thể dùng sản phẩm đó làm quà cho các bạn nhỏ.
 
----
-
-![Đã Check in tại sự kiện](/images/4-EventParticipated/4.4-Event4/check-in.png)
-
-_Đã Check in tại sự kiện_
