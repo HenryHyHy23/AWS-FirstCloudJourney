@@ -47,14 +47,3 @@ This section records events I attended during my internship, the topics discusse
 &emsp;**Activities:** Programming, sound training, and making smart plush toys as gifts for children.
 
 &emsp;**Role:** Participant
-
----
-
-### [Event 5](4.5-Event5/)
-&emsp;**Event Name:** AWS Cloud Mastery Series #3 : AWS Well-Architected Security Pillar Workshop
-
-&emsp;**Time:** 08:30 AM, November 29, 2025
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, HCMC
-
-&emsp;**Role:** Attendee

@@ -64,4 +64,10 @@ Mình thấy tiền không phải lợi ích chính của kiến trúc này. L�
 
 Theo mình, hàng đợi là một trong những ý tưởng đơn giản nhưng hữu ích nhất khi mới học AWS: việc gì không cần làm ngay thì cho vào hàng đợi, để phần quan trọng như đặt hàng luôn nhanh và ổn định.
 
-**Tài liệu tham khảo:** [Amazon SQS standard queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html) · [Dùng Lambda với Amazon SQS](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html) · [Dead-letter queue trong SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) · [Thoát chế độ sandbox của SES](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html) · [Transactional outbox pattern](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)
+**Tài liệu tham khảo:**
+
+- [Amazon SQS standard queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html)
+- [Dùng Lambda với Amazon SQS](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
+- [Dead-letter queue trong SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
+- [Thoát chế độ sandbox của SES](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html)
+- [Transactional outbox pattern](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)

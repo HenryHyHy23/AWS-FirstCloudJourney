@@ -19,12 +19,12 @@ pre: " <b> 1. </b> "
 
 **Week 7:** [CodePipeline, storage, Data Lake, DynamoDB, and Savings Plans](1.7-week7/)
 
-**Week 8:** [Review and take mid-term exam](1.8-week8/)
+**Week 8:** [Cost optimization, application migration, CI/CD, and serverless](1.8-week8/)
 
-**Week 9:** [Working on final Project](1.9-week9/)
+**Week 9:** [AWS containers, Coursera exam prep, and final project](1.9-week9/)
 
 **Week 10:** [Working on final Project](1.10-week10/)
 
-**Week 11:** [Working on final Project](1.11-week11/)
+**Week 11:** [Coursera exam prep and final project](1.11-week11/)
 
-**Week 12:** [Working on and finish final Project](1.12-week12/)
+**Week 12:** [Coursera exam prep, final project, and workshop submission](1.12-week12/)

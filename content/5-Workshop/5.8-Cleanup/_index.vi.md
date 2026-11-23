@@ -3,7 +3,7 @@ title : "8. Dọn dẹp tài nguyên"
 date: 2025-09-09
 weight : 8
 chapter : false
-pre : " <b> 5.6. </b> "
+pre : " <b> 5.8. </b> "
 ---
 
 #### Dọn dẹp tài nguyên

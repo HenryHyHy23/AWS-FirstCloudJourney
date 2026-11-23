@@ -78,6 +78,11 @@ I think these services offer a clear separation of responsibilities: Bedrock han
 
 I think Generative UI opens up opportunities for more flexible and engaging interfaces. The key is to let AI support user needs while the application remains in control of data and actions.
 
-**References:** [What is Amazon Bedrock?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) · [Carry out a conversation with the Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html) · [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) · [Sensitive information filters in Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html) · [A2UI 1.0](https://a2ui.org/) · [A2UI Quickstart guide](https://a2ui.org/quickstart/)
+**References:**
 
-#AWS #AWSStudyGroup #FirstCloudJourney #AmazonBedrock #GenerativeUI #A2UI #GenerativeAI
+- [What is Amazon Bedrock?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
+- [Carry out a conversation with the Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html)
+- [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+- [Sensitive information filters in Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html)
+- [A2UI 1.0](https://a2ui.org/)
+- [A2UI Quickstart guide](https://a2ui.org/quickstart/)

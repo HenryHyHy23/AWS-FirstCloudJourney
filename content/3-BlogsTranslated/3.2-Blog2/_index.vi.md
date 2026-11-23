@@ -50,4 +50,8 @@ Mình hiểu đơn giản: **Amazon Bedrock** giúp ứng dụng truy cập các
 
 Theo mình, agent hữu ích khi một yêu cầu cần kết hợp nhiều bước hoặc nhiều nguồn thông tin. Điều quan trọng là lựa chọn độ phức tạp phù hợp, kiểm thử kết quả và kiểm soát quyền ngay từ đầu.
 
-**Tài liệu tham khảo:** [Bài viết AWS gốc về Deep Agents và AgentCore](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/) · [AgentCore Runtime và Harness](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-vs-runtime.html) · [Thực hành bảo mật Runtime](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-security-best-practices.html)
+**Tài liệu tham khảo:**
+
+- [Bài viết AWS gốc về Deep Agents và AgentCore](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/)
+- [AgentCore Runtime và Harness](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-vs-runtime.html)
+- [Thực hành bảo mật Runtime](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-security-best-practices.html)

@@ -78,6 +78,11 @@ Theo mình, kết hợp những dịch vụ này giúp chia rõ vai trò: Bedroc
 
 Theo mình, Generative UI mở ra cơ hội tạo ra những giao diện linh hoạt và bớt nhàm chán hơn. Điều quan trọng là AI phải hỗ trợ đúng nhu cầu của người dùng, còn ứng dụng vẫn kiểm soát dữ liệu và hành động.
 
-**Nguồn tham khảo:** [Amazon Bedrock là gì?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) · [Hội thoại với model qua Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html) · [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) · [Bộ lọc thông tin nhạy cảm trong Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html) · [A2UI 1.0](https://a2ui.org/) · [Hướng dẫn Quickstart của A2UI](https://a2ui.org/quickstart/)
+**Nguồn tham khảo:**
 
-#AWS #AWSStudyGroup #FirstCloudJourney #AmazonBedrock #GenerativeUI #A2UI #GenerativeAI
+- [Amazon Bedrock là gì?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
+- [Hội thoại với model qua Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html)
+- [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+- [Bộ lọc thông tin nhạy cảm trong Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html)
+- [A2UI 1.0](https://a2ui.org/)
+- [Hướng dẫn Quickstart của A2UI](https://a2ui.org/quickstart/)

@@ -19,12 +19,12 @@ pre: " <b> 1. </b> "
 
 **Tuần 7:** [CodePipeline, lưu trữ, Data Lake, DynamoDB và Savings Plans](1.7-week7/)
 
-**Tuần 8:** [Ôn tập và thi giữa kì](1.8-week8/)
+**Tuần 8:** [Tối ưu chi phí, di chuyển ứng dụng, CI/CD và serverless](1.8-week8/)
 
-**Tuần 9:** [Làm dự án cuối kì](1.9-week9/)
+**Tuần 9:** [Container AWS, ôn thi Coursera và final project](1.9-week9/)
 
 **Tuần 10:** [Làm dự án cuối kì](1.10-week10/)
 
-**Tuần 11:** [Làm dự án cuối kì](1.11-week11/)
+**Tuần 11:** [Ôn thi Coursera và làm final project](1.11-week11/)
 
-**Tuần 12:** [Làm & hoàn thành dự án cuối kì](1.12-week12/)
+**Tuần 12:** [Ôn thi Coursera, hoàn thiện final project và workshop](1.12-week12/)

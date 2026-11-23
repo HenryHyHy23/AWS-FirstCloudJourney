@@ -47,14 +47,3 @@ Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, n�
 &emsp;**Nội dung:** Lập trình, huấn luyện âm thanh và làm gấu bông thông minh tặng trẻ em.
 
 &emsp;**Vai trò:** Người tham gia
-
----
-
-### [Sự kiện 5](4.5-Event5/)
-&emsp;**Tên sự kiện:** AWS Cloud Mastery Series #3 : AWS Well-Architected Security Pillar Workshop
-
-&emsp;**Thời gian:** 08:30, ngày 29 tháng 11 năm 2025
-
-&emsp;**Địa điểm:** Tầng 26, Tháp Bitexco, 02 đường Hải Triều, Phường Bến Nghé, Quận 1, TP.HCM
-
-&emsp;**Vai trò:** Người tham dự

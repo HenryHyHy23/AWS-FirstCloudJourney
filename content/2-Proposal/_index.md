@@ -35,7 +35,7 @@ The challenge for **Bite to Business** is to adapt the interface to each user's 
 - **Task-based personalization:** The backend supplies relevant context and preferences; AI proposes layouts using the team's component catalog. For example, it can prioritize a table for bulk purchasing or a reorder list for returning customers.
 - **A validated A2UI runtime:** Receive JSON messages using the selected protocol version, validate schemas, components, data bindings, and permitted actions, then render them through the website's React component library.
 - **Continuous interaction context:** Send product identifiers, quantities, the Quote, and the state revision with each action to the backend. Apply results that remain relevant to the current task and preserve valid selections across layout changes.
-- **Backend-controlled transactions:** Validate pricing, promotions, VAT, delivery fees, inventory, and authorization on the backend. When the customer confirms the final quote, the system creates an Order, holds stock for up to one hour, and offers QR payment through SePay; payment status changes only after a valid SePay webhook.
+- **Backend-controlled transactions:** Validate pricing, promotions, VAT, delivery fees, inventory, and authorization on the backend. When the customer confirms the final quote, the system creates an Order, holds stock for up to six hours, and offers QR payment through SePay; payment status changes only after a valid SePay webhook.
 - **Fallback when AI fails:** Retain valid interface elements or return to the base UI, preserve drafts where possible, and explain the current state so users can continue.
 
 Effectiveness will be compared with the fixed interface using task completion rate and time, interaction count, rendering and data-binding correctness, and recovery from failures.
@@ -47,20 +47,23 @@ The system runs on AWS in the Singapore Region (`ap-southeast-1`); edge resource
 | Component | Service / configuration | Status |
 | --- | --- | --- |
 | **Domain and HTTPS** | Route 53 manages the hosted zone; AWS Certificate Manager issues HTTPS certificates. | Deployed |
-| **Frontend** | React/Vite build in a private S3 bucket, delivered through CloudFront with Origin Access Control (OAC). | Deployed |
-| **Protection** | AWS WAF with 2 Web ACLs: one on CloudFront (in Count mode for monitoring) and one on the ALB (in Block mode). | Deployed |
-| **API entry point** | Application Load Balancer with an `/api/health` health check; ALB access logs are stored in S3 and queried with Amazon Athena. | Deployed |
+| **Single entry point** | All user traffic enters through CloudFront: `/*` → React/Vite build in a private S3 bucket (Origin Access Control; a CloudFront Function rewrites SPA routes to `index.html`); `/api/*` → Internet Gateway → ALB with caching disabled, all viewer headers and cookies forwarded, and a 60-second origin timeout for AI streaming. The frontend and API share one domain, so no CORS is needed. | Deployed |
+| **Protection** | AWS WAF with 2 Web ACLs. **CloudFront:** 5 per-IP rate-limit rules on `/api/*` (API 2,000, AI 30, login 30, OTP verify/resend 10 requests per 5 minutes, returning 429) plus the IP reputation and known-bad-inputs managed groups in Block; the common rule set and Anti-DDoS group stay in Count while logs are reviewed. There is no country or VPN blocking, so international and VPN users are served. **ALB:** accepts only requests carrying a secret header added by CloudFront, plus the rate-limited SePay webhook path, so the ALB cannot be called directly. | Deployed |
+| **Load balancer** | Application Load Balancer (HTTPS only, `/api/health` health check) behind CloudFront; access logs are stored in S3 (30-day lifecycle) and queried with Amazon Athena. | Deployed |
 | **Backend** | Spring Boot on ECS Fargate, 0.5 vCPU / 2 GB per task; Application Auto Scaling keeps 1–3 tasks with a 60% CPU target. | Deployed |
 | **Networking** | VPC across 2 AZs with an Internet Gateway; tasks run in public subnets with public IPs, and the security group only allows inbound traffic from the ALB; no NAT Gateway. S3 Gateway Endpoint and VPC Flow Logs. | Deployed |
 | **Data and authentication** | Supabase PostgreSQL (schema managed by Flyway); Supabase Auth issues JWTs validated by Spring Security; refresh tokens stored in an HttpOnly cookie. | Deployed |
 | **AI** | The backend calls Amazon Bedrock (Converse API) with Amazon Nova Pro through the APAC cross-region inference profile; Bedrock Guardrails checks content; AI calls are limited per user. The `/api/ai/agent` endpoint streams results (SSE). | Deployed |
-| **Asynchronous notifications** | The backend writes events to an outbox table and forwards them to Amazon SQS; a Lambda function reads the queue, stores web notifications, and sends emails through the Amazon SES API; messages that keep failing move to a DLQ. | Deployed |
+| **Event bus and notifications** | The backend writes domain events (`order.*`, `payment.*`) to an outbox table in the same transaction; a relay publishes them to the Amazon EventBridge bus `btb-events`. A rule routes customer events to Amazon SQS (`btb-customer-events`); a Lambda function reads the queue, stores web notifications, and sends emails through the Amazon SES API. Failed deliveries are retried and then moved to a DLQ; the Lambda function deduplicates by event ID. | Deployed |
+| **More notification consumers** | New rules on the same bus: staff notifications (out-of-stock alerts for logistics, new product requests for e-commerce and admin) and marketing emails (flash sales and Black Friday for opted-in customers, scheduled with EventBridge Scheduler), each with its own SQS queue and Lambda function. | Planned |
 | **Email** | Amazon SES with a verified domain: Lambda sends through the SES API, and the backend sends through SES SMTP. | Deployed |
 | **Secrets and IAM** | Secrets Manager stores the DB password and integration keys and injects them into the container; IAM separates the task role, Lambda role, GitHub OIDC provider, and SMTP user. | Deployed |
 | **Monitoring and alerts** | CloudWatch Logs and Alarms; alarms notify the team by email through Amazon SNS; CloudWatch RUM measures frontend performance (a Cognito Identity Pool is used only so RUM can send data, not for sign-in); AWS Budgets tracks monthly cost. | Deployed |
 | **CI/CD** | GitHub Actions uses OIDC to obtain temporary AWS credentials: the backend builds an image → ECR → updates the ECS service; the frontend builds → syncs to S3 → invalidates CloudFront. | Deployed |
 | **Generative UI** | `@a2ui/react` and `@json-render` have been added to the FE; the component catalog and renderer are being built. | In development |
 | **Outside AWS** | Supabase (PostgreSQL + Auth), Cloudinary (images), SePay (QR bank transfer + webhook), Vietmap (maps, delivery routes), GitHub Actions. | Integrated |
+
+**Request flow:** User → CloudFront (+ WAF) → `/*` S3 (web) or `/api/*` → Internet Gateway → ALB (+ WAF) → ECS. The only direct path to the ALB is the SePay payment webhook.
 
 **Generate UI flow:** Request and context → backend authentication and permission-scoped data retrieval → Guardrails content check → Bedrock (Nova Pro) UI proposal → backend validation and A2UI conversion → streaming to the FE → runtime validation and React rendering.
 
@@ -80,9 +83,9 @@ Actions return to the backend for authorization, pricing, inventory, and transac
 | **Authentication** | Supabase Auth, JWT, refresh token in an HttpOnly cookie |
 | **Generative UI** | A2UI, json-render, JSON Schema, React component catalog and runtime (in development) |
 | **AI** | Amazon Bedrock (Converse API), Amazon Nova Pro, Bedrock Guardrails |
-| **Edge and security** | Route 53, CloudFront, AWS Certificate Manager, AWS WAF, IAM, Secrets Manager |
+| **Edge and security** | Route 53, CloudFront (+ CloudFront Functions), AWS Certificate Manager, AWS WAF, IAM, Secrets Manager |
 | **Compute and networking** | ECS Fargate, Application Auto Scaling, ALB, ECR, VPC (Internet Gateway, S3 Gateway Endpoint) |
-| **Asynchronous and email** | Amazon SQS (with DLQ), AWS Lambda, Amazon SES |
+| **Event-driven and email** | Amazon EventBridge, Amazon SQS (with DLQ), AWS Lambda, Amazon SES |
 | **Monitoring and cost** | CloudWatch Logs, Alarms, RUM; Amazon SNS; VPC Flow Logs; Amazon Athena; AWS Budgets |
 | **CI/CD** | Docker, GitHub Actions + OIDC |
 | **External integrations** | Supabase, SePay, Cloudinary, Vietmap |
@@ -93,7 +96,7 @@ Actions return to the backend for authorization, pricing, inventory, and transac
 1. **Requirements and database:** Write requirements, define business workflows, and design the schema and create the database on Supabase PostgreSQL. *(Completed)*
 2. **UI design and repository:** Design the interface in Figma; create the GitHub repository and frontend/backend project structure. *(Completed)*
 3. **Development and authentication:** Implement the interface and APIs, build authentication with Supabase Auth, and enforce role-based access. *(Core features completed)*
-4. **AWS setup and deployment:** Build the VPC, ALB, ECS Fargate with auto scaling, S3/CloudFront, WAF, Route 53, SES, SQS/Lambda, and the GitHub Actions + OIDC pipeline. *(Completed)*
+4. **AWS setup and deployment:** Build the VPC, ALB, ECS Fargate with auto scaling, S3/CloudFront, WAF, Route 53, SES, EventBridge/SQS/Lambda, and the GitHub Actions + OIDC pipeline; move the API behind CloudFront as a single entry point. *(Completed)*
 5. **Service integration:** SePay, Vietmap, Cloudinary, Bedrock/Nova Pro + Guardrails; finish the A2UI runtime. *(Generative UI in progress)*
 6. **UX/UI, performance, and cost optimization:** Monitor RUM, ALB logs through Athena, alarms, and Budgets; tune task size, auto scaling, and WAF rules. *(In progress)*
 
@@ -106,10 +109,10 @@ Prices come from the AWS Price List for the Singapore Region (`ap-southeast-1`),
 | **ECS Fargate** (0.5 vCPU / 2 GB per task) | 0.05056 USD per vCPU-hour + 0.00553 USD per GB-hour ≈ 26.5 USD per task | ~ 26.5 USD | ~ 79.6 USD |
 | **Application Load Balancer** | 0.0252 USD per hour + 0.008 USD per LCU-hour (assuming 1 LCU) | ~ 24.2 USD | ~ 24.2 USD |
 | **Public IPv4** | 0.005 USD per hour per address (2 for the ALB + 1 per task) | ~ 11.0 USD | ~ 18.3 USD |
-| **AWS WAF** | 5 USD per Web ACL × 2 + 1 USD per rule (assuming 3 rules per ACL) + 0.60 USD per million requests | ~ 16 USD | ~ 16 USD |
+| **AWS WAF** | 5 USD per Web ACL × 2 + 1 USD per rule or managed group (9 on CloudFront + 2 on the ALB) + 0.60 USD per million requests | ~ 21 USD | ~ 21 USD |
 | **Secrets Manager** | 0.40 USD per secret (1 JSON secret) | ~ 0.4 USD | ~ 0.4 USD |
-| **S3, CloudFront, Route 53, ECR, CloudWatch, Athena, SNS** | Based on storage, traffic, log volume, and data scanned; small at MVP scale | a few USD | a few USD |
-| **Infrastructure total (excluding AI)** | | **~ 80 USD** | **~ 140 USD** |
+| **S3, CloudFront, Route 53, ECR, CloudWatch, Athena, SNS, EventBridge** | Based on storage, traffic, requests, log volume, data scanned, and events; small at MVP scale | a few USD | a few USD |
+| **Infrastructure total (excluding AI)** | | **~ 85 USD** | **~ 145 USD** |
 
 Removing the NAT Gateway saves about 43 USD per month in hourly charges (0.059 USD per hour × 730 hours), plus 0.059 USD for every GB that would have passed through it.
 
@@ -126,7 +129,7 @@ At MVP scale, the SQS → Lambda → SES notification flow mostly stays within t
 **Optimization options:**
 
 - Measure real CPU and memory usage to tune the task size and auto scaling threshold.
-- Add a lifecycle rule to the ALB log bucket and set retention for CloudWatch Logs.
+- ALB logs expire after 30 days and CloudWatch Logs keep 14 days (both in place).
 - Use AWS Budgets (already in place) and the per-user AI call limit (already in the backend).
 
 ### 6. Risk Assessment
@@ -135,8 +138,8 @@ At MVP scale, the SQS → Lambda → SES notification flow mostly stays within t
 
 - **Issue:** Business customer data (contacts, delivery addresses, orders) and payment transactions; risk of spoofed webhooks or prompt injection into the AI.
 - **Mitigation:**
-  - ECS tasks have public IPs, but the security group only allows inbound traffic from the ALB; the ALB's WAF runs in Block mode.
-  - The CloudFront Web ACL is in Count mode; after enough logs have been reviewed, it should switch to Block.
+  - All traffic enters through CloudFront; the ALB only accepts requests carrying the CloudFront secret header (plus the SePay webhook), and ECS tasks only accept traffic from the ALB security group.
+  - Per-IP rate limits protect login, OTP, AI, and the API; the IP reputation and known-bad-inputs rules block known attackers. The common rule set stays in Count until logs confirm it does not block real API requests.
   - Secrets live in Secrets Manager, not in the image or source code; CI/CD uses OIDC instead of long-lived access keys.
   - Verify the SePay webhook key and the amount before updating an order.
   - The AI only receives data within the user's permissions; prices, inventory, and order status always come from the backend; Bedrock Guardrails filters input content.
@@ -149,14 +152,15 @@ At MVP scale, the SQS → Lambda → SES notification flow mostly stays within t
 #### Architecture and Operations Risks
 
 - **Tasks in public subnets:** No NAT is needed, but each task has a public IP; every port must be locked down by the security group, with nothing open except the application port for the ALB.
-- **AI streaming through the ALB:** By default the ALB closes connections that stay silent for 60 seconds; the SSE stream needs periodic heartbeats or a longer idle timeout so it is not cut off while the model is working.
+- **AI streaming through CloudFront and the ALB:** CloudFront waits up to 60 seconds for the origin and the ALB closes connections that stay idle for 60 seconds; compression is disabled for `/api/*`, and the SSE stream should send periodic heartbeats so long model calls are not cut off.
+- **Secret header rotation:** The CloudFront → ALB header value must match in both places; rotating it means updating the CloudFront origin and the ALB WAF rule together.
 - **Dependencies outside AWS:** Supabase, SePay, Vietmap, and Cloudinary run outside AWS; timeouts, retries, and clear error messages are needed.
 - **Secret changes:** Secrets are injected when the container starts; changing a secret requires redeploying the ECS service.
-- **Duplicate emails:** SQS can deliver a message more than once; the Lambda function records processed events to avoid sending duplicate emails.
+- **Duplicate emails:** EventBridge and SQS deliver at least once; the Lambda function records processed events to avoid sending duplicate emails.
 
 ### 7. Expected Outcomes
 
-- A B2B food e-commerce website running on AWS that supports the full quote → confirmation → QR payment → delivery workflow, with asynchronous email notifications.
+- A B2B food e-commerce website running on AWS that supports the full quote → confirmation → QR payment → delivery workflow, with event-driven web and email notifications that can be extended to staff and marketing notifications.
 - A Generative UI that adapts to buyer intent, with validation and a safe fallback to the base UI.
 - Comparison data between the fixed and personalized interfaces: task completion time, interaction count, and rendering error rate.
 - Infrastructure with auto scaling, automated CI/CD, centralized secrets management, monitoring and cost alerts, and a clear cost estimate for optimization after the MVP.

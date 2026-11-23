@@ -50,4 +50,8 @@ I think of **Amazon Bedrock** as a way to access AI models, while **AgentCore** 
 
 I find agents useful when a request requires multiple steps or sources. The key is choosing the right level of complexity, testing results, and controlling access from the beginning.
 
-**References:** [Original AWS post on Deep Agents and AgentCore](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/) · [AgentCore Runtime and Harness](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-vs-runtime.html) · [Runtime security practices](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-security-best-practices.html)
+**References:**
+
+- [Original AWS post on Deep Agents and AgentCore](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/)
+- [AgentCore Runtime and Harness](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-vs-runtime.html)
+- [Runtime security practices](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-security-best-practices.html)

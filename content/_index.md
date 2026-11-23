@@ -8,25 +8,25 @@ chapter: false
 
 ### Student Information:
 
-&emsp; **Full Name:** Vo Nhat Minh
+&emsp; **Full Name:** Nguyen Doan Nhat Dang
 
-&emsp; **Phone Number:** (86)0906304988
+&emsp; **Phone Number:** (84)0972696902
 
-&emsp; **Email:** nhatminhvo2311@gmail.com
+&emsp; **Email:** nhatdang23092006@gmail.com
 
 &emsp; **University:** FPT University HCM
 
 &emsp; **Major:** Software Engineering
 
-&emsp; **Class:** AWS092025
+&emsp; **Class:** AWS092026
 
 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
-&emsp; **Internship Duration:** From 08/09/2025 to 12/12/2025
+&emsp; **Internship Duration:** From 08/09/2026 to 12/12/2026
 
-![My profile picture](/images/myAvatar.png)
+![My profile picture](/images/avatar.jpg)
 
 ### Report Content
 
