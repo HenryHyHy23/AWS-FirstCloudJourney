@@ -1,97 +1,67 @@
 ---
 title: "Blog 3"
-date: 2025-09-23
-weight: 1
+date: 2026-11-19
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# Giới thiệu AWS Card Clash mobile: Học kiến trúc AWS thông qua lối chơi chiến lược
+# GỬI EMAIL XÁC NHẬN ĐƠN HÀNG MÀ KHÔNG LÀM CHẬM WEBSITE: MÌNH TÌM HIỂU AMAZON SQS, AWS LAMBDA VÀ AMAZON SES
 
-Blog Đào tạo và Chứng nhận AWS (AWS Training and Certification Blog)  
-Viết bởi **Curtis Morton** | Ngày **23 tháng 09 năm 2025** | Mục **Announcements, AWS Training and Certification**
+**Nếu dịch vụ gửi email bị chậm vài giây, thì khách có phải đứng chờ nút "Đặt hàng" quay mãi không?**
 
----
+Khi tìm hiểu cách làm một website bán hàng, mình thấy cách dễ nghĩ ra nhất là: API lưu đơn hàng xong thì gửi email xác nhận luôn, rồi mới trả kết quả cho khách. Cách này chạy được khi thử ở máy mình. Nhưng nếu dịch vụ email chậm, khách phải chờ theo. Nếu dịch vụ email lỗi, API có thể báo "đặt hàng thất bại" dù đơn đã được lưu, hoặc email bị mất luôn.
 
-Hôm nay, chúng tôi vui mừng thông báo về sự khả dụng của **AWS Card Clash** trên các thiết bị di động. Trò chơi thẻ bài ảo **3D** này được thiết kế để giúp bạn khám phá **kiến trúc Đám mây AWS (AWS Cloud architecture)** và **thiết kế giải pháp (solution design)**. Trò chơi hiện đã có mặt trên cả **Apple App Store** và **Google Play Store**.
+Từ đó mình tìm hiểu cách tách việc gửi email ra khỏi luồng đặt hàng, bằng **Amazon SQS**, **AWS Lambda** và **Amazon SES**. Bài này là những gì mình hiểu được, mọi người thấy chỗ nào chưa đúng thì góp ý giúp mình nhé.
 
-AWS Card Clash biến các khái niệm đám mây phức tạp thành một trải nghiệm học tập thú vị, dễ tiếp cận với người chơi ở mọi cấp độ kỹ năng.
+**Ý tưởng: đặt một hàng đợi ở giữa**
 
----
+Mình hay hình dung giống quầy order ở quán ăn. Thu ngân ghi phiếu, đặt lên quầy rồi phục vụ khách tiếp theo; bếp lấy phiếu và nấu sau. Thu ngân không đứng chờ bếp nấu xong mới nhận khách mới.
 
-## Làm cho việc học đám mây trở nên hấp dẫn hơn
+Trong ví dụ này, backend là thu ngân, hàng đợi là quầy để phiếu, còn phần gửi email là bếp.
 
-Học về kiến trúc đám mây liên quan đến việc tìm hiểu cách các dịch vụ AWS kết hợp để tạo ra các giải pháp hoàn chỉnh. AWS Card Clash cung cấp cách tiếp cận tương tác bằng cách biến kiến thức dịch vụ AWS thành gameplay chiến lược, giúp bạn:
+- **Amazon SQS:** dịch vụ hàng đợi. Backend bỏ một tin nhắn "đơn hàng mới" vào hàng đợi rồi trả kết quả cho khách ngay.
+- **AWS Lambda:** chạy code mà không cần quản lý server. Lambda tự lấy tin nhắn từ hàng đợi theo từng lô (batch) và xử lý.
+- **Amazon SES:** dịch vụ gửi email. Lambda gọi SES để gửi email xác nhận cho khách.
+- **Dead-letter queue (DLQ):** một hàng đợi riêng, chứa những tin nhắn xử lý thất bại quá nhiều lần, để mình xem lại sau thay vì để chúng lặp mãi.
 
-- trực quan hóa kiến trúc đám mây  
-- tương tác trực tiếp với các thành phần AWS  
-- xây dựng kỹ năng có thể áp dụng ngay trong thực tế  
+**Luồng hoạt động (xem ảnh)**
 
----
+![Gửi email xác nhận đơn hàng bằng Amazon SQS, AWS Lambda và Amazon SES](/images/3-BlogsTranslated/3.3-Blog3/architecture.png)
 
-## Cách AWS Card Clash hoạt động
+- Khách bấm "Đặt hàng". Backend lưu đơn vào database (ví dụ Amazon RDS) và trả kết quả cho khách ngay.
+- Backend gửi tin nhắn "đơn hàng mới" vào hàng đợi SQS.
+- Lambda nhận tin nhắn từ SQS. Trước khi gửi, Lambda kiểm tra trong Amazon DynamoDB xem email cho đơn này đã được gửi chưa.
+- Nếu chưa gửi, Lambda gọi SES gửi email tới hộp thư của khách, rồi ghi lại là đã gửi.
+- Nếu một tin nhắn thất bại nhiều lần, SQS chuyển nó sang DLQ. Một CloudWatch alarm báo cho mình biết khi DLQ có tin nhắn.
 
-AWS Card Clash có lối chơi **turn-based**, xoay quanh kiến trúc AWS. Người chơi phải:
+Có một chi tiết mình thấy dễ bị bỏ qua: nếu backend lưu đơn xong mà gửi tin nhắn sang SQS bị lỗi, email sẽ mất. Cách mình tìm được là **transactional outbox**: backend ghi đơn hàng và "sự kiện cần gửi" vào cùng một transaction trong database, rồi một tiến trình riêng mới đẩy sự kiện đó sang SQS.
 
-- xác định đúng dịch vụ AWS  
-- đặt thẻ vào vị trí kiến trúc phù hợp  
-- ghi điểm dựa trên độ chính xác  
+**Những bẫy mình thấy khi đọc tài liệu**
 
-Môi trường 3D sống động cho phép người chơi — như một **solutions architect** — hoàn thiện sơ đồ kiến trúc bằng cách bổ sung các thành phần còn thiếu và học về các **mẫu triển khai phổ biến (common AWS deployment patterns)**.
+- **Một tin nhắn có thể được giao hơn một lần.** Hàng đợi SQS loại Standard đảm bảo giao tin "ít nhất một lần", nên đôi khi cùng một tin nhắn tới 2 lần. Nếu code không chống trùng, khách có thể nhận 2 email cho một đơn. Vì vậy mình lưu mã đơn hàng đã gửi email vào DynamoDB và kiểm tra trước khi gửi.
+- **Visibility timeout quá ngắn.** Khi Lambda đang xử lý, tin nhắn bị ẩn khỏi hàng đợi trong khoảng visibility timeout. Nếu khoảng này ngắn hơn thời gian Lambda chạy, tin nhắn sẽ hiện lại và bị xử lý lần nữa. AWS khuyên đặt visibility timeout ít nhất gấp 6 lần timeout của Lambda.
+- **Một tin lỗi kéo cả lô chạy lại.** Mặc định Lambda lấy tối đa 10 tin nhắn mỗi lần. Nếu một tin lỗi mà Lambda báo lỗi cả lô, những tin đã gửi email thành công cũng quay lại hàng đợi. Bật "ReportBatchItemFailures" để Lambda chỉ trả lại đúng những tin bị lỗi.
+- **DLQ có rồi nhưng không ai xem.** Tài liệu gợi ý đặt "maxReceiveCount" (số lần nhận tối đa trước khi chuyển sang DLQ) từ 5 trở lên. Nhưng nếu không đặt alarm, tin nhắn có thể nằm im trong DLQ mà không ai biết.
+- **SES ban đầu ở chế độ sandbox.** Ở chế độ này, SES chỉ gửi tới địa chỉ email đã xác minh, tối đa 200 email mỗi 24 giờ và 1 email mỗi giây. Muốn gửi cho khách thật, mình phải gửi yêu cầu production access cho từng region.
 
-Người chơi có thể dùng các *thẻ đặc biệt* để:
+**Chi phí thì sao?**
 
-- phòng thủ chiến lược  
-- phá vỡ triển khai của đối thủ  
-- chiếm lợi thế trong trận đấu  
+Mình thử tính cho ví dụ 30.000 đơn hàng mỗi tháng, theo các trang giá mình xem tháng 11/2026:
 
----
+- **SQS:** mỗi tháng miễn phí 1 triệu request. Mỗi tin nhắn tốn vài request (gửi, nhận, xoá), tức khoảng 90.000 request. Lambda cũng liên tục hỏi hàng đợi, các lần hỏi này cũng tính là request, nhưng với lưu lượng nhỏ thường vẫn nằm trong phần miễn phí.
+- **Lambda:** mỗi tháng miễn phí 1 triệu request và 400.000 GB-giây, nên 30.000 lần gửi email ngắn gần như không tốn gì.
+- **SES:** giá kiểu cũ là 0,10 USD cho 1.000 email, tức khoảng 3 USD cho 30.000 email. Theo trang giá SES, từ 21/07/2026 tài khoản mới mặc định dùng gói Essentials với giá 0,16 USD cho 1.000 email, tức khoảng 4,8 USD.
 
-## Trải nghiệm chơi đơn và nhiều người chơi
+Mình thấy tiền không phải lợi ích chính của kiến trúc này. Lợi ích là API trả lời nhanh hơn, email không bị mất khi dịch vụ email lỗi tạm thời, và việc thử lại được làm tự động.
 
-AWS Card Clash hỗ trợ:
+**Mình sẽ kiểm tra lại như thế nào?**
 
-- **Single-player** với đối thủ AI  
-- **Multiplayer** đối đầu với người chơi khác  
+- Đặt một đơn hàng test và đo xem API có trả kết quả mà không phải chờ email không.
+- Gửi cùng một tin nhắn 2 lần vào hàng đợi, khách chỉ được nhận 1 email.
+- Cố tình làm Lambda lỗi để xem tin nhắn có sang DLQ sau 5 lần và alarm có báo không.
+- Dùng mailbox simulator của SES để thử gửi mà không cần email thật.
 
-Trò chơi phù hợp để học nhanh, học khi di chuyển, hoặc chơi giải trí trong lịch trình bận rộn.
+Theo mình, hàng đợi là một trong những ý tưởng đơn giản nhưng hữu ích nhất khi mới học AWS: việc gì không cần làm ngay thì cho vào hàng đợi, để phần quan trọng như đặt hàng luôn nhanh và ổn định.
 
----
-
-## Các lộ trình học tập cho từng giai đoạn
-
-Trò chơi cung cấp nhiều “learning paths”, phù hợp cho mọi trình độ:
-
-- **Cloud Practitioner**: dành cho người mới bắt đầu  
-- **Solutions Architect**: tập trung vào kiến trúc resilient & cost-optimized  
-- **Serverless Developer**: học kiến trúc event-driven và serverless patterns  
-- **Generative AI**: tìm hiểu tích hợp AI và machine learning  
-
-Với **57 thiết kế kiến trúc** và **độ khó tăng dần**, người chơi luôn có thử thách phù hợp.
-
----
-
-## Học các khái niệm AWS thông qua chơi
-
-AWS Card Clash được thiết kế để:
-
-- hỗ trợ kiến thức thực tế  
-- chuyển đổi thành kỹ năng công việc  
-- giúp chuẩn bị thi chứng nhận AWS  
-
-Bằng cách lặp lại tương tác với các dịch vụ AWS và pattern phổ biến, người chơi hiểu sâu hơn cách các dịch vụ kết hợp trong **solution scenarios** thực tế.
-
----
-
-## Bắt đầu ngay hôm nay
-
-Dù bạn:
-
-- bắt đầu sự nghiệp công nghệ  
-- nâng cao chuyên môn AWS  
-- hay chỉ đơn giản thích các game chiến lược  
-
-AWS Card Clash luôn mang đến trải nghiệm học tập thú vị.
-
-**AWS Card Clash hiện có trên Apple App Store và sắp ra mắt trên Google Play.**  
-Tải xuống bản iOS hoặc đăng ký quyền truy cập sớm cho Android ngay hôm nay.
+**Tài liệu tham khảo:** [Amazon SQS standard queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html) · [Dùng Lambda với Amazon SQS](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html) · [Dead-letter queue trong SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) · [Thoát chế độ sandbox của SES](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html) · [Transactional outbox pattern](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)
