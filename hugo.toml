@@ -1,0 +1,27 @@
+baseURL = "/"
+title = "AWS First Cloud Journey"
+theme = "hugo-theme-learn"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[params]
+  description = "FCJ internship report"
+  themeVariant = "workshop"
+  showVisitedLinks = true
+  ordersectionsby = "weight"
+
+[languages.en]
+  locale = "en-US"
+  label = "English"
+  weight = 1
+
+[languages.vi]
+  locale = "vi-VN"
+  label = "Tiếng Việt"
+  weight = 2
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup.goldmark.renderer]
+  unsafe = true
