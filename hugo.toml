@@ -1,4 +1,5 @@
 baseURL = "/"
+canonifyURLs = true
 title = "AWS First Cloud Journey"
 theme = "hugo-theme-learn"
 defaultContentLanguage = "en"
