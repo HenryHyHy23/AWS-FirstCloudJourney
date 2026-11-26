@@ -24,6 +24,8 @@ This section records events I attended during my internship, the topics discusse
 ### [Event 2](4.2-Event2/)
 &emsp;**Event Name:** AWS Cloud Day and AI
 
+&emsp;**Time:** 09:00–17:00 (UTC+7), September 29, 2026
+
 &emsp;**Location:** Floor 26, Bitexco Financial Tower, Ho Chi Minh City
 
 &emsp;**Role:** Attendee
@@ -43,6 +45,10 @@ This section records events I attended during my internship, the topics discusse
 
 ### [Event 4](4.4-Event4/)
 &emsp;**Event Name:** Smart Plushies for Children
+
+&emsp;**Time:** 13:00–15:00 (UTC+7), October 26, 2026
+
+&emsp;**Location:** Floor 36, Bitexco Financial Tower, Ho Chi Minh City
 
 &emsp;**Activities:** Programming, sound training, and making smart plush toys as gifts for children.
 

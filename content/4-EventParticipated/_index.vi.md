@@ -24,7 +24,9 @@ Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, n�
 ### [Sự kiện 2](4.2-Event2/)
 &emsp;**Tên sự kiện:** AWS Cloud Day and AI
 
-&emsp;**Địa điểm:** Floor 26, Bitexco Financial Tower, TP. Hồ Chí Minh
+&emsp;**Thời gian:** 09:00–17:00 (UTC+7), ngày 29/09/2026
+
+&emsp;**Địa điểm:** Tầng 26, Bitexco Financial Tower, TP. Hồ Chí Minh
 
 &emsp;**Vai trò:** Người tham dự
 
@@ -43,6 +45,10 @@ Phần này ghi lại các sự kiện em tham dự trong kỳ thực tập, n�
 
 ### [Sự kiện 4](4.4-Event4/)
 &emsp;**Tên sự kiện:** Smart Plushies for Children
+
+&emsp;**Thời gian:** 13:00–15:00 (UTC+7), ngày 26/10/2026
+
+&emsp;**Địa điểm:** Tầng 36, Bitexco Financial Tower, TP. Hồ Chí Minh
 
 &emsp;**Nội dung:** Lập trình, huấn luyện âm thanh và làm gấu bông thông minh tặng trẻ em.
 
