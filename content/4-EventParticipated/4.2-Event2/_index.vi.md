@@ -9,6 +9,8 @@ pre: " <b> 4.2. </b> "
 
 **Địa điểm:** Floor 26, Bitexco Financial Tower, TP. Hồ Chí Minh.
 
+**Thời gian:** 09:00–17:00 (UTC+7), ngày 29/09/2026.
+
 **Vai trò:** Người tham dự.
 
 AWS Cloud Day and AI kết nối kiến trúc cloud, hiện đại hóa dữ liệu và Agentic AI với các bài toán doanh nghiệp. Bài thu hoạch tổng hợp tư duy kỹ thuật từ keynote cùng các nội dung tiêu biểu của chương trình, tập trung vào điều kiện để hệ thống ứng dụng AI vận hành tin cậy, có kiểm soát và tạo giá trị thực tế.

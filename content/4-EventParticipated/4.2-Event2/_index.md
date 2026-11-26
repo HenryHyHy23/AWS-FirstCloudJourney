@@ -9,6 +9,8 @@ pre: " <b> 4.2. </b> "
 
 **Location:** Floor 26, Bitexco Financial Tower, Ho Chi Minh City.
 
+**Time:** 09:00–17:00 (UTC+7), September 29, 2026.
+
 **Role:** Attendee.
 
 AWS Cloud Day and AI connected cloud architecture, data modernization, and agentic AI with practical enterprise use cases. The report brings together the keynote's engineering principles and selected program highlights, focusing on what makes an AI-enabled system reliable, governable, and useful in production.

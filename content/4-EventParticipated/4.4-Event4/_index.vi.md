@@ -7,6 +7,10 @@ pre: " <b> 4.4. </b> "
 
 # Bài thu hoạch: Smart Plushies for Children
 
+**Thời gian:** 13:00–15:00 (UTC+7), ngày 26/10/2026.
+
+**Địa điểm:** Floor 36, Bitexco Financial Tower, TP. Hồ Chí Minh.
+
 ### Mục tiêu
 
 Tham gia làm gấu bông thông minh qua hoạt động STEM, kết hợp lập trình và huấn luyện âm thanh để làm quà tặng cho trẻ em.

@@ -7,6 +7,10 @@ pre: " <b> 4.4. </b> "
 
 # Event Report: Smart Plushies for Children
 
+**Time:** 13:00–15:00 (UTC+7), October 26, 2026.
+
+**Location:** Floor 36, Bitexco Financial Tower, Ho Chi Minh City.
+
 ### Purpose
 
 Take part in a STEM activity to make smart plush toys, combining programming and sound training to create gifts for children.
