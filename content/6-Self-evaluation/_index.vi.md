@@ -5,9 +5,11 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Kỳ thực tập của tôi tại **Công ty TNHH AWS Việt Nam** diễn ra từ **08/09/2026** đến **12/12/2026**. Qua dự án **Bite to Business**, tôi có cơ hội áp dụng kiến thức về AWS và phát triển phần mềm khi làm việc cùng nhóm.
+Trong thời gian thực tập tại **Công ty TNHH AWS Việt Nam** từ **14/09/2026** đến **14/12/2026**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức được trang bị tại trường vào môi trường làm việc thực tế.
 
-Tôi trao đổi tiến độ và vướng mắc với các thành viên, cùng thảo luận phương án kỹ thuật và tiếp thu góp ý để cải thiện phần việc của mình.
+Tôi tham gia dự án **Bite to Business**, một website bán thực phẩm B2B có Generative UI sử dụng Amazon Bedrock và được triển khai trên AWS, qua đó cải thiện các kỹ năng về kiến trúc cloud trên AWS, phát triển backend và frontend, CI/CD, viết tài liệu kỹ thuật và làm việc nhóm.
+
+Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.
 
 Để phản ánh một cách khách quan quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
 

@@ -71,3 +71,8 @@ Learn about AI agents, resource sharing, and security checks on AWS.
 
 The Vietnamese AI interview demo stood out to me. My favourite part was the Kiro Crew Q&A because it got straight to tokens, memory, and agent permissions.
 
+---
+
+![Checked in at the event](/images/4-EventParticipated/4.3-Event3/check-in.png)
+
+_Checked in at the event_

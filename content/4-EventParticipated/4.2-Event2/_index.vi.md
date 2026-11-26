@@ -114,3 +114,8 @@ Diễn giả của phần keynote và 39 phiên trong chương trình, được 
 - **Xem production readiness là bài toán toàn hệ thống:** Governance dữ liệu, danh tính, chịu lỗi, observability và kiểm soát chi phí cần phối hợp với nhau.
 - **Đo kết quả nghiệp vụ:** Đánh giá nhiệm vụ hoàn thành, khôi phục tin cậy, chất lượng bàn giao và chi phí trên kết quả hữu ích, bên cạnh tốc độ viết mã.
 
+---
+
+![Đã Check in tại sự kiện](/images/4-EventParticipated/4.2-Event2/check-in.png)
+
+_Đã Check in tại sự kiện_

@@ -26,3 +26,8 @@ Take part in a STEM activity to make smart plush toys, combining programming and
 
 This activity combined hands-on STEM work with making something to give to children.
 
+---
+
+![Checked in at the event](/images/4-EventParticipated/4.4-Event4/check-in.png)
+
+_Checked in at the event_

@@ -1,5 +1,5 @@
 ---
-title: "Worklog Tuần 10"
+title: "Báo cáo công việc Tuần 10"
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -11,12 +11,13 @@ pre: " <b> 1.10. </b> "
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc             | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| Ngày | Công việc             | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------------------- | ------------ | --------------- | -------------- |
-| 2   | - Làm Project cuối kì | 10/11/2025   | 10/11/2025      |                |
-| 3   | - Làm Project cuối kì | 11/11/2025   | 11/11/2025      |                |
-| 4   | - Làm Project cuối kì | 12/11/2025   | 12/11/2025      |                |
-| 5   | - Làm Project cuối kì | 13/11/2025   | 13/11/2025      |                |
-| 6   | - Làm Project cuối kì | 14/11/2025   | 14/11/2025      |                |
+| 1   | - Làm Project cuối kì | 16/11/2026   | 16/11/2026      |                |
+| 2   | - Làm Project cuối kì | 17/11/2026   | 17/11/2026      |                |
+| 3   | - Làm Project cuối kì | 18/11/2026   | 18/11/2026      |                |
+| 4   | - Làm Project cuối kì | 19/11/2026   | 19/11/2026      |                |
+| 5   | - Làm Project cuối kì | 20/11/2026   | 20/11/2026      |                |
+| 6   | - Làm Project cuối kì | 21/11/2026 | 21/11/2026 | |
 
 ### Kết quả đạt được tuần 10:

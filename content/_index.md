@@ -18,13 +18,13 @@ chapter: false
 
 &emsp; **Major:** Software Engineering
 
-&emsp; **Class:** AWS092026
+&emsp; **Class:** FoodieGUI
 
 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
-&emsp; **Internship Duration:** From 08/09/2026 to 12/12/2026
+&emsp; **Internship Duration:** From 14/09/2026 to 14/12/2026
 
 ![My profile picture](/images/avatar.jpg)
 

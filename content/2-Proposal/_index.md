@@ -7,160 +7,179 @@ pre: " <b> 2. </b> "
 
 # Bite to Business
 
-### 1. Project Summary
+### 1. Executive Summary
 
-**Bite to Business** is a project to build a food sales website, focusing on business customers such as restaurants, hotels, and catering providers while also supporting individuals and households. The system supports the workflow from browsing products and creating a Quote, through backend validation of prices, promotions, VAT, delivery fees, and inventory, the customer confirming the final quote, QR payment through SePay, to preparation and delivery.
+Our team is building **Bite to Business** as part of the AWS First Cloud Journey internship program: a food e-commerce website for business customers (restaurants, hotels, catering) and individuals. It supports the flow of browsing products → creating a quote → customer confirmation → QR payment through SePay → delivery.
 
-Its key feature is **Generative UI**, which adapts the interface to each user's intent, preferences, and purchasing context. The backend calls **Amazon Bedrock** with the **Amazon Nova Pro** model to recommend products and generate JSON UI configurations using a component library built by the team; **Amazon Bedrock Guardrails** checks user input sent to the AI. React renders validated configurations, while the backend manages authorization, pricing, inventory, and transactions.
-
-The application uses **React/TypeScript**, **Spring Boot (Java 21)**, and **Supabase PostgreSQL**, and has been deployed on **AWS** in the Singapore Region (`ap-southeast-1`). The project aims to simplify purchasing, support coordination between sales, warehouse, and delivery teams, and evaluate the effectiveness of personalized interfaces.
+Its key feature is **Generative UI**: the interface adapts to each customer's intent and habits. The backend calls **Amazon Bedrock (Amazon Nova Pro)**, uses **Bedrock Guardrails** to check content, and generates **A2UI** interfaces from the team's component catalog. The application uses React, Spring Boot, and Supabase PostgreSQL, runs on **AWS** in Singapore (`ap-southeast-1`), and is deployed automatically with GitHub Actions.
 
 ### 2. Problem Statement
 
 #### What is the problem?
 
-In B2B food purchasing, customers may need to discover ingredients, compare quantity-based prices, reorder familiar products, or allocate items across delivery addresses. Each task requires different information and interactions to take priority.
+B2B buyers have different tasks: finding ingredients, comparing quantity-based prices, reordering familiar products, or splitting items across delivery addresses.
 
-- **A fixed interface may not fit each purchasing need:** A shared layout can require repeated searches, filtering, and page navigation, even when buyers can clearly express their goals.
-- **Changing interfaces can lose task context:** Selected products, quantities, sales units, Quotes, and delivery groups need to remain consistent as customers ask follow-up questions or switch layouts.
-- **Generated interfaces need correct data and workflows:** Quantity changes can affect price tiers, totals, and availability. The UI needs current backend data and actions appropriate to the user's permissions and order status.
-- **Slow or failed responses can interrupt purchasing:** An outdated response can overwrite newer interactions, while interrupted UI generation can lose progress or leave stale information on screen.
-
-The challenge for **Bite to Business** is to adapt the interface to each user's intent and context while preserving purchasing continuity and valid transactions.
+- **A fixed interface** forces buyers to search, filter, and switch pages repeatedly.
+- **AI-generated interfaces** must show correct data, respect permissions, and keep context when the customer changes the request.
+- **Slow or failed AI responses** must not interrupt purchasing.
 
 #### The Solution
 
-**Bite to Business** integrates **Generative UI** through **Amazon Bedrock (Amazon Nova Pro)**. The solution includes:
+- **Personalized interface:** The AI picks layouts from the component catalog, such as a table for bulk purchases or a reorder list for returning customers. A habit profile is built from customer interactions.
+- **Two-layer validation:** The backend validates A2UI messages before sending them; the frontend only renders components in the catalog.
+- **Backend-controlled transactions:** Prices, promotions, VAT, inventory, and permissions are always checked by the backend. After confirmation, stock is held for up to 6 hours, and payment is updated only after a valid SePay webhook.
+- **Fallback when AI fails:** Return to the base UI and keep drafts so customers can continue.
 
-- **Task-based personalization:** The backend supplies relevant context and preferences; AI proposes layouts using the team's component catalog. For example, it can prioritize a table for bulk purchasing or a reorder list for returning customers.
-- **A validated A2UI runtime:** Receive JSON messages using the selected protocol version, validate schemas, components, data bindings, and permitted actions, then render them through the website's React component library.
-- **Continuous interaction context:** Send product identifiers, quantities, the Quote, and the state revision with each action to the backend. Apply results that remain relevant to the current task and preserve valid selections across layout changes.
-- **Backend-controlled transactions:** Validate pricing, promotions, VAT, delivery fees, inventory, and authorization on the backend. When the customer confirms the final quote, the system creates an Order, holds stock for up to six hours, and offers QR payment through SePay; payment status changes only after a valid SePay webhook.
-- **Fallback when AI fails:** Retain valid interface elements or return to the base UI, preserve drafts where possible, and explain the current state so users can continue.
+#### Business Functions by Role
 
-Effectiveness will be compared with the fixed interface using task completion rate and time, interaction count, rendering and data-binding correctness, and recovery from failures.
+| Role | Main functions |
+| --- | --- |
+| **Customer** | Register (approved by Admin), create quotes, use coupons, split packages across delivery addresses, confirm and pay by QR, track orders, reorder, request new products, return packages within 24 hours, request refunds, review products, use the AI assistant |
+| **E-commerce Executive** | Manage products, categories, brands, prices, and VAT; create promotions and coupons; monitor quotes; moderate reviews; handle refunds; view the business dashboard |
+| **Logistics Staff** | Receive stock, adjust inventory, manage warehouse products and distributors, respond to customers' new product requests |
+| **Delivery Staff** | Set availability, claim packages to deliver, view delivery routes on the map, confirm delivery |
+| **Admin** | Approve customer registrations, create staff accounts, resolve SePay transactions that need reconciliation, handle package returns, monitor the system |
+
+#### Benefits and Return on Investment
+
+- **Faster purchasing:** Customers say what they need, and the interface arranges the right information instead of making them search and filter.
+- **Correct data:** Prices, inventory, and order status come from the backend; the AI never invents numbers.
+- **One connected workflow:** Quotes, payment, warehouse, and delivery run on one system for 5 roles.
+- **Controlled cost:** About 85 USD per month for infrastructure at MVP scale, with AI call limits and budget alerts.
+- **Safe operations:** WAF, Secrets Manager, CI/CD without long-lived access keys, and email alerts when something goes wrong.
+- **Scalability:** ECS scales between 1 and 3 tasks; event-driven notifications make new notification types easy to add.
 
 ### 3. Solution Architecture
 
-The system runs on AWS in the Singapore Region (`ap-southeast-1`); edge resources (CloudFront, its ACM certificate, and its Web ACL) are in `us-east-1` as CloudFront requires. The status below is current as of November 2026.
+![AWS architecture diagram for Bite to Business](/images/2-Proposal/BTB-AWS-Architecture-Page-1.drawio.png)
 
-| Component | Service / configuration | Status |
-| --- | --- | --- |
-| **Domain and HTTPS** | Route 53 manages the hosted zone; AWS Certificate Manager issues HTTPS certificates. | Deployed |
-| **Single entry point** | All user traffic enters through CloudFront: `/*` → React/Vite build in a private S3 bucket (Origin Access Control; a CloudFront Function rewrites SPA routes to `index.html`); `/api/*` → Internet Gateway → ALB with caching disabled, all viewer headers and cookies forwarded, and a 60-second origin timeout for AI streaming. The frontend and API share one domain, so no CORS is needed. | Deployed |
-| **Protection** | AWS WAF with 2 Web ACLs. **CloudFront:** 5 per-IP rate-limit rules on `/api/*` (API 2,000, AI 30, login 30, OTP verify/resend 10 requests per 5 minutes, returning 429) plus the IP reputation and known-bad-inputs managed groups in Block; the common rule set and Anti-DDoS group stay in Count while logs are reviewed. There is no country or VPN blocking, so international and VPN users are served. **ALB:** accepts only requests carrying a secret header added by CloudFront, plus the rate-limited SePay webhook path, so the ALB cannot be called directly. | Deployed |
-| **Load balancer** | Application Load Balancer (HTTPS only, `/api/health` health check) behind CloudFront; access logs are stored in S3 (30-day lifecycle) and queried with Amazon Athena. | Deployed |
-| **Backend** | Spring Boot on ECS Fargate, 0.5 vCPU / 2 GB per task; Application Auto Scaling keeps 1–3 tasks with a 60% CPU target. | Deployed |
-| **Networking** | VPC across 2 AZs with an Internet Gateway; tasks run in public subnets with public IPs, and the security group only allows inbound traffic from the ALB; no NAT Gateway. S3 Gateway Endpoint and VPC Flow Logs. | Deployed |
-| **Data and authentication** | Supabase PostgreSQL (schema managed by Flyway); Supabase Auth issues JWTs validated by Spring Security; refresh tokens stored in an HttpOnly cookie. | Deployed |
-| **AI** | The backend calls Amazon Bedrock (Converse API) with Amazon Nova Pro through the APAC cross-region inference profile; Bedrock Guardrails checks content; AI calls are limited per user. The `/api/ai/agent` endpoint streams results (SSE). | Deployed |
-| **Event bus and notifications** | The backend writes domain events (`order.*`, `payment.*`) to an outbox table in the same transaction; a relay publishes them to the Amazon EventBridge bus `btb-events`. A rule routes customer events to Amazon SQS (`btb-customer-events`); a Lambda function reads the queue, stores web notifications, and sends emails through the Amazon SES API. Failed deliveries are retried and then moved to a DLQ; the Lambda function deduplicates by event ID. | Deployed |
-| **More notification consumers** | New rules on the same bus: staff notifications (out-of-stock alerts for logistics, new product requests for e-commerce and admin) and marketing emails (flash sales and Black Friday for opted-in customers, scheduled with EventBridge Scheduler), each with its own SQS queue and Lambda function. | Planned |
-| **Email** | Amazon SES with a verified domain: Lambda sends through the SES API, and the backend sends through SES SMTP. | Deployed |
-| **Secrets and IAM** | Secrets Manager stores the DB password and integration keys and injects them into the container; IAM separates the task role, Lambda role, GitHub OIDC provider, and SMTP user. | Deployed |
-| **Monitoring and alerts** | CloudWatch Logs and Alarms; alarms notify the team by email through Amazon SNS; CloudWatch RUM measures frontend performance (a Cognito Identity Pool is used only so RUM can send data, not for sign-in); AWS Budgets tracks monthly cost. | Deployed |
-| **CI/CD** | GitHub Actions uses OIDC to obtain temporary AWS credentials: the backend builds an image → ECR → updates the ECS service; the frontend builds → syncs to S3 → invalidates CloudFront. | Deployed |
-| **Generative UI** | `@a2ui/react` and `@json-render` have been added to the FE; the component catalog and renderer are being built. | In development |
-| **Outside AWS** | Supabase (PostgreSQL + Auth), Cloudinary (images), SePay (QR bank transfer + webhook), Vietmap (maps, delivery routes), GitHub Actions. | Integrated |
+**Request flow:** User → CloudFront (+ WAF) → S3 (web) or `/api/*` → ALB (+ WAF) → ECS Fargate. Only the SePay webhook goes directly to the ALB.
 
-**Request flow:** User → CloudFront (+ WAF) → `/*` S3 (web) or `/api/*` → Internet Gateway → ALB (+ WAF) → ECS. The only direct path to the ALB is the SePay payment webhook.
+#### AWS Services Used
 
-**Generate UI flow:** Request and context → backend authentication and permission-scoped data retrieval → Guardrails content check → Bedrock (Nova Pro) UI proposal → backend validation and A2UI conversion → streaming to the FE → runtime validation and React rendering.
+- **Amazon Route 53:** Manages the domain.
+- **AWS Certificate Manager:** Issues HTTPS certificates.
+- **Amazon CloudFront:** Single entry point for the web and API; delivers the frontend.
+- **AWS WAF:** Filters bad requests and rate-limits login, OTP, AI, and the API.
+- **Amazon S3:** Stores the frontend build and ALB logs.
+- **Elastic Load Balancing (ALB):** Routes API requests to the backend.
+- **Amazon ECS (Fargate) + Application Auto Scaling:** Runs the Spring Boot backend and scales between 1 and 3 tasks.
+- **Amazon ECR:** Stores the backend Docker image.
+- **Amazon VPC:** Network across 2 AZs, S3 Gateway Endpoint, VPC Flow Logs.
+- **AWS Secrets Manager:** Stores the database password and integration keys.
+- **AWS IAM:** Least-privilege access for tasks, Lambda, and GitHub Actions (OIDC).
+- **Amazon Bedrock:** Nova Pro model and Guardrails for Generative UI.
+- **Amazon EventBridge, Amazon SQS, AWS Lambda:** Process business events and asynchronous notifications.
+- **Amazon SES:** Sends emails to customers and staff.
+- **Amazon CloudWatch:** Logs, alarms, RUM, and metrics for the Admin dashboard.
+- **Amazon Cognito:** Identity Pool so CloudWatch RUM can send data.
+- **Amazon SNS:** Sends system alerts by email.
+- **Amazon Athena:** Queries ALB logs.
+- **AWS Budgets:** Tracks monthly cost.
 
-Actions return to the backend for authorization, pricing, inventory, and transaction checks. The runtime preserves context, rejects outdated responses, and falls back to the base UI when AI fails.
+Outside AWS: Supabase (PostgreSQL + Auth), SePay (payments), Cloudinary (images), Vietmap (maps), GitHub Actions (CI/CD).
+
+#### Component Design
+
+- **Access and protection layer:** Route 53, CloudFront, WAF, and ACM receive every request and block bad traffic.
+- **Frontend layer:** React served from S3 through CloudFront, including the base UI, the AI assistant, and the A2UI runtime.
+- **Application layer:** Spring Boot on ECS Fargate behind the ALB, handling business logic, authorization, and AI orchestration.
+- **AI layer:** Bedrock (Nova Pro) and Guardrails, with business tools and the A2UI validator.
+- **Data layer:** Supabase PostgreSQL and Supabase Auth.
+- **Event and notification layer:** Outbox → EventBridge/SQS → Lambda → SES and web notifications.
+- **Monitoring layer:** CloudWatch, SNS, Athena, Budgets, and the Admin monitoring dashboard.
+
+#### AI Pipeline
+
+1. **Authentication and quota:** Only signed-in Customers can use AI, up to 20 requests per hour.
+2. **Guardrails:** Bedrock Guardrails checks the customer's message; blocked content gets a refusal and the model is not called.
+3. **Intent detection:** Nova Pro identifies what the customer wants (search, compare, reorder…) and extracts the needed details.
+4. **Real data:** The backend calls the product search, page data, or reorder tool, together with the customer's habit profile. Prices and stock are bound into the UI by the backend; the model only sees names and result counts.
+5. **UI generation:** Nova Pro builds an A2UI layout from the component catalog.
+6. **Validation:** The backend checks components, properties, and allowed actions, and does not let the model write money amounts. If validation fails, it retries once, then falls back to a default layout.
+7. **Rendering:** The result is streamed (SSE) to the frontend and rendered with registered components. Out-of-scope questions get a text answer.
 
 ### 4. Technical Implementation
 
-#### Technology Stack
+#### Implementation Phases
+
+1. **Requirements and database** – Completed
+2. **UI design and repository** – Completed
+3. **API, interface, and role-based access** – Completed
+4. **AWS infrastructure and CI/CD** – Completed
+5. **SePay, Vietmap, Cloudinary, Bedrock, and Generative UI integration** – Completed
+6. **Testing, cost optimization, and Generative UI evaluation** – In progress
+
+#### Technical Requirements
 
 | Category | Technologies |
 | --- | --- |
-| **Frontend** | React 19, TypeScript, Vite, Tailwind CSS, React Router |
-| **State and API data** | TanStack Query, Zustand, Axios |
-| **Forms and validation** | React Hook Form, Zod |
-| **Backend** | Java 21, Spring Boot 4.1, Spring Security (OAuth2 Resource Server), Spring Data JPA/Hibernate |
-| **Database / Migration** | Supabase PostgreSQL, Flyway |
-| **Authentication** | Supabase Auth, JWT, refresh token in an HttpOnly cookie |
-| **Generative UI** | A2UI, json-render, JSON Schema, React component catalog and runtime (in development) |
-| **AI** | Amazon Bedrock (Converse API), Amazon Nova Pro, Bedrock Guardrails |
-| **Edge and security** | Route 53, CloudFront (+ CloudFront Functions), AWS Certificate Manager, AWS WAF, IAM, Secrets Manager |
-| **Compute and networking** | ECS Fargate, Application Auto Scaling, ALB, ECR, VPC (Internet Gateway, S3 Gateway Endpoint) |
-| **Event-driven and email** | Amazon EventBridge, Amazon SQS (with DLQ), AWS Lambda, Amazon SES |
-| **Monitoring and cost** | CloudWatch Logs, Alarms, RUM; Amazon SNS; VPC Flow Logs; Amazon Athena; AWS Budgets |
+| **Frontend** | React 19, TypeScript, Vite, Tailwind CSS, TanStack Query, Zustand, i18next (Vietnamese/English) |
+| **Backend** | Java 21, Spring Boot 4.1, Spring Security, JPA, Flyway |
+| **Data and authentication** | Supabase PostgreSQL, Supabase Auth (JWT) |
+| **AI and Generative UI** | Amazon Bedrock (Nova Pro), Bedrock Guardrails, A2UI |
+| **AWS infrastructure** | Route 53, CloudFront, ACM, WAF, S3, ALB, ECS Fargate, ECR, Secrets Manager |
+| **Events and email** | EventBridge, SQS, Lambda, SES |
+| **Monitoring** | CloudWatch (Logs, Alarms, RUM), SNS, Athena, AWS Budgets |
 | **CI/CD** | Docker, GitHub Actions + OIDC |
-| **External integrations** | Supabase, SePay, Cloudinary, Vietmap |
-| **Localization** | i18next, react-i18next |
+| **External integrations** | SePay, Cloudinary, Vietmap |
 
-#### Development Phases
+### 5. Timeline & Milestones
 
-1. **Requirements and database:** Write requirements, define business workflows, and design the schema and create the database on Supabase PostgreSQL. *(Completed)*
-2. **UI design and repository:** Design the interface in Figma; create the GitHub repository and frontend/backend project structure. *(Completed)*
-3. **Development and authentication:** Implement the interface and APIs, build authentication with Supabase Auth, and enforce role-based access. *(Core features completed)*
-4. **AWS setup and deployment:** Build the VPC, ALB, ECS Fargate with auto scaling, S3/CloudFront, WAF, Route 53, SES, EventBridge/SQS/Lambda, and the GitHub Actions + OIDC pipeline; move the API behind CloudFront as a single entry point. *(Completed)*
-5. **Service integration:** SePay, Vietmap, Cloudinary, Bedrock/Nova Pro + Guardrails; finish the A2UI runtime. *(Generative UI in progress)*
-6. **UX/UI, performance, and cost optimization:** Monitor RUM, ALB logs through Athena, alarms, and Budgets; tune task size, auto scaling, and WAF rules. *(In progress)*
-
-### 5. Budget Estimation (AWS Cost)
-
-Prices come from the AWS Price List for the Singapore Region (`ap-southeast-1`), November 2026; one month is 730 hours. The table reflects the running configuration and excludes taxes and services outside AWS (Supabase, Cloudinary, Vietmap, SePay).
-
-| Service | Pricing | 1 task (usual) | 3 tasks (maximum) |
-| --- | --- | --- | --- |
-| **ECS Fargate** (0.5 vCPU / 2 GB per task) | 0.05056 USD per vCPU-hour + 0.00553 USD per GB-hour ≈ 26.5 USD per task | ~ 26.5 USD | ~ 79.6 USD |
-| **Application Load Balancer** | 0.0252 USD per hour + 0.008 USD per LCU-hour (assuming 1 LCU) | ~ 24.2 USD | ~ 24.2 USD |
-| **Public IPv4** | 0.005 USD per hour per address (2 for the ALB + 1 per task) | ~ 11.0 USD | ~ 18.3 USD |
-| **AWS WAF** | 5 USD per Web ACL × 2 + 1 USD per rule or managed group (9 on CloudFront + 2 on the ALB) + 0.60 USD per million requests | ~ 21 USD | ~ 21 USD |
-| **Secrets Manager** | 0.40 USD per secret (1 JSON secret) | ~ 0.4 USD | ~ 0.4 USD |
-| **S3, CloudFront, Route 53, ECR, CloudWatch, Athena, SNS, EventBridge** | Based on storage, traffic, requests, log volume, data scanned, and events; small at MVP scale | a few USD | a few USD |
-| **Infrastructure total (excluding AI)** | | **~ 85 USD** | **~ 145 USD** |
-
-Removing the NAT Gateway saves about 43 USD per month in hourly charges (0.059 USD per hour × 730 hours), plus 0.059 USD for every GB that would have passed through it.
-
-**AI cost (Amazon Nova Pro, Singapore):** 0.00108 USD per 1,000 input tokens and 0.00432 USD per 1,000 output tokens. Assuming 3,000 input tokens and 800 output tokens per call: 3 × 0.00108 + 0.8 × 0.00432 ≈ 0.0067 USD. Guardrails is charged separately based on the amount of text checked.
-
-| Scale | AI calls / month | Model cost / month |
+| Period | Activities | Deliverables |
 | --- | --- | --- |
-| MVP / demo | 1,000 | ~ 6.7 USD |
-| Medium | 10,000 | ~ 67 USD |
-| High | 100,000 | ~ 670 USD |
+| **Sep 18–23** | Finalize the idea, write requirements, create repositories | Frontend/backend repositories, requirements document |
+| **Sep 25–Oct 7** | Design the database and interface | Schema and first Flyway migration, Figma design |
+| **Oct 9–21** | Build business APIs, sign-in, and delivery; try Bedrock and A2UI | Core APIs for each role, Supabase Auth authentication |
+| **Oct 23–28** | Quotes, orders, SePay payment | Working quote → QR payment flow |
+| **Oct 30–Nov 4** | Localization, Docker packaging | Vietnamese/English UI, backend Docker image |
+| **Nov 6–11** | AWS deployment and CI/CD; notifications through SQS, Lambda, SES | Website running on AWS, GitHub Actions pipeline, CloudWatch RUM |
+| **Nov 13–18** | Finish Generative UI, SePay reconciliation, monitoring dashboard, put the API behind CloudFront | AI assistant and AI-built pages, UI habit profile |
+| **From Nov 20** | Testing, Generative UI evaluation, documentation, and workshop | Comparison results, deployment guide, demo |
 
-At MVP scale, the SQS → Lambda → SES notification flow mostly stays within the SQS and Lambda free tiers; SES costs 0.10 USD per 1,000 emails on pay-as-you-go pricing (since July 21, 2026, new accounts default to the Essentials plan at 0.16 USD per 1,000 emails).
+### 6. Budget Estimation
 
-**Optimization options:**
+Singapore Region prices, November 2026, excluding taxes and services outside AWS.
 
-- Measure real CPU and memory usage to tune the task size and auto scaling threshold.
-- ALB logs expire after 30 days and CloudWatch Logs keep 14 days (both in place).
-- Use AWS Budgets (already in place) and the per-user AI call limit (already in the backend).
+| Service | 1 task | 3 tasks (maximum) |
+| --- | --- | --- |
+| ECS Fargate (0.5 vCPU / 2 GB per task) | ~ 26.5 USD | ~ 79.6 USD |
+| Application Load Balancer | ~ 24.2 USD | ~ 24.2 USD |
+| Public IPv4 | ~ 11.0 USD | ~ 18.3 USD |
+| AWS WAF | ~ 21 USD | ~ 21 USD |
+| Other services (S3, CloudFront, Route 53, CloudWatch, Secrets Manager…) | a few USD | a few USD |
+| **Infrastructure total / month** | **~ 85 USD** | **~ 145 USD** |
 
-### 6. Risk Assessment
+**AI cost (Nova Pro):** about 0.0067 USD per call (assuming 3,000 input and 800 output tokens), or about 6.7 USD for 1,000 calls and 67 USD for 10,000 calls per month.
 
-#### Security & Privacy Risks (High)
+### 7. Risk Assessment
 
-- **Issue:** Business customer data (contacts, delivery addresses, orders) and payment transactions; risk of spoofed webhooks or prompt injection into the AI.
-- **Mitigation:**
-  - All traffic enters through CloudFront; the ALB only accepts requests carrying the CloudFront secret header (plus the SePay webhook), and ECS tasks only accept traffic from the ALB security group.
-  - Per-IP rate limits protect login, OTP, AI, and the API; the IP reputation and known-bad-inputs rules block known attackers. The common rule set stays in Count until logs confirm it does not block real API requests.
-  - Secrets live in Secrets Manager, not in the image or source code; CI/CD uses OIDC instead of long-lived access keys.
-  - Verify the SePay webhook key and the amount before updating an order.
-  - The AI only receives data within the user's permissions; prices, inventory, and order status always come from the backend; Bedrock Guardrails filters input content.
+#### Risk Matrix
 
-#### Cost Risk (Medium)
+| Risk | Level | Description |
+| --- | --- | --- |
+| **Data security** | High | Customer data leaks, spoofed payment webhooks, prompt injection into the AI |
+| **Cost overruns** | Medium | AI abuse or attacks increase tasks and model calls |
+| **AI disruption** | Medium | Slow model, stream cut after 60 seconds of silence, malformed AI output |
+| **External dependencies** | Medium | Outages at Supabase, SePay, Vietmap, or Cloudinary |
 
-- **Issue:** Fixed costs of the ALB, WAF, and public IPv4 addresses; auto scaling adding tasks during an attack; abuse of AI features.
-- **Mitigation:** A maximum of 3 tasks, WAF blocking bad requests, per-user AI call limits, AWS Budgets, and alarms through SNS.
+#### Mitigation Strategies
 
-#### Architecture and Operations Risks
+- **Security:** All traffic goes through CloudFront and WAF; the ALB only accepts requests from CloudFront; secrets live in Secrets Manager; the SePay webhook is verified; the AI only receives permission-scoped data and is checked by Guardrails.
+- **Cost:** A maximum of 3 tasks, 20 AI requests per hour per customer, AWS Budgets, and alarms through SNS.
+- **AI disruption:** Heartbeats in the stream, A2UI validation with one retry, and fallback to the base UI.
+- **External services:** Timeouts, retries, scheduled payment reconciliation, and clear error messages for users.
 
-- **Tasks in public subnets:** No NAT is needed, but each task has a public IP; every port must be locked down by the security group, with nothing open except the application port for the ALB.
-- **AI streaming through CloudFront and the ALB:** CloudFront waits up to 60 seconds for the origin and the ALB closes connections that stay idle for 60 seconds; compression is disabled for `/api/*`, and the SSE stream should send periodic heartbeats so long model calls are not cut off.
-- **Secret header rotation:** The CloudFront → ALB header value must match in both places; rotating it means updating the CloudFront origin and the ALB WAF rule together.
-- **Dependencies outside AWS:** Supabase, SePay, Vietmap, and Cloudinary run outside AWS; timeouts, retries, and clear error messages are needed.
-- **Secret changes:** Secrets are injected when the container starts; changing a secret requires redeploying the ECS service.
-- **Duplicate emails:** EventBridge and SQS deliver at least once; the Lambda function records processed events to avoid sending duplicate emails.
+### 8. Expected Outcomes
 
-### 7. Expected Outcomes
+#### Technical Improvements
 
-- A B2B food e-commerce website running on AWS that supports the full quote → confirmation → QR payment → delivery workflow, with event-driven web and email notifications that can be extended to staff and marketing notifications.
-- A Generative UI that adapts to buyer intent, with validation and a safe fallback to the base UI.
-- Comparison data between the fixed and personalized interfaces: task completion time, interaction count, and rendering error rate.
-- Infrastructure with auto scaling, automated CI/CD, centralized secrets management, monitoring and cost alerts, and a clear cost estimate for optimization after the MVP.
+- **Personalized interface:** Generative UI adapts to each customer's intent and habits, with a safe fallback.
+- **Complete workflow:** Quote → payment → warehouse → delivery on one system, with web and email notifications.
+- **Automated operations:** CI/CD, auto scaling, monitoring, and cost alerts.
+
+#### Long-term Value
+
+- **Evaluation data:** Comparison of the fixed and personalized interfaces (task completion time, interaction count, error rate).
+- **Extensible platform:** New AI tools, notification types, and roles are easy to add.
+- **Team knowledge:** Hands-on experience with Bedrock, ECS, CloudFront, WAF, and event-driven architecture on AWS.

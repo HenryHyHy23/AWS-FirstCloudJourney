@@ -1,5 +1,5 @@
 ---
-title: "Week 10 Worklog"
+title: "Week 10 Work Report"
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -13,10 +13,11 @@ pre: " <b> 1.10. </b> "
 
 | Day | Task                    | Start Date | Completion Date | Resources |
 | --- | ----------------------- | ---------- | --------------- | --------- |
-| 2   | - Work on Final Project | 10/11/2025 | 10/11/2025      |           |
-| 3   | - Work on Final Project | 11/11/2025 | 11/11/2025      |           |
-| 4   | - Work on Final Project | 12/11/2025 | 12/11/2025      |           |
-| 5   | - Work on Final Project | 13/11/2025 | 13/11/2025      |           |
-| 6   | - Work on Final Project | 14/11/2025 | 14/11/2025      |           |
+| 1   | - Work on Final Project | 16/11/2026 | 16/11/2026      |           |
+| 2   | - Work on Final Project | 17/11/2026 | 17/11/2026      |           |
+| 3   | - Work on Final Project | 18/11/2026 | 18/11/2026      |           |
+| 4   | - Work on Final Project | 19/11/2026 | 19/11/2026      |           |
+| 5   | - Work on Final Project | 20/11/2026 | 20/11/2026      |           |
+| 6   | - Work on Final Project | 21/11/2026 | 21/11/2026 | |
 
 ### Week 10 Achievements:

@@ -18,13 +18,13 @@ chapter: false
 
 &emsp; **Ngành:** Kỹ Thuật Phần Mềm
 
-&emsp; **Lớp:** AWS092025
+&emsp; **Lớp:** FoodieGUI
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Vietnam
 
 &emsp; **Vị trí thực tập:** Thực tập sinh FCJ Cloud
 
-&emsp; **Thời gian thực tập:** Từ ngày 08/09/2025 đến ngày 12/12/2025
+&emsp; **Thời gian thực tập:** Từ ngày 14/09/2026 đến ngày 14/12/2026
 
 ![Ảnh đại diện của tôi](/images/avatar.jpg)
 

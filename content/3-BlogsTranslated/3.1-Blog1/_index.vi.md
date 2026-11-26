@@ -78,6 +78,10 @@ Theo mình, kết hợp những dịch vụ này giúp chia rõ vai trò: Bedroc
 
 Theo mình, Generative UI mở ra cơ hội tạo ra những giao diện linh hoạt và bớt nhàm chán hơn. Điều quan trọng là AI phải hỗ trợ đúng nhu cầu của người dùng, còn ứng dụng vẫn kiểm soát dữ liệu và hành động.
 
+![Kiến trúc Generative UI với Amazon Bedrock và A2UI](/images/3-BlogsTranslated/3.1-Blog1/architecture.png)
+
+_Kiến trúc Generative UI với Amazon Bedrock và A2UI_
+
 **Nguồn tham khảo:**
 
 - [Amazon Bedrock là gì?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)

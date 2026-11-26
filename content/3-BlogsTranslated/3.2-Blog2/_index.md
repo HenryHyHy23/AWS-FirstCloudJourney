@@ -50,6 +50,10 @@ I think of **Amazon Bedrock** as a way to access AI models, while **AgentCore** 
 
 I find agents useful when a request requires multiple steps or sources. The key is choosing the right level of complexity, testing results, and controlling access from the beginning.
 
+![AI agent architecture with Amazon Bedrock AgentCore](/images/3-BlogsTranslated/3.2-Blog2/architecture.png)
+
+_AI agent architecture with Amazon Bedrock AgentCore_
+
 **References:**
 
 - [Original AWS post on Deep Agents and AgentCore](https://aws.amazon.com/blogs/machine-learning/running-deep-research-ai-agents-on-amazon-bedrock-agentcore/)

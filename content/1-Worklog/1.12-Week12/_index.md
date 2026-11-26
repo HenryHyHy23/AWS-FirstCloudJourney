@@ -1,5 +1,5 @@
 ---
-title: "Week 12 Worklog"
+title: "Week 12 Work Report"
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
@@ -15,6 +15,8 @@ pre: " <b> 1.12. </b> "
 
 | Day | Task                    | Start Date | Completion Date | Resources |
 | --- | ----------------------- | ---------- | --------------- | --------- |
-| 1 | - Prepare for the Coursera exam. <br> - Finish the final project and workshop for submission. | 30/11/2026 | | |
+| 1 | - Prepare for the Coursera exam. <br> - Finish the final project. <br> - Complete the entire workshop and all attached documents for submission. | 30/11/2026 | 30/11/2026 | |
 
 ### Week 12 Achievements:
+
+- Completed the entire workshop and all attached documents, submitted on November 30, 2026.

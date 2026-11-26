@@ -78,6 +78,10 @@ I think these services offer a clear separation of responsibilities: Bedrock han
 
 I think Generative UI opens up opportunities for more flexible and engaging interfaces. The key is to let AI support user needs while the application remains in control of data and actions.
 
+![Generative UI architecture with Amazon Bedrock and A2UI](/images/3-BlogsTranslated/3.1-Blog1/architecture.png)
+
+_Generative UI architecture with Amazon Bedrock and A2UI_
+
 **References:**
 
 - [What is Amazon Bedrock?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)

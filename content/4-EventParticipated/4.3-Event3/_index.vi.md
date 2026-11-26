@@ -71,3 +71,8 @@ Tìm hiểu AI agent, chia sẻ tài nguyên và kiểm tra bảo mật trên AW
 
 Mình ấn tượng với demo AI phỏng vấn bằng tiếng Việt. Phần mình thích nhất là Q&A của Kiro Crew vì nói thẳng vào chuyện token, memory và quyền của agent.
 
+---
+
+![Đã Check in tại sự kiện](/images/4-EventParticipated/4.3-Event3/check-in.png)
+
+_Đã Check in tại sự kiện_

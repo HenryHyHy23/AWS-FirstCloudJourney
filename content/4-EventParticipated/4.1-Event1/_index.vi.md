@@ -82,3 +82,8 @@ Buổi trao đổi có góc nhìn từ bài toán phát triển phần mềm, �
 - [AWS: xác nhận trước khi thực hiện hành động](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-userconfirmation.html)
 - [AWS: AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html)
 
+---
+
+![Đã Check in tại sự kiện](/images/4-EventParticipated/4.1-Event1/check-in.png)
+
+_Đã Check in tại sự kiện_

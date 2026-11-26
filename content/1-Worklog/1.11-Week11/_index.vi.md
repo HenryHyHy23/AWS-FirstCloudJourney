@@ -1,5 +1,5 @@
 ---
-title: "Worklog Tuần 11"
+title: "Báo cáo công việc Tuần 11"
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
@@ -12,7 +12,7 @@ pre: " <b> 1.11. </b> "
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc                                              | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| Ngày | Công việc                                              | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | ------------------------------------------------------ | ------------ | --------------- | -------------- |
 | 1 | - Ôn thi Coursera. <br> - Tiếp tục làm final project. | 23/11/2026 | | |
 | 2 | - Ôn thi Coursera. <br> - Tiếp tục làm final project. | 24/11/2026 | | |

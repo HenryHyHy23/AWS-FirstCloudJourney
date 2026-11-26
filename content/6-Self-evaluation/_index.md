@@ -5,9 +5,11 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-My internship at **Amazon Web Services Vietnam Co., Ltd.** runs from **08/09/2026** to **12/12/2026**. Through the **Bite to Business** project, I have applied what I learned about AWS and software development to a team project.
+During my internship at **Amazon Web Services Vietnam Co., Ltd.** from **14/09/2026** to **14/12/2026**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.
 
-I shared progress and blockers with teammates, discussed technical decisions, and used their feedback to improve my work.
+I participated in the **Bite to Business** project, a B2B food e-commerce website with Generative UI powered by Amazon Bedrock and deployed on AWS, through which I improved my skills in AWS cloud architecture, backend and frontend development, CI/CD, technical writing, and teamwork.
+
+In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
 
 To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
 
