@@ -11,7 +11,7 @@ pre: "<b> 5.8.1. </b> "
    - Log class — Standard
    - Retention — ảnh chọn Never expire; có thể chọn 7 ngày cho lab, rồi bấm Create
 
-{{< btbfigure file="aws-cloudwatch-step-1.webp" caption="Tên group trong ảnh là /aws/vpc/flowlogs." step="yes" >}}
+![Tên group trong ảnh là /aws/vpc/flowlogs.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.1-cloudwatch-logs/aws-cloudwatch-step-1.webp)
 
 2. **Mở VPC → Your VPCs → chọn VPC → Flow logs → Create flow log.** Chọn All hoặc Reject, destination CloudWatch Logs, group vừa tạo và delivery role có quyền ghi. Hoàn tất Create flow log.
 

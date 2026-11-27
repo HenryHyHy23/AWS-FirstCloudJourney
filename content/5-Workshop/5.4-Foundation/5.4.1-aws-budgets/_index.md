@@ -10,15 +10,15 @@ Set a monthly budget before starting Fargate or the ALB. Have a lab mailbox read
 
 1. **Find Billing and Cost Management in the AWS Console.**
 
-{{< btbfigure file="aws-budgets-step-1.webp" caption="Find Billing and Cost Management in the AWS Console." step="yes" >}}
+![Find Billing and Cost Management in the AWS Console.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-1.webp)
 
 2. **Open Budgets → Create budget.**
 
-{{< btbfigure file="aws-budgets-step-2-create-budget.webp" caption="Open Budgets → Create budget." step="yes" >}}
+![Open Budgets → Create budget.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-2-create-budget.webp)
 
 3. **Choose Customize (advanced) → Cost budget → Next.**
 
-{{< btbfigure file="aws-budgets-step-3-customization-setup.webp" caption="Select Cost budget to track spend in currency." step="yes" >}}
+![Select Cost budget to track spend in currency.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-3-customization-setup.webp)
 
 4. **Name the budget and set its period.** In Set your budget enter the following.
    - Budget name — `BTB-Monthly`
@@ -26,30 +26,30 @@ Set a monthly budget before starting Fargate or the ALB. Have a lab mailbox read
    - Renewal — Recurring
    - Budgeting method — Fixed
 
-{{< btbfigure file="aws-budgets-step-4-set-your-budget.webp" caption="Name and monthly renewal settings." step="yes" >}}
+![Name and monthly renewal settings.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-4-set-your-budget.webp)
 
 5. **Set the amount and scope.** The capture uses USD 200 and All AWS services. Use an amount appropriate for your lab, then select Next.
 
-{{< btbfigure file="aws-budgets-step-4-set-your-budget-1.webp" caption="Fixed amount and service scope." step="yes" >}}
+![Fixed amount and service scope.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-4-set-your-budget-1.webp)
 
 6. **Add an alert threshold.** Choose Actual cost, Greater than and 75% of budgeted amount. For the pictured budget this is USD 150.
 
-{{< btbfigure file="aws-budgets-step-5-set-alerts.webp" caption="Threshold based on actual spend." step="yes" >}}
+![Threshold based on actual spend.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-5-set-alerts.webp)
 
 7. **Enter the email recipient.** Use a mailbox you can verify, then choose Next.
 
-{{< btbfigure file="aws-budgets-step-5-set-alerts-1.webp" caption="Enter the email recipient." step="yes" >}}
+![Enter the email recipient.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-5-set-alerts-1.webp)
 
 8. **Check Attach actions.** Leave actions empty for an email-only alert and choose Next.
 
-{{< btbfigure file="aws-budgets-step-6-review-alert.webp" caption="Check Attach actions." step="yes" >}}
+![Check Attach actions.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-6-review-alert.webp)
 
 9. **Review Budget details.** Check Cost budget, Monthly and the amount entered.
 
-{{< btbfigure file="aws-budgets-step-7-review.webp" caption="Review Budget details." step="yes" >}}
+![Review Budget details.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-7-review.webp)
 
 10. **Review Alert #1 → Create budget.** Open the verification email if AWS requests it.
 
-{{< btbfigure file="aws-budgets-step-7-review-1.webp" caption="Review shows the 75% alert and no automatic budget actions." step="yes" >}}
+![Review shows the 75% alert and no automatic budget actions.](/images/5-Workshop/5.4-Foundation/5.4.1-aws-budgets/aws-budgets-step-7-review-1.webp)
 
 **Verify.** Reopen the budget and check its Actual 75% threshold and recipient status. Billing data can take time to arrive.

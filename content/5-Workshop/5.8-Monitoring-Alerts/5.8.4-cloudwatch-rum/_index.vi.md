@@ -12,11 +12,11 @@ pre: "<b> 5.8.4. </b> "
    - Domains — các hostname FE thực sự dùng, ví dụ apex và www
    - Authorization — chọn Cognito Identity Pool và hoàn tất bước guest role ở 5.8.5
 
-{{< btbfigure file="aws-cloudwatch-rum-step-1-add-app-monitor.webp" caption="Tên app monitor, platform Web và domain list." step="yes" >}}
+![Tên app monitor, platform Web và domain list.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.4-cloudwatch-rum/aws-cloudwatch-rum-step-1-add-app-monitor.webp)
 
 2. **Mở Code snippet → TypeScript.** Trong repo FE chạy `npm install aws-rum-web`. Đặt code dưới đây trong module khởi tạo một lần trước khi render React. Thay APP_MONITOR_UUID và IDENTITY_POOL_UUID bằng ID của lab.
 
-{{< btbfigure file="aws-cloudwatch-rum-step-2.webp" caption="Hướng dẫn tích hợp TypeScript từ monitor." step="yes" >}}
+![Hướng dẫn tích hợp TypeScript từ monitor.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.4-cloudwatch-rum/aws-cloudwatch-rum-step-2.webp)
 
 
 ```typescript

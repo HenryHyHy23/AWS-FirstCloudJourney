@@ -8,15 +8,15 @@ pre: "<b> 5.5.1. </b> "
 
 1. **Find Elastic Container Registry in the AWS Console → open Private registry.**
 
-{{< btbfigure file="aws-ecr-step-1.webp" caption="Find Elastic Container Registry in the AWS Console → open Private registry." step="yes" >}}
+![Find Elastic Container Registry in the AWS Console → open Private registry.](/images/5-Workshop/5.5-Containers-Storage/5.5.1-amazon-ecr/aws-ecr-step-1.webp)
 
 2. **Choose Repositories → Create repository.** Select Private, enter `generate-ui-be`, choose the tag setting and create the repository. Use a new tag for each immutable build.
 
-{{< btbfigure file="aws-ecr-step-2-create-private-repository.webp" caption="Repository referenced by the task definition." step="yes" >}}
+![Repository referenced by the task definition.](/images/5-Workshop/5.5-Containers-Storage/5.5.1-amazon-ecr/aws-ecr-step-2-create-private-repository.webp)
 
 3. **Select the repository → View push commands → Windows.** Open PowerShell in the backend Dockerfile directory. Use Docker, AWS CLI and AWS Tools for PowerShell with the same lab account. The commands follow the four pictured operations and use the commit SHA for the ECR tag.
 
-{{< btbfigure file="aws-ecr-step-3-display-commands.webp" caption="Windows commands in View push commands." step="yes" >}}
+![Windows commands in View push commands.](/images/5-Workshop/5.5-Containers-Storage/5.5.1-amazon-ecr/aws-ecr-step-3-display-commands.webp)
 
 
 ```powershell

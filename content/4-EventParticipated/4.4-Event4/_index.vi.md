@@ -23,7 +23,7 @@ Tham gia làm gấu bông thông minh qua hoạt động STEM, kết hợp lập
 
 ### Bài học rút ra
 
-- Hiểu cách kết hợp lập trình và âm thanh trong một sản phẩm thực tế.
+- Hiểu cách kết hợp lập trình và âm thanh kiểu mới trong một sản phẩm thực tế.
 - Sản phẩm dành cho trẻ em cần dễ sử dụng, an toàn và phù hợp với lứa tuổi.
 
 ### Cảm nhận

@@ -10,7 +10,7 @@ pre: "<b> 5.9.1. </b> "
 
 2. **Open Secrets Manager → backend secret → Edit.** Populate SUPABASE_DB_URL as a JDBC URL with the project's TLS settings, SUPABASE_DB_USERNAME and SUPABASE_DB_PASSWORD. Map each via ECS ValueFrom and deploy fresh tasks.
 
-{{< btbfigure file="aws-secret-manager-step-1.webp" caption="Connection keys shown in the Secrets Manager capture." step="yes" >}}
+![Connection keys shown in the Secrets Manager capture.](/images/5-Workshop/5.9-External-Integrations/5.9.1-supabase/aws-secret-manager-step-1.webp)
 
 3. **In Supabase open SQL Editor → New query → Run.** Verify the current database and role.
 

@@ -12,27 +12,27 @@ ECS dùng execution role khi khởi động container. Spring Boot dùng task ro
 
 1. **Trong AWS Console, tìm IAM → mở IAM.**
 
-{{< btbfigure file="aws-iam-step-1.webp" caption="Trong AWS Console, tìm IAM → mở IAM." step="yes" >}}
+![Trong AWS Console, tìm IAM → mở IAM.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-1.webp)
 
 2. **Chọn Access management → Roles → Create role.**
 
-{{< btbfigure file="aws-iam-step-2-create-roles.webp" caption="Chọn Access management → Roles → Create role." step="yes" >}}
+![Chọn Access management → Roles → Create role.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-2-create-roles.webp)
 
 3. **Chọn trusted entity.** AWS service → Elastic Container Service → Elastic Container Service Task → Next.
 
-{{< btbfigure file="aws-iam-step-3-select-entity.webp" caption="Chọn loại trusted entity cho ECS task." step="yes" >}}
+![Chọn loại trusted entity cho ECS task.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-3-select-entity.webp)
 
 4. **Gắn AmazonECSTaskExecutionRolePolicy → Next.** Policy này cho ECS tải image ECR và ghi log qua awslogs.
 
-{{< btbfigure file="aws-iam-step-4-add-permission.webp" caption="Policy quản lý cho execution role." step="yes" >}}
+![Policy quản lý cho execution role.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-4-add-permission.webp)
 
 5. **Đặt tên role → Create role.** Dùng `btb-ecs-execution` cho lab. Trong trust policy, kiểm tra service principal là `ecs-tasks.amazonaws.com`. 
 
-{{< btbfigure file="aws-iam-step-4-name-review-create.webp" caption="Đặt tên role → Create role." step="yes" >}}
+![Đặt tên role → Create role.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-4-name-review-create.webp)
 
 6. **Mở role vừa tạo → Permissions.** Nếu inject secret như bài 5.6.1, chọn Add permissions → Create inline policy. Trong Visual editor chọn Secrets Manager, action GetSecretValue và ARN chính xác của secret. Nếu dùng customer managed KMS key, cấp thêm kms:Decrypt trên key đó.
 
-{{< btbfigure file="aws-iam-step-5-check-permissions.webp" caption="Mở role vừa tạo → Permissions." step="yes" >}}
+![Mở role vừa tạo → Permissions.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-5-check-permissions.webp)
 
 ## Tạo task role và policy mẫu cho Nova Pro
 
@@ -40,7 +40,7 @@ ECS dùng execution role khi khởi động container. Spring Boot dùng task ro
 
 8. **Nhập policy gọi Nova Pro.** Copy JSON dưới ảnh. Thay ACCOUNT_ID và đối chiếu inference profile trong Bedrock trước khi chọn Next.
 
-{{< btbfigure file="aws-iam-step-6-create-policy.webp" caption="InvokeModel cho inference profile và foundation model của Nova Pro." step="yes" >}}
+![InvokeModel cho inference profile và foundation model của Nova Pro.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-create-policy.webp)
 
 
 ```json
@@ -77,7 +77,7 @@ ECS dùng execution role khi khởi động container. Spring Boot dùng task ro
 
 9. **Đặt Policy name là btb-nova-pro-invoke → Create policy.** Hai statement cho phép gọi profile và foundation model tương ứng qua profile đó.
 
-{{< btbfigure file="aws-iam-step-6-review-policy.webp" caption="Đặt Policy name là btb-nova-pro-invoke → Create policy." step="yes" >}}
+![Đặt Policy name là btb-nova-pro-invoke → Create policy.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-review-policy.webp)
 
 ## Các quyền theo chức năng của backend
 
@@ -88,11 +88,11 @@ Trong **task role → Permissions**, chỉ thêm quyền mà tính năng thực 
 <details>
 <summary>Xem ảnh đối chiếu quyền SQS và màn hình Review</summary>
 
-{{< btbfigure file="aws-iam-step-6-create-policy-1.webp" caption="Policy PublishOutbox trong ảnh dành cho đường gửi trực tiếp đến SQS." step="yes" >}}
+![Policy PublishOutbox trong ảnh dành cho đường gửi trực tiếp đến SQS.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-create-policy-1.webp)
 
-{{< btbfigure file="aws-iam-step-6-review-policy-1.webp" caption="Xem ảnh đối chiếu quyền SQS và màn hình Review" step="yes" >}}
+![Xem ảnh đối chiếu quyền SQS và màn hình Review](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-review-policy-1.webp)
 
-{{< btbfigure file="aws-iam-step-6-review-policy-2.webp" caption="Xem ảnh đối chiếu quyền SQS và màn hình Review" step="yes" >}}
+![Xem ảnh đối chiếu quyền SQS và màn hình Review](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-review-policy-2.webp)
 
 </details>
 
@@ -101,11 +101,11 @@ Trong **task role → Permissions**, chỉ thêm quyền mà tính năng thực 
 <details>
 <summary>Xem ảnh đối chiếu guardrail và tên policy</summary>
 
-{{< btbfigure file="aws-iam-step-6-create-policy-2.webp" caption="Quyền ApplyGuardrail cho guardrail và profile." step="yes" >}}
+![Quyền ApplyGuardrail cho guardrail và profile.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-create-policy-2.webp)
 
-{{< btbfigure file="aws-iam-step-6-create-policy-3.webp" caption="Xem ảnh đối chiếu guardrail và tên policy" step="yes" >}}
+![Xem ảnh đối chiếu guardrail và tên policy](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-create-policy-3.webp)
 
-{{< btbfigure file="aws-iam-step-6-review-policy-3.webp" caption="Xem ảnh đối chiếu guardrail và tên policy" step="yes" >}}
+![Xem ảnh đối chiếu guardrail và tên policy](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-review-policy-3.webp)
 
 </details>
 
@@ -114,9 +114,9 @@ Trong **task role → Permissions**, chỉ thêm quyền mà tính năng thực 
 <details>
 <summary>Xem ảnh đối chiếu quyền phát sự kiện</summary>
 
-{{< btbfigure file="aws-iam-step-6-create-policy-4.webp" caption="PutEvents vào custom bus của BTB." step="yes" >}}
+![PutEvents vào custom bus của BTB.](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-create-policy-4.webp)
 
-{{< btbfigure file="aws-iam-step-6-review-policy-4.webp" caption="Xem ảnh đối chiếu quyền phát sự kiện" step="yes" >}}
+![Xem ảnh đối chiếu quyền phát sự kiện](/images/5-Workshop/5.4-Foundation/5.4.2-aws-iam/aws-iam-step-6-review-policy-4.webp)
 
 </details>
 

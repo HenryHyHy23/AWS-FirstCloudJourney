@@ -10,7 +10,7 @@ pre: "<b> 5.8.7. </b> "
 
 2. **Return to EventBridge → rule → Target.** Select the primary queue as target and the error queue as target DLQ. This DLQ receives events EventBridge fails to deliver under the retry policy.
 
-{{< btbfigure file="aws-amazon-eventbridge-step-2-create-rule-4.webp" caption="Retry limits and queue for undelivered events." step="yes" >}}
+![Retry limits and queue for undelivered events.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.7-amazon-sqs/aws-amazon-eventbridge-step-2-create-rule-4.webp)
 
 3. **Send the event in 5.8.6 → open the primary queue → Send and receive messages → Poll for messages.** In an isolated lab pause the consumer if you need to inspect the message first.
 

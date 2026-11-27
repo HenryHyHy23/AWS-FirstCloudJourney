@@ -10,7 +10,7 @@ pre: "<b> 5.9.1. </b> "
 
 2. **Mở Secrets Manager → secret backend → Edit.** Điền SUPABASE_DB_URL dạng JDBC với TLS theo project, SUPABASE_DB_USERNAME và SUPABASE_DB_PASSWORD. Trong ECS map từng tên qua ValueFrom rồi deploy revision mới.
 
-{{< btbfigure file="aws-secret-manager-step-1.webp" caption="Các key kết nối xuất hiện trong ảnh Secrets Manager." step="yes" >}}
+![Các key kết nối xuất hiện trong ảnh Secrets Manager.](/images/5-Workshop/5.9-External-Integrations/5.9.1-supabase/aws-secret-manager-step-1.webp)
 
 3. **Trong Supabase, mở SQL Editor → New query → Run.** Kiểm tra database và role đang dùng.
 

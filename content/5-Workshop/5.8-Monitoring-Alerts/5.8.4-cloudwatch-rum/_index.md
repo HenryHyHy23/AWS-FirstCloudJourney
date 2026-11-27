@@ -12,11 +12,11 @@ pre: "<b> 5.8.4. </b> "
    - Domains — the actual frontend hostnames, such as the apex and www
    - Authorization — select a Cognito Identity Pool and complete the guest role in 5.8.5
 
-{{< btbfigure file="aws-cloudwatch-rum-step-1-add-app-monitor.webp" caption="App monitor name, web platform and domain list." step="yes" >}}
+![App monitor name, web platform and domain list.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.4-cloudwatch-rum/aws-cloudwatch-rum-step-1-add-app-monitor.webp)
 
 2. **Open Code snippet → TypeScript.** In the frontend repo run `npm install aws-rum-web`. Place the code below in a startup module that runs once before React renders. Replace APP_MONITOR_UUID and IDENTITY_POOL_UUID with the lab IDs.
 
-{{< btbfigure file="aws-cloudwatch-rum-step-2.webp" caption="Monitor-generated TypeScript installation instructions." step="yes" >}}
+![Monitor-generated TypeScript installation instructions.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.4-cloudwatch-rum/aws-cloudwatch-rum-step-2.webp)
 
 
 ```typescript

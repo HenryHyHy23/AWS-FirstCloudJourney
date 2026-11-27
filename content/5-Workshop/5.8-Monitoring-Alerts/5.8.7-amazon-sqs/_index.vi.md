@@ -10,7 +10,7 @@ pre: "<b> 5.8.7. </b> "
 
 2. **Quay lại EventBridge → rule → Target.** Chọn queue chính làm target và queue lỗi làm target DLQ. Khi EventBridge gửi tới target thất bại, DLQ này nhận sự kiện theo retry policy.
 
-{{< btbfigure file="aws-amazon-eventbridge-step-2-create-rule-4.webp" caption="Giới hạn retry và queue nhận sự kiện không giao được." step="yes" >}}
+![Giới hạn retry và queue nhận sự kiện không giao được.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.7-amazon-sqs/aws-amazon-eventbridge-step-2-create-rule-4.webp)
 
 3. **Gửi event ở 5.8.6 → mở queue chính → Send and receive messages → Poll for messages.** Trong lab riêng, tạm dừng consumer nếu cần xem message trước khi consumer đọc.
 

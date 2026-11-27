@@ -10,30 +10,30 @@ pre: "<b> 5.6.3. </b> "
 
 2. **Open Task definitions → Create new task definition.** Enter a family name and select AWS Fargate.
 
-{{< btbfigure file="aws-application-load-balancer-step-4-create-task-definition.webp" caption="Family and Fargate launch requirements." step="yes" >}}
+![Family and Fargate launch requirements.](/images/5-Workshop/5.6-Backend-AI/5.6.3-amazon-ecs-fargate/aws-application-load-balancer-step-4-create-task-definition.webp)
 
 3. **Choose the environment and both IAM roles.** Compare the fields in the capture.
    - OS/architecture — Linux/X86_64; network mode — awsvpc
    - Task size — 0.5 vCPU, 2 GB
    - Task role — backend role from 5.4.2; Task execution role — ECR, secrets and logging role
 
-{{< btbfigure file="aws-application-load-balancer-step-4-create-task-definition-1.webp" caption="CPU, RAM and the two roles in one revision." step="yes" >}}
+![CPU, RAM and the two roles in one revision.](/images/5-Workshop/5.6-Backend-AI/5.6.3-amazon-ecs-fargate/aws-application-load-balancer-step-4-create-task-definition-1.webp)
 
 4. **Add the backend container.** Enter `btb-backend`, select the image you pushed, enable Essential and map TCP 8080. Spring Boot must listen on the container interface.
 
-{{< btbfigure file="aws-application-load-balancer-step-4-create-task-definition-2.webp" caption="Container port mapping." step="yes" >}}
+![Container port mapping.](/images/5-Workshop/5.6-Backend-AI/5.6.3-amazon-ecs-fargate/aws-application-load-balancer-step-4-create-task-definition-2.webp)
 
 5. **Review the container resource allocation limits.** Keep CPU and memory limits compatible with the task size and allow for JVM non-heap memory.
 
-{{< btbfigure file="aws-application-load-balancer-step-4-create-task-definition-3.webp" caption="Review the container resource allocation limits." step="yes" >}}
+![Review the container resource allocation limits.](/images/5-Workshop/5.6-Backend-AI/5.6.3-amazon-ecs-fargate/aws-application-load-balancer-step-4-create-task-definition-3.webp)
 
 6. **Open Environment variables → Add environment variable.** For Cloudinary, SePay, SMTP and database credentials select ValueFrom and reference the ARN from the Secrets Manager lab.
 
-{{< btbfigure file="aws-application-load-balancer-step-4-create-task-definition-4.webp" caption="Cloudinary, SMTP, SePay and database keys in the task." step="yes" >}}
+![Cloudinary, SMTP, SePay and database keys in the task.](/images/5-Workshop/5.6-Backend-AI/5.6.3-amazon-ecs-fargate/aws-application-load-balancer-step-4-create-task-definition-4.webp)
 
 7. **Complete the Supabase and Vietmap fields.** Verify the names read by Spring. Use Value for ordinary settings such as JAVA_TOOL_OPTIONS. Under Logging select awslogs, the Region, log group and ecs stream prefix. Register the revision.
 
-{{< btbfigure file="aws-application-load-balancer-step-4-create-task-definition-5.webp" caption="Supabase and Vietmap variables in the task." step="yes" >}}
+![Supabase and Vietmap variables in the task.](/images/5-Workshop/5.6-Backend-AI/5.6.3-amazon-ecs-fargate/aws-application-load-balancer-step-4-create-task-definition-5.webp)
 
 8. **Select Cluster → Services → Create.** Choose the registered family:revision.
    - Compute — Fargate; desired tasks — 1 for the lab

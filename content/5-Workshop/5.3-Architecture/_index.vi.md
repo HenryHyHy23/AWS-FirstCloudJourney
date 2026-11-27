@@ -8,7 +8,7 @@ pre: "<b> 5.3. </b> "
 
 Bắt đầu ở biểu tượng **User** bên trái. Theo mũi tên **1** để xem cách trình duyệt tìm tên miền, rồi theo mũi tên **2** để xem kết nối HTTPS đến CloudFront. Bấm vào hình để đọc các nhãn ở kích thước gốc.
 
-{{< btbfigure file="architecture-btb.png" caption="Kiến trúc AWS của nhóm Bite to Business. Các số từ 1 đến 28 đánh dấu những luồng được giải thích bên dưới." >}}
+![Kiến trúc AWS của nhóm Bite to Business. Các số từ 1 đến 28 đánh dấu những luồng được giải thích bên dưới.](/images/5-Workshop/5.3-Architecture/architecture-btb.png)
 
 | Số trên hình | Luồng | Cách lần theo trong workshop |
 |---|---|---|

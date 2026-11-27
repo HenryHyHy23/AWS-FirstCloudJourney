@@ -11,7 +11,7 @@ pre: "<b> 5.8.1. </b> "
    - Log class — Standard
    - Retention — the example shows Never expire; for a lab choose a period such as 7 days and create the group
 
-{{< btbfigure file="aws-cloudwatch-step-1.webp" caption="The pictured log group is /aws/vpc/flowlogs." step="yes" >}}
+![The pictured log group is /aws/vpc/flowlogs.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.1-cloudwatch-logs/aws-cloudwatch-step-1.webp)
 
 2. **Open VPC → Your VPCs → select the VPC → Flow logs → Create flow log.** Choose All or Reject, destination CloudWatch Logs, the new log group and a delivery role authorized to write. Create the flow log.
 

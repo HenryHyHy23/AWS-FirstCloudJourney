@@ -8,7 +8,7 @@ pre: "<b> 5.3. </b> "
 
 Start at **User** on the left. Follow arrow **1** to see how the browser resolves the domain, then arrow **2** for the HTTPS connection to CloudFront. Select the diagram to read its labels at full resolution.
 
-{{< btbfigure file="architecture-btb.png" caption="The Bite to Business team’s AWS architecture. Numbers 1 through 28 identify the flows described below." >}}
+![The Bite to Business team’s AWS architecture. Numbers 1 through 28 identify the flows described below.](/images/5-Workshop/5.3-Architecture/architecture-btb.png)
 
 | Diagram numbers | Flow | What to trace in the workshop |
 |---|---|---|

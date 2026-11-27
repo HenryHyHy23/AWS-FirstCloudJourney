@@ -10,25 +10,25 @@ Create the SNS topic and confirm the email subscription in 5.8.3 before attachin
 
 1. **Open CloudWatch → Alarms → All alarms → Create alarm → Select metric.** Select CloudWatch metrics as the data source.
 
-{{< btbfigure file="aws-cloudwatch-metrics--alarms-step-1-create-alarm.webp" caption="Open CloudWatch → Alarms → All alarms → Create alarm → Select metric." step="yes" >}}
+![Open CloudWatch → Alarms → All alarms → Create alarm → Select metric.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.2-cloudwatch-metrics-alarms/aws-cloudwatch-metrics--alarms-step-1-create-alarm.webp)
 
 2. **Choose ApplicationELB → Per AppELB Metrics.** Find your lab load balancer and select HTTPCode_ELB_5XX_Count. Use HTTPCode_Target_5XX_Count to monitor errors returned by the application.
 
-{{< btbfigure file="aws-cloudwatch-metrics--alarms-step-2-select-metric.webp" caption="Select the LoadBalancer dimension." step="yes" >}}
+![Select the LoadBalancer dimension.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.2-cloudwatch-metrics-alarms/aws-cloudwatch-metrics--alarms-step-2-select-metric.webp)
 
 3. **Configure the alarm condition → Next.** Example for a low-traffic lab:
    - Statistic — Sum; period — 5 minutes
    - Threshold type — Static; Greater than — enter 0
    - Datapoints — 1 of 1; missing data — not breaching
 
-{{< btbfigure file="aws-cloudwatch-metrics--alarms-step-3-setup-metric.webp" caption="Alarm metric, statistic, period and condition." step="yes" >}}
+![Alarm metric, statistic, period and condition.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.2-cloudwatch-metrics-alarms/aws-cloudwatch-metrics--alarms-step-3-setup-metric.webp)
 
 4. **Under Configure actions choose In alarm → Select an existing SNS topic.** Select btb-system-alerts and choose Next.
 
-{{< btbfigure file="aws-cloudwatch-metrics--alarms-step-4-configure.webp" caption="Attach SNS to the In alarm state." step="yes" >}}
+![Attach SNS to the In alarm state.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.2-cloudwatch-metrics-alarms/aws-cloudwatch-metrics--alarms-step-4-configure.webp)
 
 5. **Enter the alarm name → Review → Create alarm.** Use `btb-backend-alb-5xx` as pictured.
 
-{{< btbfigure file="aws-cloudwatch-metrics--alarms-step-5-name.webp" caption="Backend ALB alarm name." step="yes" >}}
+![Backend ALB alarm name.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.2-cloudwatch-metrics-alarms/aws-cloudwatch-metrics--alarms-step-5-name.webp)
 
 **Verify.** Open the alarm → History. When a transition occurs, compare the action timestamp with its SNS email. Publishing a test in SNS checks the SNS-to-email part of the path.

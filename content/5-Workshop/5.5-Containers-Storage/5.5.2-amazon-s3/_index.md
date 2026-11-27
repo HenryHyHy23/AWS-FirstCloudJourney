@@ -8,19 +8,19 @@ pre: "<b> 5.5.2. </b> "
 
 1. **Search for Amazon S3 → open Buckets.**
 
-{{< btbfigure file="aws-s3-step-1.webp" caption="Search for Amazon S3 → open Buckets." step="yes" >}}
+![Search for Amazon S3 → open Buckets.](/images/5-Workshop/5.5-Containers-Storage/5.5.2-amazon-s3/aws-s3-step-1.webp)
 
 2. **Choose Create bucket → General purpose.**
 
-{{< btbfigure file="aws-s3-step-2-create-bucket.webp" caption="Choose Create bucket → General purpose." step="yes" >}}
+![Choose Create bucket → General purpose.](/images/5-Workshop/5.5-Containers-Storage/5.5.2-amazon-s3/aws-s3-step-2-create-bucket.webp)
 
 3. **Enter the bucket name and AWS Region.** Choose a valid unique name. Record it for the frontend upload and CloudFront origin.
 
-{{< btbfigure file="aws-s3-step-3-general-configuration.webp" caption="Frontend bucket general configuration." step="yes" >}}
+![Frontend bucket general configuration.](/images/5-Workshop/5.5-Containers-Storage/5.5.2-amazon-s3/aws-s3-step-3-general-configuration.webp)
 
 4. **Select Bucket owner enforced.** Keep Block all public access enabled, choose default encryption and create the bucket. CloudFront will read through OAC in 5.7.2.
 
-{{< btbfigure file="aws-s3-step-4-setup-ownership.webp" caption="Object Ownership and Block Public Access." step="yes" >}}
+![Object Ownership and Block Public Access.](/images/5-Workshop/5.5-Containers-Storage/5.5.2-amazon-s3/aws-s3-step-4-setup-ownership.webp)
 
 5. **Build and upload the storefront.** Set the lab API base URL in the frontend repo. Replace BUCKET_NAME and BUCKET_REGION before running the commands.
 

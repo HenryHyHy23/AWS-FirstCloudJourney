@@ -8,19 +8,19 @@ pre: "<b> 5.8.3. </b> "
 
 1. **Find Simple Notification Service → open Topics.**
 
-{{< btbfigure file="aws-sns-step-1.webp" caption="Find Simple Notification Service → open Topics." step="yes" >}}
+![Find Simple Notification Service → open Topics.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.3-amazon-sns/aws-sns-step-1.webp)
 
 2. **Choose Create topic → Standard.** Name it `btb-system-alerts` in the alarm Region and create the topic.
 
-{{< btbfigure file="aws-sns-step-2-create-topic.webp" caption="Select a Standard topic for alert emails." step="yes" >}}
+![Select a Standard topic for alert emails.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.3-amazon-sns/aws-sns-step-2-create-topic.webp)
 
 3. **Open the topic → Create subscription.** Set Protocol to Email and Endpoint to your lab mailbox. Create the subscription. Its initial status can be Pending confirmation.
 
-{{< btbfigure file="aws-sns-step-3-create-subscription.webp" caption="Open the topic → Create subscription." step="yes" >}}
+![Open the topic → Create subscription.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.3-amazon-sns/aws-sns-step-3-create-subscription.webp)
 
 4. **Open the AWS Notification email → Confirm subscription.** Return to Subscriptions and check for a confirmed subscription ID.
 
-{{< btbfigure file="aws-sns-step-4-confirm.webp" caption="Invitation to confirm the subscription." step="yes" >}}
+![Invitation to confirm the subscription.](/images/5-Workshop/5.8-Monitoring-Alerts/5.8.3-amazon-sns/aws-sns-step-4-confirm.webp)
 
 5. **Open the topic → Publish message.** Enter subject BTB lab and a test message. Check the topic ARN, recipient and email arrival time.
 

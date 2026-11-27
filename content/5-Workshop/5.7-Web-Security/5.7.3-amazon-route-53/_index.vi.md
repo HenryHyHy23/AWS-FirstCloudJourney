@@ -8,11 +8,11 @@ pre: "<b> 5.7.3. </b> "
 
 1. **Chọn Route 53 → Hosted zones → Create hosted zone.** Nhập domain đã đăng ký, chọn Public hosted zone → Create. Ghi đủ bốn nameserver trong NS record.
 
-{{< btbfigure file="aws-route-53-step-1-create-hosted-zone.webp" caption="Public hosted zone cho domain của nhóm." step="yes" >}}
+![Public hosted zone cho domain của nhóm.](/images/5-Workshop/5.7-Web-Security/5.7.3-amazon-route-53/aws-route-53-step-1-create-hosted-zone.webp)
 
 2. **Mở Mắt Bão → Quản trị tên miền → Name Server.** Nếu chuyển domain đang dùng, sao chép các record MX/TXT/ACM cần thiết sang zone mới trước. Chọn Sử dụng Name Server tùy chỉnh, nhập bốn giá trị của zone và lưu.
 
-{{< btbfigure file="aws-route-53-step-2-setup-route.webp" caption="Màn hình cấu hình nameserver tại Mắt Bão." step="yes" >}}
+![Màn hình cấu hình nameserver tại Mắt Bão.](/images/5-Workshop/5.7-Web-Security/5.7.3-amazon-route-53/aws-route-53-step-2-setup-route.webp)
 
 3. **Quay lại Route 53 → Create record.** Tạo A Alias cho apex và www tới CloudFront. Nếu distribution bật IPv6, thêm AAAA Alias. Tạo A Alias cho api tới ALB Singapore. Hostname origin API phải phân giải tới ALB.
 
