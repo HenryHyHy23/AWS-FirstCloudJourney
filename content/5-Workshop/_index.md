@@ -1,28 +1,33 @@
 ---
-title: "Workshop"
-date: 2025-09-09
+title: "Bite to Business on AWS"
+menuTitle: "Workshop"
 weight: 5
-chapter: true
-pre: " <b> 5. </b> "
+chapter: false
+pre: "<b> 5. </b> "
 ---
 
-# S3 Static Website & CloudFront Hosting System
 
-In this workshop, we will build a static website hosting and delivery system using **Amazon S3** and **Amazon CloudFront**.
 
-#### System Architecture
-The system consists of the following key components:
-1.  **Amazon S3 Bucket**: Stores website source code (HTML, CSS, JS, Images). Configured with **Static Website Hosting** feature.
-2.  **Amazon CloudFront**: Content Delivery Network (CDN) to accelerate website access for global users and reduce load on S3.
-3.  **Security**: Access management via **Block Public Access** and **Bucket Policies/ACLs**.
+Deploy the Bite to Business React storefront and Spring Boot API, from the first VPC to a purchase request passing through CloudFront, ALB and ECS. Then trace errors, cost and order events.
 
-#### Workshop Contents
-The practical labs are divided into sections for easy following:
+## How to run the workshop
 
-1.  **[Overview (5.1)](./5.1-workshop-overview)**: Introduction to the workshop and services used.
-2.  **[Preparation (5.2)](./5.2-prerequiste)**: Create S3 Bucket and upload sample travel website source code.
-3.  **[S3 Hosting Config (5.3)](./5.3-s3-static-web)**: Enable Static Website Hosting on the bucket.
-4.  **[Security Config (5.4 - 5.5)](./5.4-config-block-public)**: Configure `Block Public Access` and `ACL` to make the website public.
-5.  **[Verify Website (5.6)](./5.6-check-website)**: Access the website via S3 Endpoint.
-6.  **[CloudFront Integration (5.7)](./5.7-cloudfront)**: Deploy CloudFront CDN to distribute website content.
-7.  **[Cleanup (5.8)](./5.8-cleanup)**: Delete resources to avoid incurring costs.
+Use a lab account for resource creation. The captured names help identify each step. Substitute your own domain, account ID, ARNs, UUIDs and credentials. Select an image to inspect it at full size. Each step lists the action and fields to complete. The first policy example includes its screenshot and code. Expand the reference captures to inspect additional policy screens.
+
+**Evidence scope.** The team note reports deployed FE/BE services. The captures add an EventBridge bus, SQS targets, WAF rules at different points and Bedrock quota settings. Production AI results, RUM ingestion and event consumption require the tests in 5.11.
+
+## Hands-on labs
+
+- [5.1. Overview](5.1-overview/)
+- [5.2. Prerequisites](5.2-prerequisites/)
+- [5.3. Architecture & Data Flow](5.3-architecture/)
+- [5.4. Network & Foundation](5.4-foundation/)
+- [5.5. Container & Storage](5.5-containers-storage/)
+- [5.6. Backend & AI Deployment](5.6-backend-ai/)
+- [5.7. Web Delivery & Security](5.7-web-security/)
+- [5.8. Monitoring, alerts and events](5.8-monitoring-alerts/)
+- [5.9. External Integrations](5.9-external-integrations/)
+- [5.10. CI/CD Deployment](5.10-ci-cd/)
+- [5.11. Testing & Live Demo](5.11-testing/)
+- [5.12. Cost Estimation](5.12-cost/)
+- [5.13. Cleanup & Troubleshooting](5.13-cleanup/)
